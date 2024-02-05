@@ -1,0 +1,21 @@
+<!-- admin-dashboard.component.html -->
+
+<div class="admin-dashboard-container">
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <img src="assets/logo.png" alt="Logo">
+        <h1>Admin Dashboard</h1>
+      </div>
+      <ul class="menu">
+        <li><a routerLink="/dashboard" routerLinkActive="active">Dashboard</a></li>
+        <li><a routerLink="/users" routerLinkActive="active">Users</a></li>
+        <li><a routerLink="/products" routerLinkActive="active">Products</a></li>
+        <li><a routerLink="/orders" routerLinkActive="active">Orders</a></li>
+        <!-- Add more menu items as needed -->
+      </ul>
+    </div>
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  
