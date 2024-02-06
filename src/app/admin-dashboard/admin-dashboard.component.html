@@ -17,13 +17,16 @@
     <router-outlet></router-outlet>
   </div>
 </div> -->
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin Dashboard</title>
 <link rel="stylesheet" href="admin-dashboard.component.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 <style>
   /* Reset some default styles */
   * {
@@ -40,44 +43,29 @@
 </head>
 <body>
 
-<!-- Sidebar -->
 <div id="sidebar" class="sidebar">
-  <button id="toggleBtn" class="toggle-btn">Toggle</button>
+  <button id="toggleBtn" class="toggle-btn" (click)="toggleSidebar()">
+    <img src="D:\pgproject\stocks\Dynamic_Stock_Monitoring_and_Alert_System\src\assets\bar_icon.png" aria-hidden="true" alt="Toggle Sidebar">
+
+    Toggle</button>
+
   <ul>
-   
     <li><a routerLink="/dashboard" routerLinkActive="active">Dashboard</a></li>
-      <li><a routerLink="/users" routerLinkActive="active">Users</a></li>
-      <li><a routerLink="/supplier" routerLinkActive="active">Supplier</a></li>
-      <li><a routerLink="/products" routerLinkActive="active">Products</a></li>
-      <li><a routerLink="/orders" routerLinkActive="active">Orders</a></li>
-      <li><a routerLink="/stock" routerLinkActive="active">Stock</a></li>
-      <li><a routerLink="/reportandanalytics" routerLinkActive="active">Report and Analytics</a></li>
+    <li><a routerLink="/users" routerLinkActive="active">Users</a></li>
+    <li><a routerLink="/supplier" routerLinkActive="active">Supplier</a></li>
+    <li><a routerLink="/products" routerLinkActive="active">Products</a></li>
+    <li><a routerLink="/orders" routerLinkActive="active">Orders</a></li>
+    <li><a routerLink="/stock" routerLinkActive="active">Stock</a></li>
+    <li><a routerLink="/reportandanalytics" routerLinkActive="active">Report and Analytics</a></li>
   </ul>
 </div>
 
-<!-- Main content -->
-<!-- <div class="content">
-  <h2>Dashboard</h2>
-  <p>Welcome to the admin dashboard!</p>
-</div> -->
 <div class="content">
   <router-outlet></router-outlet>
 </div>
-<script >
-function toggleSidebar() {
-  const sidebar = document.getElementById('sidebar');
-  if (sidebar.classList.contains('active')) {
-    sidebar.classList.remove('active');
-    console.log('Sidebar is now closed');
-  } else {
-    sidebar.classList.add('active');
-    console.log('Sidebar is now open');
-  }
-}
-
-
-</script>
 
 </body>
 </html>
+ -->
+
 
