@@ -267,6 +267,7 @@ p {
       visibility: visible;
     }
   }
+<<<<<<< HEAD
   
   .sidebar > a.active,.sidebar > a:hover:nth-child(even) {
     --accent-color: #52d6f4;
@@ -360,3 +361,21 @@ p {
     opacity: 0;
     visibility: hidden;
   }
+=======
+/* Add your existing CSS styles here */
+
+.sidebar.active {
+  left: 0;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+img {
+  width: 30px; /* Adjust size as needed */
+  height: auto; /* Maintain aspect ratio */
+}
+>>>>>>> 708055feaf0eb23383975d8017d6384d08891f8a
