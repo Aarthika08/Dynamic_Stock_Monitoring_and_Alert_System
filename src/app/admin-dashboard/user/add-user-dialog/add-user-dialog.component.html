@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>Add User</h2>
+<form (submit)="onSubmit()">
+  <!-- Form fields -->
+  <input type="text" name="name"  [(ngModel)]="name">
+  <input type="email" name="email" [(ngModel)]="email" >
+  <select name="role"  [(ngModel)]="role">
+    <!-- Options -->
+    <option value="Admin">Admin</option>
+    <option value="User">User</option>
+    
+  </select>
+  <button type="submit">Add</button>
+</form>
