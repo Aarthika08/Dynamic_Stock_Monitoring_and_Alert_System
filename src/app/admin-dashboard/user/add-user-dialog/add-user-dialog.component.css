@@ -1,11 +1,3 @@
 /* add-user-dialog.component.css */
 
 /* Adjust the position of the dialog */
-:host {
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
-    margin-top: 20px; /* Adjust the margin as needed */
-    margin-right: 20px; /* Adjust the margin as needed */
-  }
-  
