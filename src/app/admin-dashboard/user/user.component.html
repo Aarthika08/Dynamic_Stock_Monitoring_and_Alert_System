@@ -1,1 +1,23 @@
-<p>user works!</p>
+<!-- <h1>Add User</h1>
+<form (submit)="addUser()">
+  <label for="name">Name:</label><br>
+  <input type="text" id="name" name="name" [(ngModel)]="name"><br>
+  <label for="email">Email:</label><br>
+  <input type="email" id="email" name="email" [(ngModel)]="email"><br>
+  <label for="role">Role:</label><br>
+  <select id="role" name="role" [(ngModel)]="role">
+    <option value="Admin">Admin</option>
+    <option value="User">User</option>
+    
+  </select><br><br>
+  <input type="submit" value="Submit">
+</form> -->
+<!-- user.component.html -->
+
+<h1>User Component</h1>
+
+<!-- Button to open the dialog -->
+<button class="host" style=" margin-left: 873px;" mat-raised-button (click)="openAddUserDialog()">Add User</button>
+
+<!-- This is where the dialog content will be displayed -->
+<router-outlet></router-outlet>

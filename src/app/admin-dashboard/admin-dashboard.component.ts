@@ -9,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class AdminDashboardComponent {
   // Component logic goes here
+  sidebarOpen: boolean = false;
+
+  toggleSidebar() {
+    this.sidebarOpen = !this.sidebarOpen;
+  }
+
 }

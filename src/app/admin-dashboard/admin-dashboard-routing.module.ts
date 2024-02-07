@@ -12,25 +12,44 @@ import { StockComponent } from './stock/stock.component';
 import { ReportAndAnalyticsComponent } from './report-and-analytics/report-and-analytics.component';
 
 const routes: Routes = [
+  // {
+    // path: '',
+    // component: AdminDashboardComponent,
+    // children: [
+    //   { path: 'dashboard', component: DashboardComponent ,outlet:'main'},
+    //   { path: 'users', component: UserComponent },
+    //   { path: 'supplier', component: SupplierComponent },
+    //   { path: 'products', component: ProductComponent },
+    //   { path: 'orders', component: OrderComponent },
+    //   { path: 'stock', component: StockComponent },
+    //   { path: 'reportandanalytics', component: ReportAndAnalyticsComponent },
+
+    //   // Add more routes as needed
+    //   { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+    // ]
+  // }
   {
     path: '',
     component: AdminDashboardComponent,
     children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'users', component: UserComponent },
+      { path: 'user', component: UserComponent },
       { path: 'supplier', component: SupplierComponent },
-      { path: 'products', component: ProductComponent },
-      { path: 'orders', component: OrderComponent },
-      { path: 'stock', component: StockComponent },
-      { path: 'reportandanalytics', component: ReportAndAnalyticsComponent },
-
-      // Add more routes as needed
-      { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
+        { path: 'products', component: ProductComponent },
+        { path: 'orders', component: OrderComponent },
+        { path: 'stock', component: StockComponent },
+        { path: 'reportandanalytics', component: ReportAndAnalyticsComponent },
+  
+      // Add more routes for other components
+      // { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
     ]
   }
 ];
 
+
 @NgModule({
+  // imports: [RouterModule.forChild(routes)],
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
