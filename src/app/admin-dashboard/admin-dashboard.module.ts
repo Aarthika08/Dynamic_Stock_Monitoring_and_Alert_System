@@ -16,6 +16,8 @@ import { AdminDashboardComponent } from './admin-dashboard.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'; // Import both FormsModule and ReactiveFormsModule
 import { AddUserDialogComponent } from './user/add-user-dialog/add-user-dialog.component';
+import {HttpClientModule } from  '@angular/common/http';
+import{EditUserDialogComponent} from './user/edit-user-dialog/edit-user-dialog.component'
 
 @NgModule({
   declarations: [
@@ -27,8 +29,10 @@ import { AddUserDialogComponent } from './user/add-user-dialog/add-user-dialog.c
     OrderComponent,
     StockComponent,
     ReportAndAnalyticsComponent,
-    SidebarComponent,AddUserDialogComponent
-  ],
+    SidebarComponent,
+    AddUserDialogComponent,
+    EditUserDialogComponent
+    ],
   imports: [
     CommonModule,
     AdminDashboardRoutingModule,
@@ -38,7 +42,7 @@ import { AddUserDialogComponent } from './user/add-user-dialog/add-user-dialog.c
     MatDialogModule,
     ReactiveFormsModule,
     FormsModule, // Import FormsModule here
-      
+    HttpClientModule
   ],
   exports: [
     AdminDashboardComponent // Ensure AdminDashboardComponent is exported

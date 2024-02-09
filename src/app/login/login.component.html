@@ -1,10 +1,15 @@
-<!-- login.component.html -->
 <div>
-  <label for="username">Username:</label>
-  <input type="text" id="username" [(ngModel)]="username" />
+  <h2>Login</h2>
+  <div>
+    <label for="username">Username:</label>
+    <input type="text" id="username" [(ngModel)]="username" placeholder="Enter username">
+  </div>
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" id="password" [(ngModel)]="password" placeholder="Enter password">
+  </div>
+  <div>
+    <button (click)="login()">Login</button>
+  </div>
+  <div *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</div>
 </div>
-<div>
-  <label for="password">Password:</label>
-  <input type="password" id="password" [(ngModel)]="password" />
-</div>
-<button (click)="login()">Login</button>

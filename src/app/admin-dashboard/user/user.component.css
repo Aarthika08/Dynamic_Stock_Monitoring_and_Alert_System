@@ -1,10 +1,22 @@
-#host {
+/* #host {
     display: flex;
     justify-content: flex-end;
     align-items: flex-start;
-    margin-top: 20px; /* Adjust the margin as needed */
-    margin-right: 20px; /* Adjust the margin as needed */
+    margin-top: 20px; 
+    margin-right: 20px; 
    
-  }
+  } */
 
-  
+  .mat-mdc-dialog-container .mdc-dialog__container {
+    transition-duration: var(--mat-dialog-transition-duration, 0ms);
+    width: 183px;
+    margin: -60px;
+    padding: -18px;
+    height: 192px;
+  }
+  .mat-mdc-dialog-container, .mat-mdc-dialog-container .mdc-dialog__container, .mat-mdc-dialog-container .mdc-dialog__surface {
+    max-height: max-content;
+    min-height: max-content;
+    min-width: 185px;
+    max-width: max-content;
+  }

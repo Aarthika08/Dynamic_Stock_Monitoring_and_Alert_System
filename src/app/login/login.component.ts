@@ -1,5 +1,3 @@
-// login.component.ts
-
 import { Component } from '@angular/core';
 import { AdminAuthService } from '../auth/auth.service';
 
@@ -11,17 +9,23 @@ import { AdminAuthService } from '../auth/auth.service';
 export class LoginComponent {
   username: string = '';
   password: string = '';
+  errorMessage: string = '';
 
   constructor(private authService: AdminAuthService) {}
 
-  async login() {
-    const isAuthenticated = await this.authService.authenticate(this.username, this.password);
-    if (isAuthenticated) {
-      console.log('Login successful');
-      // Redirect or perform further actions upon successful authentication
-    } else {
-      console.log('Invalid credentials');
-      // Optionally display an error message to the user
-    }
+  login(): void {
+    this.authService.authenticate(this.username, this.password)
+      .then((authenticated: boolean) => {
+        if (authenticated) {
+          this.errorMessage = '';
+          // Redirect or perform other actions upon successful authentication
+        } else {
+          this.errorMessage = 'Invalid credentials';
+        }
+      })
+      .catch((error: any) => {
+        console.error('Authentication Error:', error);
+        this.errorMessage = 'An error occurred during authentication';
+      });
   }
 }

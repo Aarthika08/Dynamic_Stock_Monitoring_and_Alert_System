@@ -1,0 +1,49 @@
+<!-- <h1 mat-dialog-title>Update User</h1>
+<div mat-dialog-content>
+    <div *ngIf="data.document">
+        <h3>Edit Document</h3>
+        <form (submit)="onSubmit()">
+            <label>Name:</label>
+            <input type="text" [(ngModel)]="data.document.name" name="name" required>
+            <label>Email:</label>
+            <input type="email" [(ngModel)]="data.document.email" name="email" required>
+            <label>Role:</label>
+            <input type="text" [(ngModel)]="data.document.role" name="role" required>
+            <button type="submit">Update</button>
+        </form>
+    </div>
+</div> -->
+
+<!-- <div *ngIf="editingUserIndex !== -1">
+    <h3>Edit User</h3>
+    <form>
+      <label>Name: </label>
+      <input type="text" [(ngModel)]="updatedUserData.name" name="name">
+      <br>
+      <label>Email: </label>
+      <input type="email" [(ngModel)]="updatedUserData.email" name="email">
+      <br>
+      <label>Role: </label>
+      <input type="text" [(ngModel)]="updatedUserData.role" name="role">
+      <br>
+      <button type="button" (click)="saveUser()">Save</button>
+      <button type="button" (click)="cancelEdit()">Cancel</button>
+    </form>
+  </div> -->
+
+  <h1>Hiiiiii</h1>
+  <!-- edit-user-dialog.component.html -->
+<h2>Edit User</h2>
+<form>
+  <label>Name: </label>
+  <input type="text" [(ngModel)]="userData.name" name="name">
+  <br>
+  <label>Email: </label>
+  <input type="email" [(ngModel)]="userData.email" name="email">
+  <br>
+  <label>Role: </label>
+  <input type="text" [(ngModel)]="userData.role" name="role">
+  <br>
+  <button type="button" (click)="saveUser()">Save</button>
+  <button type="button" (click)="closeDialog()">Cancel</button>
+</form>
