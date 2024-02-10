@@ -37,7 +37,7 @@
   </div>
   <div>
     <label>Password:</label>
-    <input type="password" formControlName="password" >
+    <input type="password" formControlName="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
     <small *ngIf="userForm.get('password')?.hasError('password') && userForm.get('password')?.touched">
       Password is required.
       Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character.

@@ -1,31 +1,48 @@
-import { Component } from '@angular/core';
-import { AdminAuthService } from '../auth/auth.service';
+// login.component.ts
+
+ import { LoginService } from '../login/loginservice'
+// login.component.ts
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
-  username: string = '';
-  password: string = '';
+export class LoginComponent implements OnInit {
+  loginForm!: FormGroup;
   errorMessage: string = '';
 
-  constructor(private authService: AdminAuthService) {}
+  constructor(private formBuilder: FormBuilder, private loginService: LoginService, private router: Router) { }
 
-  login(): void {
-    this.authService.authenticate(this.username, this.password)
-      .then((authenticated: boolean) => {
-        if (authenticated) {
-          this.errorMessage = '';
-          // Redirect or perform other actions upon successful authentication
-        } else {
-          this.errorMessage = 'Invalid credentials';
+  ngOnInit() {
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
+  }
+
+  submit() {
+    if (this.loginForm.valid) {
+      const { email, password } = this.loginForm.value;
+      this.loginService.login(email, password).subscribe(
+        (isValid) => {
+          if (isValid) {
+            console.log('Login successful');
+            this.router.navigate(['/admin-dashboard']);
+          } else {
+            this.errorMessage = 'Invalid email or password';
+          }
+        },
+        (error) => {
+          console.error('Error during login:', error);
+          this.errorMessage = 'An error occurred during login';
         }
-      })
-      .catch((error: any) => {
-        console.error('Authentication Error:', error);
-        this.errorMessage = 'An error occurred during authentication';
-      });
+      );
+    } else {
+      this.errorMessage = 'Please enter valid email and password';
+    }
   }
 }

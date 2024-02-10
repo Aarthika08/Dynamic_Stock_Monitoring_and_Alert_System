@@ -1,82 +1,7 @@
-<!--  <h1>Add User</h1>
-<form (submit)="addUser()">
-  <label for="name">Name:</label><br>
-  <input type="text" id="name" name="name" [(ngModel)]="name"><br>
-  <label for="email">Email:</label><br>
-  <input type="email" id="email" name="email" [(ngModel)]="email"><br>
-  <label for="role">Role:</label><br>
-  <select id="role" name="role" [(ngModel)]="role">
-    <option value="Admin">Admin</option>
-    <option value="User">User</option>
-    
-  </select><br><br>
-  <input type="submit" value="Submit">
-</form> -->
-<!-- user.component.html -->
-<!-- 
-<h1>User Component</h1>
-
-<button class="host" style=" margin-left: 873px;" mat-raised-button (click)="openAddUserDialog()">Add User</button>
-
-
-
-
-<router-outlet></router-outlet>
-
-
-<div *ngIf="documents">
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Role</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let document of documents">
-        <td>{{ document._id }}</td>
-        <td>{{ document.name }}</td>
-        <td>{{ document.email }}</td>
-        <td>{{ document.role }}</td>
-        <td>
-          <button mat-raised-button (click)="openAddUserDialog(); updateDocument(document._id)">Update Document</button>
-         
-        </td>      
-      </tr>
-    </tbody>
-  </table>
-</div>
-<div *ngIf="editingDocument">
-  <h3>Edit Document</h3>
-  <form (submit)="updateDocument(editingDocument)">
-    <label>Name:</label>
-    <input type="text" [(ngModel)]="editedDocument.name" name="name" required>
-    <label>Email:</label>
-    <input type="email" [(ngModel)]="editedDocument.email" name="email" required>
-    <label>Role:</label>
-    <input type="text" [(ngModel)]="editedDocument.role" name="role" required>
-    <button type="submit">Update</button>
-    <button type="button" (click)="cancelEdit()">Cancel</button>
-  </form>
-</div> --> 
-
-<!-- <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-  <label for="name">Name:</label>
-  <input type="text" id="name" formControlName="name" required>
-
-  <label for="email">Email:</label>
-  <input type="email" id="email" formControlName="email" required>
-
-  <label for="role">Role:</label>
-  <input type="text" id="role" formControlName="role" required>
-
-  <button type="submit">Add User</button>
-</form> -->
-<button (click)="openAddUserDialog()">Add User</button>
-
+<html>
+  <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></head>
+<body>
+  <button class="newuser" (click)="openAddUserDialog()">Add User</button>
 <div>
   <h2>User List</h2>
   <table>
@@ -84,6 +9,8 @@
       <tr>
         <th>Name</th>
         <th>Email</th>
+        <th>Username</th>
+        <th>Password</th>
         <th>Role</th>
         <th>Actions</th>
       </tr>
@@ -92,30 +19,39 @@
       <tr *ngFor="let user of users; let i = index">
         <td>{{ user[0].name }}</td>
         <td>{{ user[0].email }}</td>
+        <td>{{ user[0].username }}</td>
+        <td>{{ user[0].password }}</td>
         <td>{{ user[0].role }}</td>
         <td>
-          <button (click)="editUser(i)">Edit</button>
-          <button (click)="deleteUser(i)">Delete</button>
-
+          <button  (click)="editUser(i)"><i class="fas fa-edit"></i></button>
+          <button (click)="deleteUser(i)"><i class="fa fa-trash"></i></button>
         </td>
       </tr>
     </tbody>
   </table>
-
-  <!-- <div *ngIf="editingUserIndex !== -1">
-    <h3>Edit User</h3>
-    <form>
-      <label>Name: </label>
-      <input type="text" [(ngModel)]="updatedUserData.name" name="name">
-      <br>
-      <label>Email: </label>
-      <input type="email" [(ngModel)]="updatedUserData.email" name="email">
-      <br>
-      <label>Role: </label>
-      <input type="text" [(ngModel)]="updatedUserData.role" name="role">
-      <br>
-      <button type="button" (click)="saveUser()">Save</button>
-      <button type="button" (click)="cancelEdit()">Cancel</button>
-    </form>
-  </div> -->
 </div>
+</body>
+</html>
+<!-- <div *ngIf="editingUserIndex !== -1">
+  <h3>Edit User</h3>
+  <form>
+    <label>Name: </label>
+    <input type="text" [(ngModel)]="updatedUserData.name" name="name">
+    <br>
+    <label>Email: </label>
+    <input type="email" [(ngModel)]="updatedUserData.email" name="email">
+    <br>
+    <label>Username: </label>
+    <input type="text" [(ngModel)]="updatedUserData.username" name="username">
+    <br>
+    <label>Password: </label>
+    <input type="password" [(ngModel)]="updatedUserData.password" name="password">
+    <br>
+    <label>Role: </label>
+    <input type="text" [(ngModel)]="updatedUserData.role" name="role">
+    <br>
+    <button type="button" (click)="saveUser()">Save</button>
+    <button type="button" (click)="cancelEdit()">Cancel</button>
+  </form>
+</div>
+ -->

@@ -32,7 +32,11 @@
       this.userForm = this.formBuilder.group({
         name: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
-        role: ['', Validators.required]
+        role: ['', Validators.required],
+        username: ['', Validators.required],
+        password: ['', Validators.required],
+
+        
       });
     }
   
@@ -44,7 +48,10 @@
       const userDetails = {
         name: this.userForm.value.name,
         email: this.userForm.value.email,
-        role: this.userForm.value.role
+        role: this.userForm.value.role,
+        username: this.userForm.value.username,
+        password: this.userForm.value.password
+
       };
   
       this.userService.addUser(userDetails).subscribe(

@@ -18,7 +18,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms'; // Import bot
 import { AddUserDialogComponent } from './user/add-user-dialog/add-user-dialog.component';
 import {HttpClientModule } from  '@angular/common/http';
 import{EditUserDialogComponent} from './user/edit-user-dialog/edit-user-dialog.component'
-
+import {updateUserDialogComponent} from './supplier/update-user-dialog/update-user-dialog.component'
+import {newsupplierDialogComponent} from './supplier/new-supplier-dialog/new-supplier-dialog.component'
 @NgModule({
   declarations: [
     AdminDashboardComponent,
@@ -31,7 +32,8 @@ import{EditUserDialogComponent} from './user/edit-user-dialog/edit-user-dialog.c
     ReportAndAnalyticsComponent,
     SidebarComponent,
     AddUserDialogComponent,
-    EditUserDialogComponent
+    EditUserDialogComponent,
+    updateUserDialogComponent,newsupplierDialogComponent
     ],
   imports: [
     CommonModule,

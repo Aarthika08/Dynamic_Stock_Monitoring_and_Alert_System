@@ -6,9 +6,9 @@ import { catchError,switchMap,map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class supplierService {
 
-  private couchDBUrl = 'http://localhost:5984/user/bc6902f68695a9119c060aede00060ca'; // Update with your document ID
+  private couchDBUrl = 'http://localhost:5984/user/43407ead14cf09630aa0d936af00f847'; // Update with your document ID
 
   constructor(private http: HttpClient) { }
 
@@ -27,7 +27,7 @@ export class UserService {
       }),
       // Append the new user data to the existing user array
       map((document: any) => {
-        document.user.push([userDetails]); // Assuming user details are pushed as an array
+        document.supplier.push([userDetails]); // Assuming user details are pushed as an array
         return document;
       }),
       // Update the document in CouchDB
@@ -59,7 +59,7 @@ export class UserService {
       }),
       // Extract and return the 'user' array from the document
       map((document: any) => {
-        return document.user || []; // Return the 'user' array, or an empty array if not found
+        return document.supplier || []; // Return the 'user' array, or an empty array if not found
       })
     );
   }
@@ -80,7 +80,7 @@ export class UserService {
       }),
       // Update the user data in the document
       map((document: any) => {
-        document.user[userIndex][0] = updatedUserData; // Assuming user details are stored as an array of arrays
+        document.supplier[userIndex][0] = updatedUserData; // Assuming user details are stored as an array of arrays
         return document;
       }),
       // Save the updated document back to CouchDB
@@ -110,7 +110,7 @@ export class UserService {
       }),
       // Remove the user data from the document
       map((document: any) => {
-        document.user.splice(userIndex, 1); // Remove user data at the specified index
+        document.supplier.splice(userIndex, 1); // Remove user data at the specified index
         return document;
       }),
       // Save the updated document back to CouchDB

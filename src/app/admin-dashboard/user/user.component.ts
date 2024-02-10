@@ -80,42 +80,57 @@ export class UserComponent implements OnInit {
   }
 
   //to edit
-
   editUser(index: number): void {
     const dialogRef = this.dialog.open(EditUserDialogComponent, {
       width: '400px',
       data: this.users[index][0] // Pass user data to the dialog
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+    dialogRef.afterClosed().subscribe(updatedUserData => {
+      if (updatedUserData) {
+        this.updateUser(index, updatedUserData);
+      }
     });
   }
 
-  // editUser(index: number) {
-  //   this.editingUserIndex = index;
-  //   // Copy user data to updatedUserData object to avoid modifying original data directly
-  //   this.updatedUserData = { ...this.users[index][0] };
-  // }
+  updateUser(index: number, updatedUserData: any): void {
+    this.userService.updateUser(index, updatedUserData).subscribe(
+      response => {
+        console.log('User updated successfully:', response);
+        // Handle any action after successful update if needed
+      },
+      error => {
+        console.error('Error updating user:', error);
+        // Handle error if needed
+      }
+    );
+  }
+  cancelEdit(): void {
+    this.editingUserIndex = -1;
+    this.updatedUserData = {};
+  }
+ 
 
-  // cancelEdit() {
-  //   this.editingUserIndex = -1;
-  //   this.updatedUserData = {};
-  // }
 
-  // saveUser() {
+  // saveUser(): void {
+  //   if (!this.updatedUserData) {
+  //     console.error('No user data to save.');
+  //     return;
+  //   }
+
   //   this.userService.updateUser(this.editingUserIndex, this.updatedUserData).subscribe(
   //     response => {
   //       console.log('User updated successfully:', response);
-  //       // Reset editing state and reload users
   //       this.cancelEdit();
-  //       this.loadUsers();
+  //       // Reload users here if needed
   //     },
   //     error => {
   //       console.error('Error updating user:', error);
+  //       // Handle error
   //     }
   //   );
   // }
+  
 //to delete
   deleteUser(index: number) {
     this.userService.deleteUser(index).subscribe(

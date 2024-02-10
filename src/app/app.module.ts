@@ -10,7 +10,6 @@ import {FormsModule} from '@angular/forms';
 
 import { AdminDashboardModule } from './admin-dashboard/admin-dashboard.module';
 
-
 @NgModule({
   declarations: [
     AppComponent,LoginComponent
