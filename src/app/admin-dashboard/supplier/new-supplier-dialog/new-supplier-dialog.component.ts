@@ -21,7 +21,7 @@ export class newsupplierDialogComponent implements OnInit {
     this.userForm = this.formBuilder.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      role: ['', Validators.required],
+      product: ['', Validators.required],
       username: ['', Validators.required],
       password: ['', Validators.required],
 
@@ -37,7 +37,7 @@ export class newsupplierDialogComponent implements OnInit {
     const userDetails = {
       name: this.userForm.value.name,
       email: this.userForm.value.email,
-      role: this.userForm.value.role,
+      product: this.userForm.value.role,
       username: this.userForm.value.username,
       password: this.userForm.value.password
 

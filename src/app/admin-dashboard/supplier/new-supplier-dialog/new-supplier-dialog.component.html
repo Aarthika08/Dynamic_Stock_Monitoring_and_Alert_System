@@ -17,8 +17,8 @@
       Invalid email address.
     </small>
   </div>
-  <div>
-    <label>Role:</label>
+  <!-- <div>
+    <label>product:</label>
     <select formControlName="role">
       <option value="" disabled>Select Role</option>
       <option value="admin">Admin</option>
@@ -26,6 +26,14 @@
     </select>
     <small *ngIf="userForm.get('role')?.hasError('required') && userForm.get('role')?.touched">
       Role is required.
+    </small>
+  </div> -->
+
+  <div>
+    <label>Product:</label>
+    <input type="text" formControlName="product">
+    <small *ngIf="userForm.get('product')?.hasError('required') && userForm.get('product')?.touched">
+      product is required.
     </small>
   </div>
   <div>
@@ -37,7 +45,9 @@
   </div>
   <div>
     <label>Password:</label>
-    <input type="password" formControlName="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+    <!-- <input type="password" formControlName="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"> -->
+    <input type="password" formControlName="password">
+
     <small *ngIf="userForm.get('password')?.hasError('password') && userForm.get('password')?.touched">
       Password is required.
       Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character.
