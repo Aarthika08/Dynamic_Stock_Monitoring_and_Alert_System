@@ -20,12 +20,7 @@ export class UserComponent implements OnInit {
   constructor(private dialog: MatDialog,private formBuilder: FormBuilder, private userService: UserService) { }
 
   ngOnInit(): void {
-    // this.userForm = this.formBuilder.group({
-    //   name: ['', Validators.required],
-    //   email: ['', [Validators.required, Validators.email]],
-    //   role: ['', Validators.required]
-    // });
-
+   
     this.loadUsers();
 
   }

@@ -12,6 +12,35 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
+  // addUser(userDetails: any): Observable<any> {
+  //   const httpOptions = {
+  //     headers: new HttpHeaders({
+  //       'Content-Type': 'application/json',
+  //       'Authorization': 'Basic ' + btoa('admin:admin') 
+  //     })
+  //   };
+
+  //   return this.http.get<any>(this.couchDBUrl, httpOptions).pipe(
+  //     catchError(error => {
+  //       console.error('Error fetching document:', error);
+  //       throw error;
+  //     }),
+  //     // Append the new user data to the existing user array
+  //     map((document: any) => {
+  //       document.user.push([userDetails]); // Assuming user details are pushed as an array
+  //       return document;
+  //     }),
+  //     // Update the document in CouchDB
+  //     switchMap((updatedDocument: any) => {
+  //       return this.http.put<any>(this.couchDBUrl, updatedDocument, httpOptions);
+  //     }),
+  //     catchError(error => {
+  //       console.error('Error updating document:', error);
+  //       throw error;
+  //     })
+  //   );
+  // }
+ 
   addUser(userDetails: any): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -19,20 +48,24 @@ export class UserService {
         'Authorization': 'Basic ' + btoa('admin:admin') 
       })
     };
-
+  
     return this.http.get<any>(this.couchDBUrl, httpOptions).pipe(
       catchError(error => {
         console.error('Error fetching document:', error);
         throw error;
       }),
-      // Append the new user data to the existing user array
-      map((document: any) => {
-        document.user.push([userDetails]); // Assuming user details are pushed as an array
-        return document;
-      }),
-      // Update the document in CouchDB
-      switchMap((updatedDocument: any) => {
-        return this.http.put<any>(this.couchDBUrl, updatedDocument, httpOptions);
+      switchMap((document: any) => {
+        
+        const usersArray: any[] = document.user || [];
+
+        const emailExists = usersArray.some((user: any[]) => user.some(u => u.email === userDetails.email));
+
+        if (emailExists) {
+          return throwError('Email already exists');
+        } else {
+          document.user.push([userDetails]); // Assuming user details are pushed as an array
+          return this.http.put<any>(this.couchDBUrl, document, httpOptions);
+        }
       }),
       catchError(error => {
         console.error('Error updating document:', error);
@@ -40,7 +73,9 @@ export class UserService {
       })
     );
   }
+  
 
+    
 
   //to retrieve the data from the database 
 

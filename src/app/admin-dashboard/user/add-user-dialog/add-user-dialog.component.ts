@@ -13,7 +13,14 @@
   import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   import { MatDialogRef } from '@angular/material/dialog';
   import { UserService } from '../userService'; // Import UserService
-  
+  // interface User {
+  //   name: string;
+  //   emailID: string;
+  //   username:string;
+  //   password:string;
+  //   role:string;
+  //   // Add other properties as needed
+  // }
   @Component({
     selector: 'app-add-user-dialog',
     templateUrl: './add-user-dialog.component.html',
@@ -21,7 +28,8 @@
   })
   export class AddUserDialogComponent implements OnInit {
     userForm!: FormGroup;
-  
+    // existingUsers: User[] = [];
+
     constructor(
       public dialogRef: MatDialogRef<AddUserDialogComponent>,
       private formBuilder: FormBuilder,
@@ -29,6 +37,7 @@
     ) { }
   
     ngOnInit(): void {
+      
       this.userForm = this.formBuilder.group({
         name: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
@@ -44,6 +53,7 @@
       if (this.userForm.invalid) {
         return;
       }
+    
   
       const userDetails = {
         name: this.userForm.value.name,
@@ -72,4 +82,3 @@
       this.dialogRef.close();
     }
   }
-  
