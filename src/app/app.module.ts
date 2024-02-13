@@ -9,6 +9,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {FormsModule} from '@angular/forms';
 
 import { AdminDashboardModule } from './admin-dashboard/admin-dashboard.module';
+import {RealTimeModule} from './real-time/real-time.module';
+import { StockManagementModule } from './stock-management/stock-management.module';
+
+//import { ChartsModule } from 'ng2-charts'; // Import ChartsModule
 
 @NgModule({
   declarations: [
@@ -20,7 +24,10 @@ import { AdminDashboardModule } from './admin-dashboard/admin-dashboard.module';
     AdminDashboardModule,
     BrowserAnimationsModule ,
     FormsModule,
-    HttpClientModule,ReactiveFormsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    RealTimeModule,StockManagementModule,
+     
   ],
   providers: [],
   bootstrap: [AppComponent]

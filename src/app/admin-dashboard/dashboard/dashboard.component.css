@@ -1,0 +1,35 @@
+.container {
+    position: relative; /* Set position to relative for containing the absolute positioned box */
+    /* margin-left: 40%; */
+
+  }
+  
+  .box{
+    display: flex;
+  }
+  .user-box {
+    position: relative; /* Set position to absolute */
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    background-color: #f0f0f0; /* Background color */
+    /* left: -132vh; */
+    width: 222px;
+    height: 74px;
+    margin: 18px;
+    tab-size: 26px;
+    border-radius: 47px;
+
+  }
+  
+  .user-box h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .user-count {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  

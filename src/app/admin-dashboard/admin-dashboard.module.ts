@@ -20,6 +20,7 @@ import {HttpClientModule } from  '@angular/common/http';
 import{EditUserDialogComponent} from './user/edit-user-dialog/edit-user-dialog.component'
 import {updateUserDialogComponent} from './supplier/update-user-dialog/update-user-dialog.component'
 import {newsupplierDialogComponent} from './supplier/new-supplier-dialog/new-supplier-dialog.component'
+
 @NgModule({
   declarations: [
     AdminDashboardComponent,
@@ -33,7 +34,8 @@ import {newsupplierDialogComponent} from './supplier/new-supplier-dialog/new-sup
     SidebarComponent,
     AddUserDialogComponent,
     EditUserDialogComponent,
-    updateUserDialogComponent,newsupplierDialogComponent
+    updateUserDialogComponent,
+    newsupplierDialogComponent
     ],
   imports: [
     CommonModule,

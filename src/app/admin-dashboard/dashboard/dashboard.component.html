@@ -1,1 +1,27 @@
-<p>dashboard works HI aarthikaa!</p>
+<div class="box">
+<div class="container">
+    <div class="user-box" style="background-color: rgb(118, 216, 43);">
+      <h2>Number of user</h2>
+      <div class="user-count">{{ totalUsers }}</div>
+    </div>
+  </div>
+  
+
+  <div class="container">
+    <div class="user-box" style="background-color: rgb(216, 153, 43);">
+      <h2>Number of supplier</h2>
+      <div class="user-count">{{ totalsupplier }}</div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="user-box" style="background-color: rgb(43, 153, 216);">
+      <h2>Number of stock</h2>
+      <div class="user-count">{{ totalItems }}</div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <h2>Total Users: {{ totalUsers }}</h2>
+  <canvas #myChart></canvas>
+</div>

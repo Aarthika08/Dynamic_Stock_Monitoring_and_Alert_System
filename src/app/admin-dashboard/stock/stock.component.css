@@ -1,0 +1,52 @@
+/* styles.css (or your custom stylesheet) */
+
+/* Container for the stock list */
+.stock-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Individual stock item */
+  .stock-item {
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+  
+  /* Stock item heading */
+  .stock-item h3 {
+    margin-top: 0;
+  }
+  
+  /* Stock item description */
+  .stock-item p {
+    margin-bottom: 5px;
+  }
+  
+  /* Stock item category */
+  .stock-item .category {
+    font-style: italic;
+    color: #888;
+  }
+  table {
+    border-collapse: collapse;
+    table-layout: auto;
+  }
+  
+  th, td {
+    border: 1px solid #070707;
+    padding: 2px;
+    text-align: left;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  tr:hover {
+    background-color: #dddddd;
+  }
+  
+ 
