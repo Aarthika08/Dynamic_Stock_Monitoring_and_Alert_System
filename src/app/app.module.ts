@@ -7,11 +7,9 @@ import { LoginComponent } from './login/login.component';
 import { HttpClientModule} from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms'; 
 import {FormsModule} from '@angular/forms';
-
 import { AdminDashboardModule } from './admin-dashboard/admin-dashboard.module';
 import {RealTimeModule} from './real-time/real-time.module';
 import { StockManagementModule } from './stock-management/stock-management.module';
-
 //import { ChartsModule } from 'ng2-charts'; // Import ChartsModule
 
 @NgModule({

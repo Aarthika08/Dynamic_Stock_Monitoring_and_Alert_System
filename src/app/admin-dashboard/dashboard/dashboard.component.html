@@ -1,27 +1,37 @@
-<div class="box">
-<div class="container">
+<div class="bigcontainer"><div class="box">
     <div class="user-box" style="background-color: rgb(118, 216, 43);">
       <h2>Number of user</h2>
       <div class="user-count">{{ totalUsers }}</div>
     </div>
-  </div>
   
 
-  <div class="container">
     <div class="user-box" style="background-color: rgb(216, 153, 43);">
       <h2>Number of supplier</h2>
       <div class="user-count">{{ totalsupplier }}</div>
     </div>
-  </div>
 
-  <div class="container">
     <div class="user-box" style="background-color: rgb(43, 153, 216);">
       <h2>Number of stock</h2>
       <div class="user-count">{{ totalItems }}</div>
     </div>
+
+    <div class="user-box" style="background-color: rgb(176, 216, 43);">
+      <h2>Number of Orders</h2>
+      <div class="user-count">{{ totalorders }}</div>
+    </div>
+<br>
+<br>
+
+   
   </div>
+
+  <div style="width: 700px;">    <canvas #newChart></canvas>
+  </div>
+  <div style="width: 600px;">
+    <canvas #myChart></canvas>
+  </div>
+ 
+
 </div>
-<div class="container">
-  <h2>Total Users: {{ totalUsers }}</h2>
-  <canvas #myChart></canvas>
-</div>
+
+

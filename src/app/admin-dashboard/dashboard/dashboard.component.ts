@@ -1,8 +1,7 @@
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { DataService } from './data.service';
 import { Chart } from 'chart.js/auto';
-
-// declare var Chart: any;
+import {OrderlistService} from '../order/orderlist.service'
 interface StockItem {
   id: number;
   itemName: string;
@@ -22,20 +21,31 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     totalUsers!: number;
     totalsupplier!: number;
     totalItems!:number;
+    totalorders!:number;
     // stocklist!: StockItem[];
     stocklist!: any[];
+    orderlist!:any[];
 id!:string;
+categories: string[] = [];
+  counts: number[] = [];
+  backgroundColors: string[] = [];
 
     @ViewChild('myChart') myChart!: ElementRef;
 
+    @ViewChild('newChart') newChart!: ElementRef;
+    chart: any;
   
-    constructor(private dataService: DataService) { }
+    constructor(private dataService: DataService,private orderService: OrderlistService) { }
   
     ngOnInit(): void {
       this.fetchTotalUsers();
       this. fetchTotalSupplier();
      this.fetchTotalItems();
+     this.fetchTotalorders();
+
      this.fetchData();
+     this.loadChartData();
+
 
     }
     ngAfterViewInit(): void {
@@ -44,7 +54,6 @@ id!:string;
       }
     }
 
-    //panel
     fetchTotalUsers(): void {
       this.dataService.getTotalUsers().subscribe(
         count => {
@@ -80,22 +89,19 @@ id!:string;
       }
     );
   }
+  fetchTotalorders(): void {
+    this.dataService.getTotalorders().subscribe(
+      count => {
+        this.totalorders = count;
+      },
+      error => {
+        console.error('Error fetching total items:', error);
+        this.totalorders = -1; // Set a default value or handle error in your UI
+      }
+    );
+  }
 //chart 
 
-// fetchData(): void {
-//   this.dataService.getStockList().subscribe(
-//     data => {
-//       // this.stocklist = data.stocklist;
-//       this.stockList = data.stocklist;
-
-
-//       console.log(this.stocklist); // Check if data is fetched correctly
-//     },
-//     error => {
-//       console.error('Error fetching stocklist:', error);
-//     }
-//   );
-// }
 
 fetchData(): void {
   this.dataService.getStockList().subscribe(data => {
@@ -129,28 +135,6 @@ createChart(): void {
 
     const ctx = this.myChart.nativeElement.getContext('2d');
 
-    // Create the chart
-  //   new Chart(ctx, {
-  //     type: 'bar',
-  //     data: {
-  //       labels: labels,
-  //       datasets: [{
-  //         label: 'Category Count',
-  //         data: data,
-  //         backgroundColor: backgroundColors,
-  //         borderColor: 'rgb(75, 192, 192)',
-  //         borderWidth: 1
-  //       }]
-  //     },
-  //     options: {
-  //       scales: {
-  //         y: {
-  //           beginAtZero: true
-  //         }
-  //       }
-  //     }
-  //   });
-  // }}
 
   new Chart(ctx, {
     type: 'bar',
@@ -209,8 +193,70 @@ createChart(): void {
     return new Array(data.length).fill(average);
   }
 
+//for order graph
+loadChartData(): void {
+  this.orderService.getAllOrders().subscribe(
+    (data: any) => {
+      if (data && data.orderslist) {
+        const stockMap = new Map();
+        data.orderslist.forEach((order: any) => {
+          const stockName = order.stock_name;
+          const quantity = order.stock_quantity;
+          if (stockMap.has(stockName)) {
+            stockMap.set(stockName, stockMap.get(stockName) + quantity);
+          } else {
+            stockMap.set(stockName, quantity);
+          }
+        });
+
+        const labels = Array.from(stockMap.keys());
+        const dataValues = Array.from(stockMap.values());
+
+        this.drawnewChart(labels, dataValues);
+      } else {
+        console.error('Invalid data format. Expected orderslist array.');
+      }
+    },
+    (error) => {
+      console.error('Error loading orders:', error);
+    }
+  );
+}
 
 
+drawnewChart(labels: string[], dataValues: number[]): void {
+  const background = this.RandomColors({ count: labels.length });
 
+  this.chart = new Chart(this.newChart.nativeElement, {
+    type: 'line',
+    data: {
+      // labels:"stock",
+      labels: labels,
+      datasets: [{
+        label:'stock',
+        data: dataValues,
+        backgroundColor: background,
+        borderColor: 'rgb(0,0,0)',
+        borderWidth: 0.5,
+        // hoverOffset: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      // plugins: {
+        // legend: {
+        //   position: 'right' 
+        // } }
+    }
+  });
+}
+RandomColors({ count }: { count: number; }): string[] {
+  const colors: string[] = [];
+  for (let i = 0; i < count; i++) {
+    const color = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 0.7)`;
+    colors.push(color);
+  }
+  return colors;
+}
 
 }

@@ -7,7 +7,7 @@
       Name is required.
     </small>
   </div>
-  <div>
+ <!-- <div>
     <label>Email:</label>
     <input type="email" formControlName="email">
     <small *ngIf="userForm.get('email')?.hasError('required') && userForm.get('email')?.touched">
@@ -16,7 +16,22 @@
     <small *ngIf="userForm.get('email')?.hasError('email') && userForm.get('email')?.touched">
       Invalid email address.
     </small>
-  </div>
+  </div>  -->
+  
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="emailId" formControlName="emailId" (blur)="checkEmailExists()" required />
+    <small *ngIf="errorMessage && userForm.get('emailId')?.hasError('emailExists')" class="error-message" style="color: red;">
+      {{ errorMessage }}
+    </small>  
+
+    <small *ngIf="userForm.get('email')?.hasError('required') && userForm.get('email')?.touched">
+      Email is required.
+    </small>
+    <small *ngIf="userForm.get('email')?.hasError('email') && userForm.get('email')?.touched">
+      Invalid email address.
+    </small>
+</div>
   <div>
     <label>Role:</label>
     <select formControlName="role">
@@ -37,7 +52,7 @@
   </div>
   <div>
     <label>Password:</label>
-    <input type="password" formControlName="password" >
+    <input type="password" formControlName="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required >
     <small *ngIf="userForm.get('password')?.hasError('password') && userForm.get('password')?.touched">
       Password is required.
       Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character.
@@ -45,6 +60,8 @@
   </div>
   <div>
     <button type="button" (click)="onCancelClick()">Cancel</button>
-    <button type="submit">Add</button>
+    <!-- <button type="submit">Add</button> -->
+    <button type="submit" [disabled]="userForm.invalid">Submit</button>
+
   </div>
 </form>

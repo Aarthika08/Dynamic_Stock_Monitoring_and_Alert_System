@@ -107,24 +107,6 @@ export class UserComponent implements OnInit {
  
 
 
-  // saveUser(): void {
-  //   if (!this.updatedUserData) {
-  //     console.error('No user data to save.');
-  //     return;
-  //   }
-
-  //   this.userService.updateUser(this.editingUserIndex, this.updatedUserData).subscribe(
-  //     response => {
-  //       console.log('User updated successfully:', response);
-  //       this.cancelEdit();
-  //       // Reload users here if needed
-  //     },
-  //     error => {
-  //       console.error('Error updating user:', error);
-  //       // Handle error
-  //     }
-  //   );
-  // }
   
 //to delete
   deleteUser(index: number) {

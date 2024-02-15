@@ -9,6 +9,7 @@ import { catchError,switchMap,map } from 'rxjs/operators';
 export class UserService {
 
   private couchDBUrl = 'http://localhost:5984/user/bc6902f68695a9119c060aede00060ca'; // Update with your document ID
+  errorMessage: string = '';
 
   constructor(private http: HttpClient) { }
 
@@ -41,6 +42,38 @@ export class UserService {
   //   );
   // }
  
+  // addUser(userDetails: any): Observable<any> {
+  //   const httpOptions = {
+  //     headers: new HttpHeaders({
+  //       'Content-Type': 'application/json',
+  //       'Authorization': 'Basic ' + btoa('admin:admin') 
+  //     })
+  //   };
+  
+  //   return this.http.get<any>(this.couchDBUrl, httpOptions).pipe(
+  //     catchError(error => {
+  //       console.error('Error fetching document:', error);
+  //       throw error;
+  //     }),
+  //     switchMap((document: any) => {
+        
+  //       const usersArray: any[] = document.user || [];
+
+  //       const emailExists = usersArray.some((user: any[]) => user.some(u => u.email === userDetails.email));
+
+  //       if (emailExists) {
+  //         return throwError('Email already exists');
+  //       } else {
+  //         document.user.push([userDetails]); // Assuming user details are pushed as an array
+  //         return this.http.put<any>(this.couchDBUrl, document, httpOptions);
+  //       }
+  //     }),
+  //     catchError(error => {
+  //       console.error('Error updating document:', error);
+  //       throw error;
+  //     })
+  //   );
+  // }
   addUser(userDetails: any): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -52,30 +85,33 @@ export class UserService {
     return this.http.get<any>(this.couchDBUrl, httpOptions).pipe(
       catchError(error => {
         console.error('Error fetching document:', error);
-        throw error;
+        return throwError('Error fetching document');
       }),
       switchMap((document: any) => {
-        
         const usersArray: any[] = document.user || [];
-
-        const emailExists = usersArray.some((user: any[]) => user.some(u => u.email === userDetails.email));
-
+        const emailExists = usersArray.some(userArray => {
+          return userArray.some((user: any) => user.email === userDetails.email); // Specify the type of `user` parameter
+        });
+  
         if (emailExists) {
           return throwError('Email already exists');
         } else {
-          document.user.push([userDetails]); // Assuming user details are pushed as an array
-          return this.http.put<any>(this.couchDBUrl, document, httpOptions);
+          usersArray.push([userDetails]);
+  
+          document.user = usersArray;
+  
+          return this.http.put<any>(this.couchDBUrl, document, httpOptions).pipe(
+            catchError(error => {
+              console.error('Error updating document:', error);
+              return throwError('Error updating document');
+            }),
+            map(() => userDetails) // Return userDetails if successful
+          );
         }
-      }),
-      catchError(error => {
-        console.error('Error updating document:', error);
-        throw error;
       })
     );
   }
   
-
-    
 
   //to retrieve the data from the database 
 
@@ -128,7 +164,7 @@ export class UserService {
       })
     );
   }
-  //to delte 
+  //to delete 
 
   deleteUser(userIndex: number): Observable<any> {
     const httpOptions = {

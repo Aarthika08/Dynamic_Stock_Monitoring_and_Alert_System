@@ -1,1 +1,73 @@
-<p>order works!</p>
+<!-- <p>order works!</p>
+<h2>Order List</h2>
+<div *ngIf="orders">
+  <h2>orders</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Order ID</th>
+      <th>Customer ID</th>
+      <th>Order Date</th>
+      <th>Order Status</th>
+      <th>Price</th>
+      <th>Stock Name</th>
+      <th>Stock Quantity</th>
+      <th>Product Name</th>
+      <th>Single Quantity Price</th>
+      <th>Total Price</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let i of orders">
+      <td>{{ i.order_id }}</td>
+      <td>{{ i.customer_id }}</td>
+       <td>{{ order.order_date }}</td>
+      <td>{{ order.order_status }}</td>
+      <td>{{ order.price }}</td>
+      <td>{{ order.stock_name }}</td>
+      <td>{{ order.stock_quantity }}</td>
+      <td>{{ order.product_name }}</td>
+      <td>{{ order.single_quantity_price }}</td>
+      <td>{{ order.total_price }}</td> 
+      <td>
+        <button (click)="deleteOrder(i.order_id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div> -->
+<div class="tablediv">
+<h2>Order List</h2>
+
+<table >
+  <thead>
+    <tr>
+        <th>Order ID</th>
+        <th>Customer ID</th>
+        <th>Order Date</th>
+        <th>Status</th>
+        <th>Price</th>
+        <th>Stock </th>
+        <th>Quantity</th>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Total Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of orders">
+      <td>{{ order.order_id }}</td>
+      <td>{{ order.customer_id }}</td>
+      <td>{{ order.order_date }}</td>
+      <td>{{ order.order_status }}</td>
+      <td>{{ order.price }}</td>
+      <td>{{ order.stock_name }}</td>
+      <td>{{ order.stock_quantity }}</td>
+      <td>{{ order.product_name }}</td>
+      <td>{{ order.single_quantity_price }}</td>
+      <td>{{ order.total_price }}</td> 
+    </tr>
+  </tbody>
+</table>
+</div>

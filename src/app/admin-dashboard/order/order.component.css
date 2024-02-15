@@ -1,0 +1,27 @@
+table {
+    border-collapse: collapse;
+    table-layout: auto;
+    /* margin-left: 5%; */
+    /* margin-top: 40%; */
+    }
+  
+  th, td {
+    border: 1px solid #070707;
+    padding: 2px;
+    text-align: left;
+    margin-left: 5%;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  tr:hover {
+    background-color: #dddddd;
+  }
+  
+ .tablediv{
+  /* background-color: aqua; */
+ float: inline-end;
+ padding-left: 200px;
+ }
