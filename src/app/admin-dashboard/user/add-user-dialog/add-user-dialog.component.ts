@@ -85,7 +85,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { UserService } from '../userService';
 
 interface User {
-  emailId: string;
+  email: string;
 }
 
 @Component({
@@ -108,7 +108,7 @@ export class AddUserDialogComponent implements OnInit {
   ngOnInit(): void {
     this.userForm = this.fb.group({
       name: ['', Validators.required],
-      emailId: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email]],
       role: ['', Validators.required],
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -150,10 +150,10 @@ export class AddUserDialogComponent implements OnInit {
 
 
   checkEmailExists() {
-    const emailInput = this.userForm.get('emailId');
+    const emailInput = this.userForm.get('email');
     console.log(emailInput);
     if (emailInput && emailInput.valid) { // Check if emailInput is not null
-     const formData = { emailId: emailInput.value } as User;
+     const formData = { email: emailInput.value } as User;
     // if (emailInput && emailInput.valid) { // Check if emailInput is not null
     //   const email = emailInput.value.trim(); // Trim the email value
   
@@ -167,7 +167,7 @@ export class AddUserDialogComponent implements OnInit {
           .subscribe(
             (existingFormData: any) => {
               const usersArray: any[][] = existingFormData.user || [];
-              const emailExists = usersArray.some(users => users.some(user => user.email === formData.emailId));
+              const emailExists = usersArray.some(users => users.some(user => user.email === formData.email));
   console.log('emaile exists',emailExists);
               if (emailExists) {
                 this.errorMessage = 'Email already exists.';

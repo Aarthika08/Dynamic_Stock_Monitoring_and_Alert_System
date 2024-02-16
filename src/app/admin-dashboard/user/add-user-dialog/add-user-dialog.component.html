@@ -20,8 +20,8 @@
   
   <div>
     <label for="email">Email:</label>
-    <input type="email" id="emailId" formControlName="emailId" (blur)="checkEmailExists()" required />
-    <small *ngIf="errorMessage && userForm.get('emailId')?.hasError('emailExists')" class="error-message" style="color: red;">
+    <input type="email" id="email" formControlName="email" (blur)="checkEmailExists()" required />
+    <small *ngIf="errorMessage && userForm.get('email')?.hasError('emailExists')" class="error-message" style="color: red;">
       {{ errorMessage }}
     </small>  
 

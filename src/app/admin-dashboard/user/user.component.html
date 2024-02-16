@@ -2,7 +2,7 @@
   <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></head>
 <body>
   <button class="newuser" (click)="openAddUserDialog()">Add User</button>
-<div>
+<!-- <div>
   <h2>User List</h2>
   <table>
     <thead>
@@ -24,12 +24,43 @@
         <td>{{ user[0].role }}</td>
         <td>
           <button  (click)="editUser(i)"><i class="fas fa-edit"></i></button>
-          <button (click)="deleteUser(i)"><i class="fa fa-trash"></i></button>
+          <button (click)="onDeleteUser(i)"><i class="fa fa-trash"></i></button>
         </td>
       </tr>
     </tbody>
   </table>
-</div>
+</div> -->
+
+
+    <!-- <tr *ngFor="let userArray of users; let i = index"> -->
+      <!-- <ng-container *ngFor="let user of userArray; let j = index"> -->
+    
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Username</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let userArray of users; let i = index">
+              <tr *ngFor="let user of userArray; let j = index" [hidden]="user.deleted">
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.role }}</td>
+                <td>{{ user.username }}</td>
+                <td>
+                  <button  (click)="editUser(i)"><i class="fas fa-edit"></i></button>
+                  <button (click)="softDeleteUser(i, j)">SoftDelete</button>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+        
 </body>
 </html>
 <!-- <div *ngIf="editingUserIndex !== -1">

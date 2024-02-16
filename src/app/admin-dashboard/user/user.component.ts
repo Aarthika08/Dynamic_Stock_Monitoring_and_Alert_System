@@ -21,7 +21,8 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
    
-    this.loadUsers();
+    // this.loadUsers();
+    this.fetchUsers();
 
   }
   
@@ -62,17 +63,17 @@ export class UserComponent implements OnInit {
   //to retireve 
  
 
-  loadUsers() {
-    this.userService.getUsers().subscribe(
-      users => {
-        this.users = users;
-        console.log('Users loaded successfully:', this.users);
-      },
-      error => {
-        console.error('Error loading users:', error);
-      }
-    );
-  }
+  // loadUsers() {
+  //   this.userService.getUsers().subscribe(
+  //     users => {
+  //       this.users = users;
+  //       console.log('Users loaded successfully:', this.users);
+  //     },
+  //     error => {
+  //       console.error('Error loading users:', error);
+  //     }
+  //   );
+  // }
 
   //to edit
   editUser(index: number): void {
@@ -109,16 +110,64 @@ export class UserComponent implements OnInit {
 
   
 //to delete
-  deleteUser(index: number) {
-    this.userService.deleteUser(index).subscribe(
-      response => {
-        console.log('User deleted successfully:', response);
-        // Reload users after deletion
-        this.loadUsers();
+  // deleteUser(index: number) {
+  //   this.userService.deleteUser(index).subscribe(
+  //     response => {
+  //       console.log('User deleted successfully:', response);
+  //       // Reload users after deletion
+  //       this.loadUsers();
+  //     },
+  //     error => {
+  //       console.error('Error deleting user:', error);
+  //     }
+  //   );
+  // }
+
+  fetchUsers(): void {
+    this.userService.getUsers().subscribe(
+      (data: any[]) => {
+        // Filter out deleted users
+        this.users = data.filter(user => !user.deleted);
       },
-      error => {
-        console.error('Error deleting user:', error);
+      (error) => {
+        console.error('Error fetching users:', error);
       }
     );
   }
-}
+  
+
+  
+  
+  // softDeleteUser(userId: number): void {
+    // softDeleteUser(outerIndex: number, innerIndex: number): void {
+    //   this.users[outerIndex][innerIndex][0].deleted = true;}
+
+    // const index = this.users.findIndex(user => user.id === outerIndex);
+    // if (index !== -1) {
+      // this.users.splice(index, 1);
+      // this.users[outerIndex].splice(innerIndex, 1);
+
+   // }
+   softDeleteUser(outerIndex: number, innerIndex: number): void {
+    console.log('Deleting user at indices:', outerIndex, innerIndex);
+    if (this.users[outerIndex] && this.users[outerIndex][0]) {
+      // Toggle the 'deleted' property
+      this.users[outerIndex][0].deleted = true;
+      // Call service to update the database
+      this.userService.deleteUser(outerIndex).subscribe(
+        () => {
+          console.log('User deleted successfully');
+        },
+        error => {
+          console.error('Error deleting user:', error);
+          // Revert the change if there's an error
+          this.users[outerIndex][0].deleted = false;
+        }
+      );
+    } else {
+      console.log('User not found at indices:', outerIndex, innerIndex);
+    }
+  }
+  
+  
+  }

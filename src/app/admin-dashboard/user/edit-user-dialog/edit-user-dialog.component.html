@@ -1,22 +1,13 @@
-<!-- edit-user-dialog.component.html -->
-<h2>Edit User</h2>
-<form>
-  <label>Name: </label>
-  <input type="text" [(ngModel)]="userData.name" name="name">
-  <br>
-  <label>Email: </label>
-  <input type="email" [(ngModel)]="userData.email" name="email">
-  <br>
-  <label>Username: </label>
-  <input type="text" [(ngModel)]="userData.username" name="username">
-  <br>
-  <label>Password: </label>
-  <input type="password" [(ngModel)]="userData.password" name="password">
-  <br>
-  <label>Role: </label>
-  <input type="text" [(ngModel)]="userData.role" name="role">
-  <br>
-  
-  <button type="button" (click)="saveUser()">Save</button>
-  <button type="button" (click)="closeDialog()">Cancel</button>
+<form [formGroup]="userForm" (ngSubmit)="saveUser()">
+  <input type="text" formControlName="name" placeholder="Name">
+  <input type="email" formControlName="email" placeholder="Email" (blur)="checkEmailExists()" required>
+  <small *ngIf="errorMessage && userForm.get('email')?.hasError('emailExists')" class="error-message" style="color: red;">
+    {{ errorMessage }}
+  </small> 
+  <input type="text" formControlName="username" placeholder="Username">
+  <input type="password" formControlName="password" placeholder="Password">
+  <input type="text" formControlName="role" placeholder="Role">
+  <!-- Add other form controls here -->
+  <button type="submit">Save</button>
+  <button type="button" (click)="closeDialog()">Close</button>
 </form>
