@@ -135,57 +135,7 @@ export class UserService {
     );
   }
 
-
-
-
-  //to update 
-  
-
   // Update user data and check for email existence
-  updateUser(userIndex: number, updatedUserData: any): Observable<any> {
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'Basic ' + btoa('admin:admin')
-      })
-    };
-  
-    // Fetch the document from CouchDB
-    return this.http.get<any>(this.couchDBUrl, httpOptions).pipe(
-      catchError(error => {
-        console.error('Error fetching document:', error);
-        return throwError(error);
-      }),
-      switchMap((document: any) => {
-        // Check if the updated email already exists
-        const usersArray: any[] = document.user;
-        const emailExists = usersArray.some(userArray => {
-          return userArray.some((user: any) => user.email === updatedUserData.email);
-        });
-  
-        // If the updated email already exists, throw an error
-        if (emailExists) {
-          return throwError('Email already exists');
-        } else {
-          // Update the user data in the document
-          document.user[userIndex] = [updatedUserData]; // Update the entire user array at userIndex
-  
-          // Save the updated document back to CouchDB
-          return this.http.put<any>(this.couchDBUrl, document, httpOptions);
-        }
-      }),
-      catchError(error => {
-        console.error('Error updating document:', error);
-        return throwError(error);
-      })
-    );
-  }
-  
-
-
-
-
-  //to update correct code 
   // updateUser(userIndex: number, updatedUserData: any): Observable<any> {
   //   const httpOptions = {
   //     headers: new HttpHeaders({
@@ -193,21 +143,30 @@ export class UserService {
   //       'Authorization': 'Basic ' + btoa('admin:admin')
   //     })
   //   };
-
+  
+  //   // Fetch the document from CouchDB
   //   return this.http.get<any>(this.couchDBUrl, httpOptions).pipe(
   //     catchError(error => {
   //       console.error('Error fetching document:', error);
   //       return throwError(error);
   //     }),
-  //     // Update the user data in the document
-  //     map((document: any) => {
-  //       document.user[userIndex][0] = updatedUserData; // Assuming user details are stored as an array of arrays
-  //       return document;
-  //     }),
-  //     // Save the updated document back to CouchDB
-  //     switchMap((updatedDocument: any) => {
-        
-  //       return this.http.put<any>(this.couchDBUrl, updatedDocument, httpOptions);
+  //     switchMap((document: any) => {
+  //       // Check if the updated email already exists
+  //       const usersArray: any[] = document.user;
+  //       const emailExists = usersArray.some(userArray => {
+  //         return userArray.some((user: any) => user.email === updatedUserData.email);
+  //       });
+  
+  //       // If the updated email already exists, throw an error
+  //       if (emailExists) {
+  //         return throwError('Email already exists');
+  //       } else {
+  //         // Update the user data in the document
+  //         document.user[userIndex] = [updatedUserData]; // Update the entire user array at userIndex
+  
+  //         // Save the updated document back to CouchDB
+  //         return this.http.put<any>(this.couchDBUrl, document, httpOptions);
+  //       }
   //     }),
   //     catchError(error => {
   //       console.error('Error updating document:', error);
@@ -215,6 +174,41 @@ export class UserService {
   //     })
   //   );
   // }
+  
+
+
+
+
+  //to update correct code 
+  updateUser(userIndex: number, updatedUserData: any): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic ' + btoa('admin:admin')
+      })
+    };
+
+    return this.http.get<any>(this.couchDBUrl, httpOptions).pipe(
+      catchError(error => {
+        console.error('Error fetching document:', error);
+        return throwError(error);
+      }),
+      // Update the user data in the document
+      map((document: any) => {
+        document.user[userIndex][0] = updatedUserData; // Assuming user details are stored as an array of arrays
+        return document;
+      }),
+      // Save the updated document back to CouchDB
+      switchMap((updatedDocument: any) => {
+        
+        return this.http.put<any>(this.couchDBUrl, updatedDocument, httpOptions);
+      }),
+      catchError(error => {
+        console.error('Error updating document:', error);
+        return throwError(error);
+      })
+    );
+  }
   //to delete for hard delete 
 
   // deleteUser(userIndex: number): Observable<any> {

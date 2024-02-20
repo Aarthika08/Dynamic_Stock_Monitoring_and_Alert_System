@@ -129,4 +129,16 @@ getAllOrders():  Observable<any> {
   return this.http.get<any>(this.apiUrl,httpOptions);
     
 }
+
+
+// Fetch last 5 recently added items from CouchDB
+getLast5Items(): Observable<any[]> {
+  const httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic ' + btoa('admin:admin')
+    })
+  };
+  return this.http.get<any[]>(`${this.apiUrl}?limit=5`,httpOptions);
+}
 }

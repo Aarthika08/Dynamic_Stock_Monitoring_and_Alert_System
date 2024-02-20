@@ -1,10 +1,13 @@
 <html>
-  <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></head>
+  <head>
+    <title>Supplier</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
 <body>
   <button class="newuser" (click)="openAddUserDialog()">Add supplier</button>
 <div>
   <h2>Supplier List</h2>
-  <table>
+  <!-- <table>
     <thead>
       <tr>
         <th>supplier Name</th>
@@ -27,6 +30,32 @@
           <button (click)="deleteUser(i)"><i class="fa fa-trash"></i></button>
         </td>
       </tr>
+    </tbody>
+  </table> -->
+  <table>
+    <thead>
+      <tr>
+        <th>Supplier Name</th>
+        <th>Supplier Email</th>
+        <th>Username</th>
+        <!-- <th>Password</th> -->
+        <th>Supplier Product</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let userArray of users; let i = index">
+        <tr *ngFor="let user of userArray; let j = index" [hidden]="user.deleted">
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.product }}</td>
+          <td>{{ user.username }}</td>
+          <td>
+            <button  (click)="editUser(i)"><i class="fas fa-edit"></i></button>
+            <button (click)="softDeleteUser(i, j)"><i class="fas fa-trash"></i></button>
+          </td>
+        </tr>
+      </ng-container>
     </tbody>
   </table>
 </div>

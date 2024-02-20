@@ -1,11 +1,12 @@
-<!-- edit-user-dialog.component.html -->
+
 <h2>Edit User</h2>
 <form>
   <label>Supplier name: </label>
   <input type="text" [(ngModel)]="userData.name" name="name">
   <br>
   <label>Supplier Email: </label>
-  <input type="email" [(ngModel)]="userData.email" name="email">
+  <input type="email" [(ngModel)]="userData.email" name="email" readonly>
+  
   <br>
   <label>Username: </label>
   <input type="text" [(ngModel)]="userData.username" name="username">
@@ -20,3 +21,5 @@
   <button type="button" (click)="saveUser()">Save</button>
   <button type="button" (click)="closeDialog()">Cancel</button>
 </form>
+
+

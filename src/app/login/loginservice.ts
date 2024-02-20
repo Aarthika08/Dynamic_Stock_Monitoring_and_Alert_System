@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import * as CryptoJS from 'crypto-js';
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +24,16 @@ export class LoginService {
         if (response && Array.isArray(response.user)) {
           for (const userArray of response.user) {
             for (const user of userArray) {
-              if (user.email === email && user.password === password) {
-                return true;
+              // if (user.email === email && user.password === password) {
+                
+              //   return true;
+              // }
+              if (user.email === email) {
+                // Decrypt the password and check if it matches the provided password
+                const decryptedPassword = CryptoJS.AES.decrypt(user.password, 'secret key').toString(CryptoJS.enc.Utf8);
+                if (decryptedPassword === password) {
+                  return true;
+                }
               }
             }
           }
@@ -37,4 +46,7 @@ export class LoginService {
       })
     );
   }
-}
+  
+
+  }
+

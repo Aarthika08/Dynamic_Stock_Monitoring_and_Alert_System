@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { newsupplierDialogComponent } from './new-supplier-dialog/new-supplier-dialog.component'; // Import the dialog component
 import {updateUserDialogComponent } from './update-user-dialog/update-user-dialog.component';
@@ -15,13 +15,9 @@ export class SupplierComponent {
     users!: any[];
     editingUserIndex: number = -1;
     updatedUserData: any = {}; // Object to hold updated user data
-  
-  
-    constructor(private dialog: MatDialog,private formBuilder: FormBuilder, private supplierservice: supplierService) { }
-  
+      constructor(private dialog: MatDialog,private formBuilder: FormBuilder, private supplierservice: supplierService) { }
     ngOnInit(): void {
-      
-      this.loadUsers();
+            this.loadUsers();
     }
     openAddUserDialog(): void {
       const dialogRef = this.dialog.open(newsupplierDialogComponent, {
@@ -34,7 +30,7 @@ export class SupplierComponent {
       });
     }
     //to retireve 
-   
+
   
     loadUsers() {
       this.supplierservice.getUsers().subscribe(
@@ -81,17 +77,42 @@ export class SupplierComponent {
    
 
   //to delete
-    deleteUser(index: number) {
-      this.supplierservice.deleteUser(index).subscribe(
-        response => {
-          console.log('Supplier deleted successfully:', response);
-          // Reload users after deletion
-          this.loadUsers();
-        },
-        error => {
-          console.error('Error deleting user:', error);
-        }
-      );
+    // deleteUser(index: number) {
+    //   this.supplierservice.deleteUser(index).subscribe(
+    //     response => {
+    //       console.log('Supplier deleted successfully:', response);
+    //       // Reload users after deletion
+    //       this.loadUsers();
+    //     },
+    //     error => {
+    //       console.error('Error deleting user:', error);
+    //     }
+    //   );
+    // }
+
+    softDeleteUser(outerIndex: number, innerIndex: number): void {
+      console.log('Deleting user at indices:', outerIndex, innerIndex);
+      if (this.users[outerIndex] && this.users[outerIndex][0]) {
+        // Toggle the 'deleted' property
+        this.users[outerIndex][0].deleted = true;
+        // Call service to update the database
+        this.supplierservice.deleteUser(outerIndex).subscribe(
+          () => {
+            console.log('User deleted successfully');
+          },
+          error => {
+            console.error('Error deleting user:', error);
+            // Revert the change if there's an error
+            this.users[outerIndex][0].deleted = false;
+          }
+        );
+      } else {
+        console.log('User not found at indices:', outerIndex, innerIndex);
+      }
     }
+    
+    
+    
+  
   }
   

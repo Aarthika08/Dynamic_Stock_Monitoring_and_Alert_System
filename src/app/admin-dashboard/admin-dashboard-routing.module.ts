@@ -10,6 +10,7 @@ import { OrderComponent } from './order/order.component';
 import { SupplierComponent} from './supplier/supplier.component';
 import { StockComponent } from './stock/stock.component';
 import { ReportAndAnalyticsComponent } from './report-and-analytics/report-and-analytics.component';
+import { LogoutComponent } from '../login/logout.component';
 
 const routes: Routes = [
   // {
@@ -40,6 +41,7 @@ const routes: Routes = [
         { path: 'orders', component: OrderComponent },
         { path: 'stock', component: StockComponent },
         { path: 'reportandanalytics', component: ReportAndAnalyticsComponent },
+        { path: 'logout', component: LogoutComponent },
   
       // Add more routes for other components
       // { path: '', redirectTo: 'dashboard', pathMatch: 'full' }

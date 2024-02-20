@@ -2,6 +2,18 @@
 
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+//import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+//import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { supplierService } from '../supplierservice'; 
+
+
+interface UserData {
+  name: string;
+  email: string;
+  username: string;
+  password: string;
+  product: string;
+}
 
 @Component({
   selector: 'app-edit-user-dialog',

@@ -1,7 +1,7 @@
 <!-- login.component.html -->
 <div>
   <h2>Login</h2>
-  <form [formGroup]="loginForm" (ngSubmit)="submit()">
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
     <div>
       <label for="email">Email</label>
       <input type="email" id="email" formControlName="email">

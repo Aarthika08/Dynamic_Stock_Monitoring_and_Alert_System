@@ -12,6 +12,35 @@ export class supplierService {
 
   constructor(private http: HttpClient) { }
 
+  // addUser(userDetails: any): Observable<any> {
+  //   const httpOptions = {
+  //     headers: new HttpHeaders({
+  //       'Content-Type': 'application/json',
+  //       'Authorization': 'Basic ' + btoa('admin:admin') 
+  //     })
+  //   };
+
+  //   return this.http.get<any>(this.couchDBUrl, httpOptions).pipe(
+  //     catchError(error => {
+  //       console.error('Error fetching document:', error);
+  //       throw error;
+  //     }),
+  //     // Append the new user data to the existing user array
+  //     map((document: any) => {
+  //       document.supplier.push([userDetails]); // Assuming user details are pushed as an array
+  //       return document;
+  //     }),
+  //     // Update the document in CouchDB
+  //     switchMap((updatedDocument: any) => {
+  //       return this.http.put<any>(this.couchDBUrl, updatedDocument, httpOptions);
+  //     }),
+  //     catchError(error => {
+  //       console.error('Error updating document:', error);
+  //       throw error;
+  //     })
+  //   );
+  // }
+
   addUser(userDetails: any): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -19,31 +48,122 @@ export class supplierService {
         'Authorization': 'Basic ' + btoa('admin:admin') 
       })
     };
-
+  
     return this.http.get<any>(this.couchDBUrl, httpOptions).pipe(
       catchError(error => {
         console.error('Error fetching document:', error);
-        throw error;
+        return throwError('Error fetching document');
       }),
-      // Append the new user data to the existing user array
-      map((document: any) => {
-        document.supplier.push([userDetails]); // Assuming user details are pushed as an array
-        return document;
-      }),
-      // Update the document in CouchDB
-      switchMap((updatedDocument: any) => {
-        return this.http.put<any>(this.couchDBUrl, updatedDocument, httpOptions);
-      }),
-      catchError(error => {
-        console.error('Error updating document:', error);
-        throw error;
+      switchMap((document: any) => {
+        const usersArray: any[] = document.supplier || [];
+        const emailExists = usersArray.some(userArray => {
+          return userArray.some((supplier: any) => supplier.email === userDetails.email); // Specify the type of `user` parameter
+        });
+  
+        if (emailExists) {
+          return throwError('Email already exists');
+        } else {
+          usersArray.push([userDetails]);
+  
+          document.supplier = usersArray;
+  
+          return this.http.put<any>(this.couchDBUrl, document, httpOptions).pipe(
+            catchError(error => {
+              console.error('Error updating document:', error);
+              return throwError('Error updating document');
+            }),
+            map(() => userDetails) // Return userDetails if successful
+          );
+        }
       })
     );
   }
-
-
+  
   //to retrieve the data from the database 
 
+  // getUsers(): Observable<any[]> {
+  //   const httpOptions = {
+  //     headers: new HttpHeaders({
+  //       'Content-Type': 'application/json',
+  //       'Authorization': 'Basic ' + btoa('admin:admin') 
+  //     })
+  //   };
+
+  //   return this.http.get<any>(this.couchDBUrl, httpOptions).pipe(
+  //     catchError(error => {
+  //       console.error('Error fetching document:', error);
+  //       throw error;
+  //     }),
+  //     // Extract and return the 'user' array from the document
+  //     map((document: any) => {
+  //       return document.supplier || []; // Return the 'user' array, or an empty array if not found
+  //     })
+  //   );
+  // }
+
+  //to update 
+  // updateUser(userIndex: number, updatedUserData: any): Observable<any> {
+  //   const httpOptions = {
+  //     headers: new HttpHeaders({
+  //       'Content-Type': 'application/json',
+  //       'Authorization': 'Basic ' + btoa('admin:admin')
+  //     })
+  //   };
+
+  //   return this.http.get<any>(this.couchDBUrl, httpOptions).pipe(
+  //     catchError(error => {
+  //       console.error('Error fetching document:', error);
+  //       return throwError(error);
+  //     }),
+  //     // Update the user data in the document
+  //     map((document: any) => {
+  //       document.supplier[userIndex][0] = updatedUserData; // Assuming user details are stored as an array of arrays
+  //       return document;
+  //     }),
+  //     // Save the updated document back to CouchDB
+  //     switchMap((updatedDocument: any) => {
+  //       return this.http.put<any>(this.couchDBUrl, updatedDocument, httpOptions);
+  //     }),
+  //     catchError(error => {
+  //       console.error('Error updating document:', error);
+  //       return throwError(error);
+  //     })
+  //   );
+  // }
+  //to delte 
+
+  // deleteUser(userIndex: number): Observable<any> {
+  //   const httpOptions = {
+  //     headers: new HttpHeaders({
+  //       'Content-Type': 'application/json',
+  //       'Authorization': 'Basic ' + btoa('admin:admin') 
+  //     })
+  //   };
+
+  //   return this.http.get<any>(this.couchDBUrl, httpOptions).pipe(
+  //     catchError(error => {
+  //       console.error('Error fetching document:', error);
+  //       throw error;
+  //     }),
+  //     // Remove the user data from the document
+  //     map((document: any) => {
+  //       document.supplier.splice(userIndex, 1); // Remove user data at the specified index
+  //       return document;
+  //     }),
+  //     // Save the updated document back to CouchDB
+  //     switchMap((updatedDocument: any) => {
+  //       return this.http.put<any>(this.couchDBUrl, updatedDocument, httpOptions);
+  //     }),
+  //     catchError(error => {
+  //       console.error('Error updating document:', error);
+  //       throw error;
+  //     })
+  //   );
+  // }
+  //   }
+
+
+  
   getUsers(): Observable<any[]> {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -64,7 +184,7 @@ export class supplierService {
     );
   }
 
-  //to update 
+//to update 
   updateUser(userIndex: number, updatedUserData: any): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -93,28 +213,28 @@ export class supplierService {
       })
     );
   }
-  //to delte 
+
+
+  //to delete for soft  delete 
 
   deleteUser(userIndex: number): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': 'Basic ' + btoa('admin:admin') 
+        'Authorization': 'Basic ' + btoa('admin:admin')
       })
     };
-
-    return this.http.get<any>(this.couchDBUrl, httpOptions).pipe(
+    return this.http.get<any>(this.couchDBUrl,httpOptions).pipe(
       catchError(error => {
         console.error('Error fetching document:', error);
         throw error;
       }),
-      // Remove the user data from the document
       map((document: any) => {
-        document.supplier.splice(userIndex, 1); // Remove user data at the specified index
+        document.supplier[userIndex][0].deleted = true; // Soft delete user by setting 'deleted' property to true
         return document;
       }),
-      // Save the updated document back to CouchDB
       switchMap((updatedDocument: any) => {
+       
         return this.http.put<any>(this.couchDBUrl, updatedDocument, httpOptions);
       }),
       catchError(error => {
@@ -123,4 +243,5 @@ export class supplierService {
       })
     );
   }
-    }
+  
+  }

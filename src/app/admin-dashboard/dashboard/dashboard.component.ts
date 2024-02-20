@@ -1,7 +1,9 @@
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
 import { DataService } from './data.service';
 import { Chart } from 'chart.js/auto';
-import {OrderlistService} from '../order/orderlist.service'
+import {OrderlistService} from '../order/orderlist.service';
+import { tap } from 'rxjs/operators';
+
 interface StockItem {
   id: number;
   itemName: string;
@@ -11,6 +13,10 @@ interface StockItem {
 interface StockData {
   stocklist: StockItem[];
 }
+interface DataResponse {
+  rows: any[]; // Change 'any[]' to the type of your rows array
+}
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -29,6 +35,8 @@ id!:string;
 categories: string[] = [];
   counts: number[] = [];
   backgroundColors: string[] = [];
+  items: any[]=[];
+
 
     @ViewChild('myChart') myChart!: ElementRef;
 
@@ -38,6 +46,7 @@ categories: string[] = [];
     constructor(private dataService: DataService,private orderService: OrderlistService) { }
   
     ngOnInit(): void {
+      this.fetchLast5Items();
       this.fetchTotalUsers();
       this. fetchTotalSupplier();
      this.fetchTotalItems();
@@ -258,5 +267,26 @@ RandomColors({ count }: { count: number; }): string[] {
   }
   return colors;
 }
+
+fetchLast5Items(): void {
+  this.dataService.getLast5Items().subscribe(
+    (data: any) => {
+      if (data && data.stocklist) {
+        // Sort the stocklist array by order_date in descending order
+        data.stocklist.sort((a: any, b: any) => new Date(b.order_date).getTime() - new Date(a.order_date).getTime());
+        // Take the first 5 items from the sorted array
+        this.items = data.stocklist.slice(0, 5);
+      } else {
+        console.error('Invalid data format received:', data);
+        // Handle invalid data format as needed
+      }
+    },
+    (err: any) => {
+      console.error('An error occurred:', err);
+      // Handle error as needed
+    }
+  );
+}
+
 
 }

@@ -2,51 +2,43 @@
 <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
   <div>
     <label>Name:</label>
-    <input type="text" formControlName="name">
+    <input type="text" formControlName="name" placeholder="Enter your name!">
     <small *ngIf="userForm.get('name')?.hasError('required') && userForm.get('name')?.touched">
       Name is required.
     </small>
   </div>
+   
   <div>
-    <label>Email:</label>
-    <input type="email" formControlName="email">
+    <label for="email">Email:</label>
+    <input type="email" id="email" placeholder="Enter your Email!" formControlName="email" (blur)="checkEmailExists()" required />
+    <small *ngIf="errorMessage && userForm.get('email')?.hasError('emailExists')" class="error-message" style="color: red;">
+      {{ errorMessage }}
+    </small>  
+
     <small *ngIf="userForm.get('email')?.hasError('required') && userForm.get('email')?.touched">
       Email is required.
     </small>
     <small *ngIf="userForm.get('email')?.hasError('email') && userForm.get('email')?.touched">
       Invalid email address.
     </small>
-  </div>
-  <!-- <div>
-    <label>product:</label>
-    <select formControlName="role">
-      <option value="" disabled>Select Role</option>
-      <option value="admin">Admin</option>
-      <option value="user">User</option>
-    </select>
-    <small *ngIf="userForm.get('role')?.hasError('required') && userForm.get('role')?.touched">
-      Role is required.
-    </small>
-  </div> -->
-
+</div>
   <div>
     <label>Product:</label>
-    <input type="text" formControlName="product">
+    <input type="text" formControlName="product" placeholder="Enter your Product!">
     <small *ngIf="userForm.get('product')?.hasError('required') && userForm.get('product')?.touched">
       product is required.
     </small>
   </div>
   <div>
     <label>Username:</label>
-    <input type="text" formControlName="username">
+    <input type="text" formControlName="username" placeholder="Enter your Username!">
     <small *ngIf="userForm.get('username')?.hasError('required') && userForm.get('username')?.touched">
       username is required.
     </small>
   </div>
   <div>
     <label>Password:</label>
-    <!-- <input type="password" formControlName="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"> -->
-    <input type="password" formControlName="password">
+    <input type="password" placeholder="Enter your Password!" formControlName="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
 
     <small *ngIf="userForm.get('password')?.hasError('password') && userForm.get('password')?.touched">
       Password is required.
@@ -55,6 +47,6 @@
   </div>
   <div>
     <button type="button" (click)="onCancelClick()">Cancel</button>
-    <button type="submit">Add</button>
+    <button type="submit"  [disabled]="userForm.invalid">Add</button>
   </div>
 </form>

@@ -78,7 +78,7 @@ export class UserComponent implements OnInit {
   //to edit
   editUser(index: number): void {
     const dialogRef = this.dialog.open(EditUserDialogComponent, {
-      width: '400px',
+      width: '600px',
       data: this.users[index][0] // Pass user data to the dialog
     });
 
