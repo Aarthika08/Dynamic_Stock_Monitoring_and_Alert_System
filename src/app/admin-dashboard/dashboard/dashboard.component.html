@@ -24,15 +24,16 @@
 
    
   </div>
+  <h2>Recent Added stocks </h2>
   <table>    <!-- table -->
 
     <thead>
       <tr>
         <th>ID</th>
-        <th>Item Name</th>
+        <th>Item </th>
         <th>Description</th>
         <th>Category</th>
-        <th>Order Date</th>
+        <!-- <th>Order Date</th> -->
       </tr>
     </thead>
     <tbody>
@@ -41,19 +42,37 @@
         <td>{{ item.itemName }}</td>
         <td>{{ item.itemDescription }}</td>
         <td>{{ item.itemCategory }}</td>
-        <td>{{ item.order_date }}</td>
+        <!-- <td>{{ item.order_date }}</td> -->
       </tr>
     </tbody>
   </table>
   
-
-  <div style="width: 700px;">    <canvas #newChart></canvas>
-  </div>
-  <div style="width: 400px;">
+<div style="display: flex;flex-direction: row;">
+  <div style="width: 700px;">    <canvas #newChart></canvas></div>
+  <!-- <div style="width: 400px;">
     <canvas #myChart></canvas>
   </div>
- 
+  -->
+  <div>
+  <h2>Recent orders </h2>
 
+  <table>    <!-- table -->
+    <thead >
+      <tr>
+       
+        <th>Item </th>
+       
+        <th> Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items">
+        <td>{{ item.itemName }}</td>       
+        <td>{{ item.order_date }}</td>
+      </tr>
+    </tbody>
+  </table></div>
 </div>
 
 
+</div>

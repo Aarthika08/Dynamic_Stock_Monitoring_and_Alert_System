@@ -1,7 +1,6 @@
 // login.component.ts
 
  import { LoginService } from '../login/loginservice'
-// login.component.ts
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';

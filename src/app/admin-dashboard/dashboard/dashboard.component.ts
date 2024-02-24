@@ -160,7 +160,8 @@ createChart(): void {
         // data: this.calculateAverage(data),
         data:data,
         type: 'line',
-        fill: false,
+        fill: true,
+        backgroundColor: backgroundColors,
         borderColor: 'rgb(255, 99, 132)',
         borderWidth: 2,
       }]
@@ -246,6 +247,7 @@ drawnewChart(labels: string[], dataValues: number[]): void {
         data: dataValues,
         backgroundColor: background,
         borderColor: 'rgb(0,0,0)',
+        fill:true,
         borderWidth: 0.5,
         // hoverOffset: 4
       }]

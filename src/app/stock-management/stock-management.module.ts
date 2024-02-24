@@ -8,6 +8,10 @@ import {StockManagementComponent} from './stock-management.component'
 import {stockmanagementRoutingModule} from './stock-management-routing.module'
 
 import { HttpClientModule } from '@angular/common/http';
+import { IncomingStockComponent } from '../stock-management/stocks/incoming-stock/incoming-stock.component';
+import { StockAvailabilityComponent } from '../stock-management/stocks/stock-availability/stock-availability.component';
+import { OutgoingStockComponent } from '../stock-management/stocks/outgoing-stock/outgoing-stock.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,10 +19,10 @@ import { HttpClientModule } from '@angular/common/http';
     MonitorOrderComponent,
     PlaceOrderComponent,
     ShipmentsComponent,
-    StockManagementComponent
+    StockManagementComponent,IncomingStockComponent,StockAvailabilityComponent,OutgoingStockComponent
   ],
   imports: [
-    CommonModule,stockmanagementRoutingModule,HttpClientModule
+    CommonModule,stockmanagementRoutingModule,HttpClientModule,FormsModule
   ]
 })
 export class StockManagementModule { }
