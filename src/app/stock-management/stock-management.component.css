@@ -1,0 +1,29 @@
+/* Basic Navbar Styles */
+.navbar {
+    background-color: #333; /* Background color */
+    overflow: hidden; /* Ensure content doesn't overflow */
+  }
+  
+  .navbar ul {
+    list-style-type: none; /* Remove bullet points from the list */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+  }
+  
+  .navbar li {
+    float: left; /* Float list items horizontally */
+  }
+  
+  .navbar li a {
+    display: block;
+    color: white; /* Link color */
+    text-align: center; /* Center text */
+    padding: 14px 16px; /* Padding for the links */
+    text-decoration: none; /* Remove underline from links */
+  }
+  
+  .navbar li a:hover {
+    background-color: #ddd; /* Background color on hover */
+    color: black; /* Text color on hover */
+  }
+  

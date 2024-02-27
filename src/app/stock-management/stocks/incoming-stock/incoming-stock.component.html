@@ -22,7 +22,7 @@
 
   <button (click)="addIncomingStock()">Add Incoming Stock</button>
 </div> -->
-
+<!-- <h1>Stock Receiving</h1>
 <div class="container">
   <label for="itemId" class="form-control">Item ID:</label>
   <input type="number" id="itemId" class="form-control" placeholder="Enter Item ID" [(ngModel)]="item.itemId">
@@ -40,10 +40,42 @@
   <input type="date" id="order_date" class="form-control" placeholder="Select Order Date" [(ngModel)]="item.order_date">
 
   <label for="quantity" class="form-control">Quantity:</label>
-  <input type="number" id="quantity" class="form-control" placeholder="Enter Quantity" [(ngModel)]="item.quantity">
+  <input type="number" id="quantity" class="form-control" placeholder="Enter Quantity" [(ngModel)]="item.quantity"> -->
 
-  <label for="status" class="form-control">Status:</label>
-  <input type="text" id="status" class="form-control" placeholder="Enter Status" [(ngModel)]="item.status">
-
+  <!-- <label for="status" class="form-control">Status:</label>
+  <input type="text" id="status" class="form-control" placeholder="Enter Status" [(ngModel)]="item.status"> -->
+<!-- 
   <button class="form-control" (click)="addIncomingStock()">Add Incoming Stock</button>
+</div> -->
+
+<h1>Stock Receiving</h1>
+<div class="container">
+  <label for="itemId" class="form-control">Item ID:</label>
+  <input type="number" id="itemId" class="form-control" placeholder="Enter Item ID" [(ngModel)]="item.itemId">
+  <div *ngIf="!item.itemId" class="error-message">Please enter Item ID</div>
+
+  <label for="itemName" class="form-control">Item Name:</label>
+  <input type="text" id="itemName" class="form-control" placeholder="Enter Item Name" [(ngModel)]="item.itemName">
+  <div *ngIf="!item.itemName" class="error-message">Please enter Item Name</div>
+
+  <label for="itemDescription" class="form-control">Item Description:</label>
+  <input type="text" id="itemDescription" class="form-control" placeholder="Enter Item Description" [(ngModel)]="item.itemDescription">
+  <div *ngIf="!item.itemDescription" class="error-message">Please enter Item Description</div>
+
+  <label for="itemCategory" class="form-control">Item Category:</label>
+  <input type="text" id="itemCategory" class="form-control" placeholder="Enter Item Category" [(ngModel)]="item.itemCategory">
+  <div *ngIf="!item.itemCategory" class="error-message">Please enter Item Category</div>
+
+  <label for="order_date" class="form-control">Order Date:</label>
+  <input type="date" id="order_date" class="form-control" placeholder="Select Order Date" [(ngModel)]="item.order_date">
+  <div *ngIf="!item.order_date" class="error-message">Please select Order Date</div>
+
+  <label for="quantity" class="form-control">Quantity:</label>
+  <input type="number" id="quantity" class="form-control" placeholder="Enter Quantity" [(ngModel)]="item.quantity">
+  <div *ngIf="!item.quantity" class="error-message">Please enter Quantity</div>
+
+  <!-- <label for="status" class="form-control">Status:</label>
+  <input type="text" id="status" class="form-control" placeholder="Enter Status" [(ngModel)]="item.status"> -->
+
+  <button class="form-control" (click)="addIncomingStock()" [disabled]="!checkFieldsFilled()">Add Incoming Stock</button>
 </div>

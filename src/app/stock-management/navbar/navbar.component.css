@@ -1,0 +1,15 @@
+/* styles.css or your component's style file */
+.mat-toolbar {
+  background-color: rgb(196, 12, 196);
+  font-family: 'Roboto', sans-serif; /* Adjust the font family as needed */
+}
+
+.navbar-title,
+.mat-button,
+.mat-icon-button {
+  font-size: 16px; /* Adjust the font size as needed */
+}
+
+.stock-button {
+  font-size: 16px; /* Adjust the font size for the stock button */
+}

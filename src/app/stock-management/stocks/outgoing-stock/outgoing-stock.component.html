@@ -1,6 +1,24 @@
-<div>
-    <h2>Outgoing Stock</h2>
-    <input type="number" #quantityInput>
-    <button (click)="removeOutgoingStock(quantityInput)">Remove Outgoing Stock</button>
-  </div>
+<h1>Stock Dispatch</h1>
+<div class="container">
+  <label for="itemId" class="form-control">Item ID:</label>
+  <input type="number" id="itemId" class="form-control" placeholder="Enter Item ID" [(ngModel)]="item.itemId">
+
+  <label for="itemName" class="form-control">Item Name:</label>
+  <input type="text" id="itemName" class="form-control" placeholder="Enter Item Name" [(ngModel)]="item.itemName">
+
+  <label for="outgoing_date" class="form-control">Outgoing Date:</label>
+  <input type="date" id="outgoing_date" class="form-control" placeholder="Select Outgoing Date" [(ngModel)]="item.outgoing_date">
+
+ <!-- Add error message display for quantity -->
+ <div *ngIf="errorMessage" class="error-message">
+  {{ errorMessage }}
+</div>
+
+<!-- Input for quantity with error class if quantity is invalid -->
+<label for="quantity" class="form-control">Quantity:</label>
+<input type="number" id="quantity" class="form-control"  [min]=0 placeholder="Enter Quantity" [(ngModel)]="item.quantity" [class.error]="errorMessage">
+
   
+
+  <button class="form-control" (click)="removeOutgoingStock()">Outgoing Stock</button>
+</div>

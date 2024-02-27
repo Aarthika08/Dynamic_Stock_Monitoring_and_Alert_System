@@ -1,0 +1,36 @@
+<mat-toolbar color="purple">
+  <span class="navbar-title">Stock Management System</span>
+  <span class="spacer"></span>
+  <button mat-button routerLink="/stocklist" routerLinkActive="active">Stock List</button>
+  <button mat-button routerLink="/monitororder" routerLinkActive="active">Monitor Order</button>
+  <button mat-button routerLink="/placeorder" routerLinkActive="active">Place Order</button>
+  <button mat-button routerLink="/shipments" routerLinkActive="active">Shipments</button>
+  <mat-menu #stockMenu="matMenu">
+    <button mat-menu-item routerLink="stocks/incoming-stock" routerLinkActive="active">Incoming Stock</button>
+    <button mat-menu-item routerLink="stocks/stock-availability" routerLinkActive="active">Stock Availability</button>
+    <button mat-menu-item routerLink="stocks/outgoing-stock" routerLinkActive="active">Outgoing Stock</button>
+  </mat-menu>
+  <button mat-icon-button [matMenuTriggerFor]="stockMenu" class="stock-button">Stock</button>
+</mat-toolbar>
+
+
+
+   <!-- <nav class="navbar">
+    <div class="container">
+      <ul class="nav-menu">
+        <li><a routerLink="/stocklist">Stock List</a></li>
+        <li><a routerLink="/monitororder">Monitor Order</a></li>
+        <li><a routerLink="/placeorder">Place Order</a></li>
+        <li><a routerLink="/shipments">Shipments</a></li>
+        <li>
+          Stocks
+          <ul class="sub-menu">
+            <li><a routerLink="/stocks/incoming-stock">Incoming Stock</a></li>
+            <li><a routerLink="/stocks/stock-availability">Stock Availability</a></li>
+            <li><a routerLink="/stocks/outgoing-stock">Outgoing Stock</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+   -->

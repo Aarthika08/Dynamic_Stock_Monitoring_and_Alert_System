@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { StockAvailabilityService } from './stock-availability.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-stock-availability',
@@ -8,11 +7,23 @@ import { Observable } from 'rxjs';
   styleUrls: ['./stock-availability.component.css']
 })
 export class StockAvailabilityComponent implements OnInit {
-  stockAvailability$!: Observable<number>;
+  stockData: any;
 
-  constructor(private stockAvailabilityService: StockAvailabilityService) { }
+  constructor(private stockService: StockAvailabilityService) { }
 
   ngOnInit(): void {
-    this.stockAvailability$ = this.stockAvailabilityService.stockAvailability$;
+    this.getStockAvailability();
+  }
+
+  getStockAvailability(): void {
+    this.stockService.getStockAvailability()
+      .subscribe(
+        data => {
+          this.stockData = data;
+        },
+        error => {
+          console.error('Error fetching stock data:', error);
+        }
+      );
   }
 }

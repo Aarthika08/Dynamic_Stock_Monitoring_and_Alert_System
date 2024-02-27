@@ -1,6 +1,26 @@
+<h1>Stock Availability Table</h1>
 
-  <div>
-    <h2>Stock Availability</h2>
-    <p>Current Stock Availability: {{ stockAvailability$ | async }}</p>
-  </div>
-  
+<div *ngIf="stockData">
+  <table>
+    <thead>
+      <tr>
+        <th>Item ID</th>
+        <th>Item Name</th>
+        <th>Quantity</th>
+        <th>Category</th>
+        <th>Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of stockData.stock">
+        <td>{{ item.itemId }}</td>
+        <td>{{ item.itemName }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.itemCategory }}</td>
+        <td>{{ item.order_date }}</td>
+        <td>{{ item.status }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
