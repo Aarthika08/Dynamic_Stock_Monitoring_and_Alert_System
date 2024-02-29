@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./monitor-order.component.css']
 })
 export class MonitorOrderComponent {
+  orders: string[] = [];
 
+  orderPlaced(productName: string) {
+    this.orders.push(productName);
+  }
 }

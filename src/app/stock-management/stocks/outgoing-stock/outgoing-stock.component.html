@@ -1,4 +1,4 @@
-<h1>Stock Dispatch</h1>
+<!-- <h1>Stock Dispatch</h1>
 <div class="container">
   <label for="itemId" class="form-control">Item ID:</label>
   <input type="number" id="itemId" class="form-control" placeholder="Enter Item ID" [(ngModel)]="item.itemId">
@@ -9,16 +9,51 @@
   <label for="outgoing_date" class="form-control">Outgoing Date:</label>
   <input type="date" id="outgoing_date" class="form-control" placeholder="Select Outgoing Date" [(ngModel)]="item.outgoing_date">
 
- <!-- Add error message display for quantity -->
  <div *ngIf="errorMessage" class="error-message">
   {{ errorMessage }}
 </div>
 
-<!-- Input for quantity with error class if quantity is invalid -->
 <label for="quantity" class="form-control">Quantity:</label>
 <input type="number" id="quantity" class="form-control"  [min]=0 placeholder="Enter Quantity" [(ngModel)]="item.quantity" [class.error]="errorMessage">
 
   
 
   <button class="form-control" (click)="removeOutgoingStock()">Outgoing Stock</button>
+</div> -->
+
+
+<!-- <h2>Remove Outgoing Stock</h2> -->
+<div class="container">
+  <form [formGroup]="item" (ngSubmit)="removeOutgoingStock()">
+    <div class="form-control">
+      <label for="itemId">Item ID:</label>
+      <input type="text" id="itemId" formControlName="itemId" placeholder="Enter Item ID">
+      <small *ngIf="item.get('itemId')?.errors?.['required'] && item.get('itemId')?.touched" class="error-message">Item ID is required.</small>
+    </div>
+    <div class="form-control">
+      <label for="itemName">Item Name:</label>
+      <input type="text" id="itemName" formControlName="itemName" placeholder="Enter Item Name">
+      <small *ngIf="item.get('itemName')?.errors?.['required'] && item.get('itemName')?.touched" class="error-message">Item Name is required.</small>
+    </div>
+    <!-- <div class="form-control">
+      <label for="outgoing_date">Outgoing Date:</label>
+      <input type="date" id="outgoing_date" formControlName="outgoing_date">
+      <small *ngIf="item.get('outgoing_date')?.errors?.['required'] && item.get('outgoing_date')?.touched" class="error-message">Outgoing Date is required.</small>
+    </div> -->
+    <div class="form-control">
+      <label for="outgoing_date">outgoing_date:</label>
+      <input type="date" id="outgoing_date" formControlName="outgoing_date" (change)="checkOrderDateValidity()">
+      <small *ngIf="isDateInvalid && item.get('outgoing_date')?.touched" class="warning-message">
+        Selected date should be current  or futuristic.
+      </small>
+      <small *ngIf="item.get('outgoing_date')?.errors?.['required'] && item.get('outgoing_date')?.touched" class="error-message">Outgoing Date is required.</small>
+   
+    </div>
+    <div class="form-control">
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" formControlName="quantity" placeholder="Enter Quantity">
+      <small *ngIf="(item.get('quantity')?.errors?.['required'] || item.get('quantity')?.errors?.['min']) && item.get('quantity')?.touched" class="error-message">Quantity is required and must be greater than 0.</small>
+    </div>
+    <button type="submit" [disabled]="item.invalid">Stock Dispatch</button>
+  </form>
 </div>

@@ -1,0 +1,22 @@
+<h2>Edit Stock</h2>
+<form>
+  <label> Stock Id: </label>
+  <input type="text" [(ngModel)]="stockData.itemId" name="itemId" readonly>
+  <br>
+  <!-- <label> Email: </label>
+  <input type="email" [(ngModel)]="userData.email" name="email" readonly>
+   -->
+  <br>
+  <label>Stock Name: </label>
+  <input type="text" [(ngModel)]="stockData.itemName" name="itemName">
+  <br>
+  <label>Stock category: </label>
+  <input type="text" [(ngModel)]="stockData.itemCategory" name="itemCategory">
+  <br>
+  <label> order_date </label>
+  <input type="date" [(ngModel)]="stockData.order_date" name="order_date" readonly>
+  <br>
+  
+  <button type="button" (click)="saveStock()">Save</button>
+  <button type="button" (click)="closeDialog()">Cancel</button>
+</form>

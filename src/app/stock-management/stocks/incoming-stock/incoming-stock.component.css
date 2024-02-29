@@ -39,7 +39,7 @@
   button {
     width: 100%;
     padding: 12px;
-    background-color: #007bff;
+    background-color: #681c92;
     color: #ffffff;
     border: none;
     border-radius: 5px;
@@ -48,6 +48,14 @@
   }
   
   button:hover {
-    background-color: #0056b3;
+    background-color: #4800b3;
+  }
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Adjust as needed */
   }
   
+  .button-container button {
+    margin: 0 10px; /* Add spacing between buttons */
+  }

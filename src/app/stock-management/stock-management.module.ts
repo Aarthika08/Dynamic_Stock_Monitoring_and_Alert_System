@@ -17,11 +17,13 @@ import { MatButtonModule } from '@angular/material/button';
 import {stockmanagementRoutingModule} from './stock-management-routing.module'
 import { MatMenuModule } from '@angular/material/menu';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import {EditStockComponent} from '../stock-management/stock-list/edit-stock-folder/edit-stock.component'
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
   declarations: [
+    EditStockComponent,
     StockListComponent,
     MonitorOrderComponent,
     PlaceOrderComponent,
@@ -36,7 +38,8 @@ import { ReactiveFormsModule } from '@angular/forms';
         HttpClientModule,
     FormsModule,
     MatToolbarModule,
-    MatButtonModule,ReactiveFormsModule
+    MatButtonModule,
+    ReactiveFormsModule,MatDialogModule
   ]
 })
 export class StockManagementModule { }
