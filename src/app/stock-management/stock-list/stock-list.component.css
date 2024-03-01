@@ -9,8 +9,9 @@ table {
   th {
     padding: 12px;
     text-align: center; /* Center the text within the table header */
-    background-color: #f2f2f2; /* Light gray background color */
+    /* background-color: #f2f2f2; */
     border-bottom: 1px solid #ddd; /* Bottom border for each table header cell */
+    
   }
   
   /* Style the table data */
@@ -29,3 +30,27 @@ table {
     padding: 20px 0; /* Add padding to the top and bottom of the heading */
   }
     
+
+
+  /* *{
+    margin:10px;
+  }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+}
+
+th, td {
+  border: 3px solid #070707;
+  padding: 25px;
+  text-align: left;
+} */
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #dddddd;
+}

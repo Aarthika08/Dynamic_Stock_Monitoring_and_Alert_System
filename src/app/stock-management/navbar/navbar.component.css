@@ -1,6 +1,7 @@
 /* styles.css or your component's style file */
 .mat-toolbar {
-  background-color: #681c92;
+  /* background-color: #681c92; */
+  background-color:#9a6fb3;
   font-family: 'Roboto', sans-serif; /* Adjust the font family as needed */
 }
 
@@ -12,4 +13,7 @@
 
 .stock-button {
   font-size: 16px; /* Adjust the font size for the stock button */
+}
+#mat-menu{
+  font-family: 'Roboto', sans-serif;
 }

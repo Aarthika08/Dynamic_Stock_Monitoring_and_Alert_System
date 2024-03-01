@@ -18,7 +18,10 @@ export class StocksService {
   username = 'admin';
   password = 'admin';
   couchDBUrl='http://localhost:5984/stocks/6bf419fc30b6d006073b2fb0df00fd9d';
-
+  private headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': 'Basic ' + btoa('admin:admin') // Replace with actual credentials
+  })
   
   constructor(private http: HttpClient) { }
 
@@ -31,7 +34,7 @@ export class StocksService {
   }
  
 
-  updateUser(userIndex: number, updatedUserData: any): Observable<any> {
+  updateStock(userIndex: number, updatedUserData: any): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -65,5 +68,29 @@ export class StocksService {
     );
   }
   
-  
+
+
+  softDeleteStockItem(itemId: number): Observable<any> {
+    return this.http.get<any>(this.apiUrl, { headers: this.headers })
+      .pipe(
+        catchError(error => {
+          console.error('Error fetching stock data:', error);
+          throw error;
+        }),
+        map((data: any) => {
+          const stockIndex = data.stock.findIndex((item: any) => item.itemId === itemId);
+          if (stockIndex !== -1) {
+            data.stock[stockIndex].delete = true;
+          }
+          return data;
+        }),
+        switchMap(updatedData => {
+          return this.http.put<any>(this.apiUrl, updatedData, { headers: this.headers });
+        }),
+        catchError(error => {
+          console.error('Error updating stock data:', error);
+          throw error;
+        })
+      );
+  }
   }

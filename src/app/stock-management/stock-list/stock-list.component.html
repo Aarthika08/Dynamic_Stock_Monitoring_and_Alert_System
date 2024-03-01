@@ -1,4 +1,4 @@
-<!-- <h1>StockList</h1>
+<!-- 
 
 <div *ngIf="stocks">
   <table>
@@ -12,58 +12,61 @@
     </thead>
     <tbody>
      
-      <ng-container *ngFor="let item of stocks; let i = index"><tr> -->
-        <!-- <tr *ngFor="let item of userArray; let j = index" [hidden]="item.deleted"> -->
-          <!-- <td>{{ item.itemId }}</td>
-          <td>{{ item.itemName }}</td>
-          <td>{{ item.itemCategory }}</td>
-          <td>{{ item.order_date }}</td>
-          <td> -->
-            <!-- <button  (click)="editStock(i)"><i class="fas fa-edit"></i>update</button> -->
-            <!-- <button (click)="softDeleteStock(i, j)"><i class="fas fa-trash"></i></button> -->
-          <!-- </td>
-        </tr>
-      </ng-container>
-    </tbody>
-  </table>
-</div> -->
-
-
-<!-- item-list.component.html -->
-
-<!-- <div *ngFor="let user of stocks; let i = index">
-  <div>
-    <p>{{ user.itemName }}</p>
-    <p>{{ user.itemCategory }}</p>
-    <button (click)="editUser(i)">Edit</button>
-  </div>
-</div> -->
-
-
-<div *ngIf="stocks">
-  <table>
-    <thead>
-      <tr>
-        <th>Item ID</th>
-        <th>Item Name</th>
-        <th>Category</th>
-        <th>Date</th>
-      </tr>
-    </thead>
-    <tbody>
-     
-      <ng-container *ngFor="let item of stocks; let i = index"><tr> 
-        <!-- <tr *ngFor="let item of userArray; let j = index" [hidden]="item.deleted"> -->
+      <ng-container *ngFor="let item of stocks; let i = index"><tr>
           <td>{{ item.itemId }}</td>
           <td>{{ item.itemName }}</td>
           <td>{{ item.itemCategory }}</td>
           <td>{{ item.order_date }}</td>
           <td>
-            <button  (click)="editUser(i)"><i class="fas fa-edit"></i>update</button>
-            <!-- <button (click)="softDeleteStock(i, j)"><i class="fas fa-trash"></i></button> -->
+            <button (click)="editUser(i)"><i class="fas fa-edit"></i>update</button>
+            <button (click)="softDeleteStock(i)"><i class="fas fa-trash"></i></button>
           </td>
         </tr>
       </ng-container>
+      
+    
     </tbody>
   </table>
-</div>
+</div> -->
+<html>
+  <head>
+    <title>Stock List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+<body>
+<h1 style="text-align: center;">Stock Data List</h1>
+<div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+<table *ngIf="stockData && stockData.length > 0">
+  <thead>
+    <tr>
+      <th> ID</th>
+      <th>Item Name</th>
+      <th>Item Description</th>
+      <th> Category</th>
+      <!-- <th>Order Date</th>
+      <th>Quantity</th>
+      <th>Status</th> -->
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of stockData  let i = index">
+      <td>{{ item.itemId }}</td>
+      <td>{{ item.itemName }}</td>
+      <td>{{ item.itemDescription }}</td>
+      <td>{{ item.itemCategory }}</td>
+      <!-- <td>{{ item.order_date }}</td>
+      <td>{{ item.quantity }}</td>
+      <td>{{ item.status }}</td> -->
+      <td>
+        <button (click)="editUser(i)"><i class="fa fa-edit"></i></button>
+        <button (click)="softDeleteItem(item.itemId)"><i class="fa fa-trash"></i></button>
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div *ngIf="!stockData || stockData.length === 0">No stock data available.</div>
+
+   </body>
+   </html>
