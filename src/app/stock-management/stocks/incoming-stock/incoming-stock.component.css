@@ -59,3 +59,7 @@
   .button-container button {
     margin: 0 10px; /* Add spacing between buttons */
   }
+  .error-message {
+
+    color:red;
+  }

@@ -99,7 +99,7 @@ console.log(this.errorMessage);
     this.userService.addUser(userDetails).subscribe(
       response => {
         console.log('User added successfully', response);
-        alert('User addes successful');
+        alert('User added successful');
         this.userForm.reset();
         this.dialogRef.close();
       },

@@ -59,16 +59,25 @@
     <label for="itemName" class="form-control">Item Name:</label>
     <input type="text" id="itemName" formControlName="itemName" placeholder="Enter Item Name" class="form-control">
     <small *ngIf="item.get('itemName')?.errors?.['required'] && item.get('itemName')?.touched" class="error-message">Item Name is required.</small>
+    <small *ngIf="item.get('itemName')?.errors?.['containsNumber'] && item.get('itemName')?.touched">
+      <span class="warning-message">No numbers allowed .</span>
+    </small>
   </div>
   <div>
     <label for="itemDescription" class="form-control">Item Description:</label>
     <input type="text" id="itemDescription" formControlName="itemDescription" placeholder="Enter Item Description">
     <small *ngIf="item.get('itemDescription')?.errors?.['required'] && item.get('itemDescription')?.touched" class="error-message">Item Description is required.</small>
+    <small *ngIf="item.get('itemDescription')?.errors?.['containsNumber'] && item.get('itemDescription')?.touched">
+      <span class="warning-message">No numbers allowed .</span>
+    </small>
   </div>
   <div>
     <label for="itemCategory" class="form-control">Item Category:</label>
     <input type="text" id="itemCategory" formControlName="itemCategory" placeholder="Enter Item Category" class="form-control">
     <small *ngIf="item.get('itemCategory')?.errors?.['required'] && item.get('itemCategory')?.touched" class="error-message">Item Category is required.</small>
+    <small *ngIf="item.get('itemCategory')?.errors?.['containsNumber'] && item.get('itemCategory')?.touched">
+      <span class="warning-message">No numbers allowed .</span>
+    </small>
   </div>
   
   <div>

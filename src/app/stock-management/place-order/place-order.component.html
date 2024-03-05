@@ -1,6 +1,179 @@
-<div>
-    <h2>Place Order</h2>
-    <input type="text" [(ngModel)]="productName" placeholder="Product Name">
-    <button (click)="placeOrder()">Place Order</button>
+<!-- <div class="form-container">
+
+<form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+  <div  class="form-control">
+    <label for="order_id" class="form-control">Item ID:</label>
+    <input type="number" id="order_id" formControlName="order_id" placeholder="Enter Item ID" class="form-control">
+    <small *ngIf="orderForm.get('order_id')?.errors?.['required'] && orderForm.get('order_id')?.touched" class="error-message">Item ID is required.</small>
   </div>
-  
+  <div class="form-control">
+    <label for="customer_id" class="form-control">Customer ID:</label>
+    <input type="number" id="customer_id" formControlName="customer_id" placeholder="Enter Customer ID" class="form-control">
+    <small *ngIf="orderForm.get('customer_id')?.errors?.['required'] && orderForm.get('customer_id')?.touched" class="error-message">Customer ID is required.</small>
+  </div>
+  <div class="form-control">
+    <label for="order_date" class="form-control">Order Date:</label>
+    <input type="date" id="order_date" formControlName="order_date" placeholder="Select Order Date" class="form-control">
+    <small *ngIf="orderForm.get('order_date')?.errors?.['required'] && orderForm.get('order_date')?.touched" class="error-message">Order Date is required.</small>
+  </div>
+  <div class="form-control">
+    <label for="order_status" class="form-control">Order Status:</label>
+    <input type="text" id="order_status" formControlName="order_status" placeholder="Enter Order Status" class="form-control">
+    <small *ngIf="orderForm.get('order_status')?.errors?.['required'] && orderForm.get('order_status')?.touched" class="error-message">Order Status is required.</small>
+  </div>
+  <div class="form-control">
+    <label for="price" class="form-control">Price:</label>
+    <input type="number" id="price" formControlName="price" placeholder="Enter Price" class="form-control">
+    <small *ngIf="orderForm.get('price')?.errors?.['required'] && orderForm.get('price')?.touched" class="error-message">Price is required.</small>
+  </div>
+  <div class="form-control">
+    <label for="stock_name" class="form-control">Stock Name:</label>
+    <input type="text" id="stock_name" formControlName="stock_name" placeholder="Enter Stock Name" class="form-control">
+    <small *ngIf="orderForm.get('stock_name')?.errors?.['required'] && orderForm.get('stock_name')?.touched" class="error-message">Stock Name is required.</small>
+  </div>
+  <div class="form-control">
+    <label for="stock_quantity" class="form-control">Stock Quantity:</label>
+    <input type="number" id="stock_quantity" formControlName="stock_quantity" placeholder="Enter Stock Quantity" class="form-control">
+    <small *ngIf="orderForm.get('stock_quantity')?.errors?.['required'] && orderForm.get('stock_quantity')?.touched" class="error-message">Stock Quantity is required.</small>
+  </div>
+  <div class="form-control">
+    <label for="product_name" class="form-control">Product Name:</label>
+    <input type="text" id="product_name" formControlName="product_name" placeholder="Enter Product Name" class="form-control">
+    <small *ngIf="orderForm.get('product_name')?.errors?.['required'] && orderForm.get('product_name')?.touched" class="error-message">Product Name is required.</small>
+  </div>
+  <div class="form-control">
+    <label for="single_quantity_price" class="form-control">Single Quantity Price:</label>
+    <input type="number" id="single_quantity_price" formControlName="single_quantity_price" placeholder="Enter Single Quantity Price" class="form-control">
+    <small *ngIf="orderForm.get('single_quantity_price')?.errors?.['required'] && orderForm.get('single_quantity_price')?.touched" class="error-message">Single Quantity Price is required.</small>
+  </div>
+  <div class="form-control">
+    <label for="total_price" class="form-control">Total Price:</label>
+    <input type="number" id="total_price" formControlName="total_price" placeholder="Enter Total Price" class="form-control">
+    <small *ngIf="orderForm.get('total_price')?.errors?.['required'] && orderForm.get('total_price')?.touched" class="error-message">Total Price is required.</small>
+  </div>
+  <button type="submit">Submit Order</button>
+</form>
+</div> -->
+
+<div class="container">
+  <div class="d-flex">
+    <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+      <div class="title">
+        <h2>Purchase Order Form</h2>
+      </div>
+      <div>
+        <label for="order_id"><span>Item ID:</span></label>
+        <input type="number" id="order_id" formControlName="order_id" placeholder="Enter Item ID">
+        <small *ngIf="orderForm.get('order_id')?.errors?.['required'] && orderForm.get('order_id')?.touched"
+          class="error-message">Item ID is required.</small>
+      </div>
+      <div>
+        <label for="customer_id"><span>Customer ID:</span></label>
+        <input type="number" id="customer_id" formControlName="customer_id" placeholder="Enter Customer ID">
+        <small *ngIf="orderForm.get('customer_id')?.errors?.['required'] && orderForm.get('customer_id')?.touched"
+          class="error-message">Customer ID is required.</small>
+      </div>
+      <div>
+        <label for="order_date"><span>Order Date:</span></label>
+        <input type="date" id="order_date" formControlName="order_date" (change)="checkOrderDateValidity()"  placeholder="Select Order Date">
+        <small *ngIf="orderForm.get('order_date')?.errors?.['required'] && orderForm.get('order_date')?.touched"
+          class="error-message">Order Date is required.</small>
+
+          <small *ngIf="isDateInvalid && orderForm.get('order_date')?.touched" class="warning-message">
+            Selected date should be today or later.
+          </small>
+      </div>
+      <!-- <div>
+        <label for="order_status"><span>Order Status:</span></label>
+        <input type="text" id="order_status" formControlName="order_status" placeholder="Enter Order Status">
+        <small *ngIf="orderForm.get('order_status')?.errors?.['required'] && orderForm.get('order_status')?.touched"
+          class="error-message">Order Status is required.</small>
+          <small *ngIf="orderForm.get('order_status')?.errors?.['containsNumber'] && orderForm.get('order_status')?.touched">
+            <span class="warning-message">No numbers allowed in order status.</span>
+          </small>
+      </div> -->
+      <div>
+        <label for="order_status">Order Status:</label>
+        <input type="text" id="order_status" formControlName="order_status" [disabled]="true">
+      </div>
+      
+      <div>
+        <label for="price"><span>Price:</span></label>
+        <input type="number" id="price" formControlName="price" placeholder="Enter Price">
+        <small *ngIf="orderForm.get('price')?.errors?.['required'] && orderForm.get('price')?.touched"
+          class="error-message">Price is required.</small>
+      </div>
+      <div>
+        <label for="stock_name"><span>Stock Name:</span></label>
+        <input type="text" id="stock_name" formControlName="stock_name" placeholder="Enter Stock Name">
+        <small *ngIf="orderForm.get('stock_name')?.errors?.['required'] && orderForm.get('stock_name')?.touched"
+          class="error-message">Stock Name is required.</small>
+          <small *ngIf="orderForm.get('stock_name')?.errors?.['containsNumber'] && orderForm.get('stock_name')?.touched">
+            <span class="warning-message">No numbers allowed.</span>
+          </small>
+      </div>
+      <div>
+        <label for="stock_quantity"><span>Stock Quantity:</span></label>
+        <input type="number" id="stock_quantity" formControlName="stock_quantity" placeholder="Enter Stock Quantity"  (input)="calculateTotalPrice()">
+        <small *ngIf="orderForm.get('stock_quantity')?.errors?.['required'] && orderForm.get('stock_quantity')?.touched"
+          class="error-message">Stock Quantity is required.</small>
+      </div>
+      <div>
+        <label for="product_name"><span>Product Name:</span></label>
+        <input type="text" id="product_name" formControlName="product_name" placeholder="Enter Product Name">
+        <small *ngIf="orderForm.get('product_name')?.errors?.['required'] && orderForm.get('product_name')?.touched"
+          class="error-message">Product Name is required.</small>
+        <small *ngIf="orderForm.get('product_name')?.errors?.['containsNumber'] && orderForm.get('product_name')?.touched">
+            <span class="warning-message">No numbers allowed.</span>
+          </small>
+      </div>
+      <div>
+        <label for="single_quantity_price"><span>Product Cost:</span></label>
+        <input type="number" id="single_quantity_price" formControlName="single_quantity_price"
+          placeholder="Enter Product Cost"  (input)="calculateTotalPrice()">
+        <small *ngIf="orderForm.get('single_quantity_price')?.errors?.['required'] && orderForm.get('single_quantity_price')?.touched"
+          class="error-message">Product Cost   is required.</small>
+      </div>
+      <!-- <div>
+        <label for="total_price"><span>Total Price:</span></label>
+        <input type="number" id="total_price" formControlName="total_price" placeholder="Enter Total Price">
+        <small *ngIf="orderForm.get('total_price')?.errors?.['required'] && orderForm.get('total_price')?.touched"
+          class="error-message">Total Price is required.</small>
+      </div> -->
+      <!-- <div> -->
+        <!-- <label for="total_price">Total Price:</label> -->
+        <!-- <input type="number" id="total_price" formControlName="total_price" placeholder="Total Price" [disabled]="orderForm.get('total_price')?.value === null"> -->
+      <!-- </div> -->
+      <button type="submit">Submit Order</button>
+      <button type="button" (click)="onCancelClick()">Cancel</button>
+    </form>
+    <div class="Yorder">
+      <!-- Your other content related to order details -->
+      
+
+      <h2>Order Details</h2>
+      <table>
+        <tr colspan="2"><th>Your Order</th>
+      <tr><div>
+       <td> <label for="product_name">Product Name:</label></td>
+       <td> <p>{{ orderForm.get('product_name')?.value }}</p></td>
+      </div></tr>
+      <tr><div>
+      <td>  <label for="single_quantity_price">Product Cost</label></td>
+      <td> <p>{{ orderForm.get('single_quantity_price')?.value | currency }}</p></td>
+      </div></tr>
+      <tr><div>
+        <td>  <label for="total_price">Total Price:</label></td>
+        <td> <p>{{ orderForm.get('total_price')?.value | currency }}</p></td>
+        </div></tr>
+  <tr>
+      <div>
+       <td> <label for="order_status">Status</label></td>
+      <td>  <p>{{ orderForm.get('order_status')?.value  }}</p></td>
+      </div></tr></table>
+    </div>
+
+
+      <!-- end -->
+    </div>
+  </div>

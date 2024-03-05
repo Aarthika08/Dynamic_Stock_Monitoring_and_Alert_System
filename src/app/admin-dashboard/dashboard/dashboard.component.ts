@@ -112,9 +112,23 @@ categories: string[] = [];
 //chart 
 
 
+// fetchData(): void {
+//   this.dataService.getStockList().subscribe(data => {
+//     this.stocklist = data.stocklist;
+//     this.createChart();
+
+//     console.log(this.stocklist);
+//   },
+//   error => {
+//           console.error('Error fetching stocklist:', error);
+//         }
+    
+// );
+// }
+
 fetchData(): void {
   this.dataService.getStockList().subscribe(data => {
-    this.stocklist = data.stocklist;
+    this.stocklist = data;
     this.createChart();
 
     console.log(this.stocklist);

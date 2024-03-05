@@ -9,6 +9,7 @@ import { StockAvailabilityComponent } from './stocks/stock-availability/stock-av
 import { OutgoingStockComponent } from './stocks/outgoing-stock/outgoing-stock.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { StockManagementComponent } from './stock-management.component';
+import { LogoutComponent } from '../login/logout.component';
 
 
 // const routes: Routes = [
@@ -58,7 +59,10 @@ const routes: Routes = [
         { path: 'incoming-stock', component: IncomingStockComponent },
         { path: 'stock-availability', component: StockAvailabilityComponent },
         { path: 'outgoing-stock', component: OutgoingStockComponent },
-      ]}
+      ]},
+      { path: 'logout', component: LogoutComponent },
+  
+    
     ]
   }
 ];
