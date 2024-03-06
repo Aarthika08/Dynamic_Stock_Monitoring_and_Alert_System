@@ -5,8 +5,6 @@ import { MonitorOrderComponent } from './monitor-order/monitor-order.component';
 import { PlaceOrderComponent } from './place-order/place-order.component';
 import { ShipmentsComponent } from './shipments/shipments.component';
 import {StockManagementComponent} from './stock-management.component'
-
-import { HttpClientModule } from '@angular/common/http';
 import { IncomingStockComponent } from '../stock-management/stocks/incoming-stock/incoming-stock.component';
 import { StockAvailabilityComponent } from '../stock-management/stocks/stock-availability/stock-availability.component';
 import { OutgoingStockComponent } from '../stock-management/stocks/outgoing-stock/outgoing-stock.component';
@@ -19,7 +17,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ReactiveFormsModule } from '@angular/forms';
 import {EditStockComponent} from '../stock-management/stock-list/edit-stock-folder/edit-stock.component'
 import { MatDialogModule } from '@angular/material/dialog';
-
+import {POService } from '../stock-management/place-order/po.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,16 +29,18 @@ import { MatDialogModule } from '@angular/material/dialog';
     ShipmentsComponent,
     StockManagementComponent,IncomingStockComponent,
     StockAvailabilityComponent,OutgoingStockComponent,
-     NavbarComponent
+     NavbarComponent,
   ],
   imports: [
     CommonModule,MatMenuModule,
     stockmanagementRoutingModule,
-        HttpClientModule,
-    FormsModule,
+    HttpClientModule,    FormsModule,
     MatToolbarModule,
     MatButtonModule,
     ReactiveFormsModule,MatDialogModule
+  ],
+  providers: [
+    POService // Provide the PoService here
   ]
 })
 export class StockManagementModule { }

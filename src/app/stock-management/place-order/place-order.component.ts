@@ -140,46 +140,46 @@ export class PlaceOrderComponent {
     }
   }
   
-  updateOrderStatus(): void {
-    const currentDate = new Date();
-    const oneMinuteLater = new Date(currentDate);
-    oneMinuteLater.setMilliseconds(currentDate.getMilliseconds() + 60000); // One minute in milliseconds
-    const twoMinutesLater = new Date(oneMinuteLater);
-    twoMinutesLater.setMilliseconds(oneMinuteLater.getMilliseconds() + 60000); // Two minutes in milliseconds
-    const fiveMinutesLater = new Date(twoMinutesLater);
-    fiveMinutesLater.setMilliseconds(twoMinutesLater.getMilliseconds() + 300000); // Five minutes in milliseconds
+  // updateOrderStatus(): void {
+  //   const currentDate = new Date();
+  //   const oneMinuteLater = new Date(currentDate);
+  //   oneMinuteLater.setMilliseconds(currentDate.getMilliseconds() + 60000); // One minute in milliseconds
+  //   const twoMinutesLater = new Date(oneMinuteLater);
+  //   twoMinutesLater.setMilliseconds(oneMinuteLater.getMilliseconds() + 60000); // Two minutes in milliseconds
+  //   const fiveMinutesLater = new Date(twoMinutesLater);
+  //   fiveMinutesLater.setMilliseconds(twoMinutesLater.getMilliseconds() + 300000); // Five minutes in milliseconds
 
-    setTimeout(() => {
-      const currentStatus = this.orderForm.get('order_status')?.value;
-      switch (currentStatus) {
-        case 'Pending':
-          this.orderForm.get('order_status')?.setValue('Packed');
-          break;
-        case 'Packed':
-          this.orderForm.get('order_status')?.setValue('Processing');
-          break;
-        case 'Processing':
-          this.orderForm.get('order_status')?.setValue('Shipped');
-          break;
-        case 'Shipped':
-          this.orderForm.get('order_status')?.setValue('Delivered');
-          break;
-        default:
-          // Do nothing
-          break;
-      }
+  //   setTimeout(() => {
+  //     const currentStatus = this.orderForm.get('order_status')?.value;
+  //     switch (currentStatus) {
+  //       case 'Pending':
+  //         this.orderForm.get('order_status')?.setValue('Packed');
+  //         break;
+  //       case 'Packed':
+  //         this.orderForm.get('order_status')?.setValue('Processing');
+  //         break;
+  //       case 'Processing':
+  //         this.orderForm.get('order_status')?.setValue('Shipped');
+  //         break;
+  //       case 'Shipped':
+  //         this.orderForm.get('order_status')?.setValue('Delivered');
+  //         break;
+  //       default:
+  //         // Do nothing
+  //         break;
+  //     }
       
-      // Update the order status in the database
-      this.poService.updateOrderStatus(this.orderForm.value).subscribe(
-        response => {
-          console.log('Order status updated successfully in the database:', response);
-        },
-        error => {
-          console.error('Error updating order status in the database:', error);
-        }
-      );
-    }, fiveMinutesLater.getTime() - currentDate.getTime()); // Difference in milliseconds
-  }
+  //     // Update the order status in the database
+  //     this.poService.updateOrderStatus(this.orderForm.value).subscribe(
+  //       response => {
+  //         console.log('Order status updated successfully in the database:', response);
+  //       },
+  //       error => {
+  //         console.error('Error updating order status in the database:', error);
+  //       }
+  //     );
+  //   }, fiveMinutesLater.getTime() - currentDate.getTime()); // Difference in milliseconds
+  // }
 
   onSubmit() {
     if (this.orderForm.valid) {

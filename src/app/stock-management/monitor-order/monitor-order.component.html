@@ -1,8 +1,48 @@
-<p>monitor-order works!</p>
-<div>
-    <h2>Monitor Orders</h2>
-    <ul>
-      <li *ngFor="let order of orders">{{ order }}</li>
-    </ul>
+<div class="tablediv">
+  <h2>Order List</h2>
+  <div class="parent" style="display: flex;">
+    <div class="children">
+  <table>
+    <thead>
+      <tr>
+          <th>Order ID</th>
+          <th>Customer ID</th>
+          <th>Order Date</th>
+          <th>Status</th>
+          <th>Price</th>
+          <th>Stock </th>
+          <th>Quantity</th>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Total Price</th>
+
+      </tr>
+    </thead>
+    <tbody>
+       <tr *ngFor="let order of orderslist let i = index">
+       <td>{{ order.order_id }}</td>
+        <td>{{ order.customer_id }}</td>
+        <td>{{ order.order_date }}</td>
+        <td>{{ order.order_status }}</td>
+        <td>{{ order.price }}</td>
+        <td>{{ order.stock_name }}</td>
+        <td>{{ order.stock_quantity }}</td>
+        <td>{{ order.product_name }}</td>
+        <td>{{ order.single_quantity_price }}</td>
+        <td>{{ order.total_price }}</td> 
+     
+
+      </tr>
+     
+    </tbody>
+  </table>
   </div>
-  
+  <div class="children">
+<table style="margin-top: 20px;">
+  <th>Bullet Graph</th>
+  <tbody>
+      <div id="graph-container"></div>
+    </tbody>
+    </table>
+   
+    </div></div>
