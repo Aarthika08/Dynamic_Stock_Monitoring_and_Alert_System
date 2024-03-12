@@ -8,9 +8,8 @@ import { HttpClientModule} from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms'; 
 import {FormsModule} from '@angular/forms';
 import { AdminDashboardModule } from './admin-dashboard/admin-dashboard.module';
-import {RealTimeModule} from './real-time/real-time.module';
 import { StockManagementModule } from './stock-management/stock-management.module';
-import {HomeComponent} from './home/home.component';
+import { DynamicModule } from './dynamic/dynamic.module';
 
 @NgModule({
   declarations: [
@@ -24,8 +23,8 @@ import {HomeComponent} from './home/home.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    RealTimeModule,StockManagementModule,
-     
+    StockManagementModule,
+    DynamicModule
   ],
   providers: [],
   bootstrap: [AppComponent]

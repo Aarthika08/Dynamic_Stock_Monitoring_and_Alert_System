@@ -8,7 +8,8 @@ import {HomeComponent} from './home/home.component';
 import { LogoutComponent } from './login/logout.component';
 import { AdminAuthGuard } from './admin-dashboard/admin-auth.guard';
 import {stockAuthGuard} from './stock-management/stock-auth.guard';
-
+import {DynamicComponent} from './dynamic/dynamic.component';
+import {RealAuthGuard} from './dynamic/real-auth.guard';
 
 const routes: Routes = [
   // { path: '', component: HomeComponent, canActivate: [AuthGuard] },
@@ -18,10 +19,9 @@ const routes: Routes = [
   { path: 'admin-dashboard', component: AdminDashboardComponent,canActivate: [AdminAuthGuard]  }, // Add route for admin-dashboard
   // { path: 'admin-dashboard', component: AdminDashboardComponent },
   { path: 'stock-management', component: StockManagementComponent,canActivate: [stockAuthGuard]  }, // Add route for admin-dashboard
-// add path of real component like this 
+  { path: 'dynamic', component: DynamicComponent,canActivate: [RealAuthGuard]  }, // Add route for admin-dashboard
   { path: '', redirectTo: '/login', pathMatch: 'full' }, // Redirect to login page by default
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

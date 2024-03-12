@@ -119,7 +119,7 @@ export class AuthService {
     return this.isStaff;
   }
 
-  isRealUser(): boolean {
+  isrealUser(): boolean {
     return this.isManager;
   }
 }

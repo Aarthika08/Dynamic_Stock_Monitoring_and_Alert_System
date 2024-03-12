@@ -122,7 +122,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/stock-management']);
         break;
       case 'Manager':
-        this.router.navigate(['/real-system']);
+        this.router.navigate(['/dynamic']);
         break;
       default:
         this.errorMessage = 'User role not recognized';
