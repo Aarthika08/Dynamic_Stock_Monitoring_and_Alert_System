@@ -1,0 +1,46 @@
+<div class="table-container">
+    <canvas id="myChart"></canvas>
+    <div style="margin-top: 20px;display: flex;" class="parent">
+      <div class="child">
+       <table class="table">
+        <thead>
+          Stock-IN
+          <tr>
+            <th>Date</th>
+            <th>Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr *ngFor="let entry of data.history">
+            <td>{{ entry.date }}</td>
+            <td>{{ entry.quantity }}</td>
+          </tr>
+         
+        </tbody>
+      </table>
+    </div>
+
+    <div class="child">
+      <table class="table">
+        <thead>
+        Stock-Dispatch
+          <tr>
+            <th>Date</th>
+            <th>Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+         
+          
+          <tr *ngFor="let entry of data.outgoingHistory">
+
+            <td>{{ entry.date }}</td>
+            <td>{{ entry.quantity }}</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </div>
+  

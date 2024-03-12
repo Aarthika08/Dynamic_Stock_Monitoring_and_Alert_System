@@ -1,33 +1,4 @@
-<!-- 
 
-<div *ngIf="stocks">
-  <table>
-    <thead>
-      <tr>
-        <th>Item ID</th>
-        <th>Item Name</th>
-        <th>Category</th>
-        <th>Date</th>
-      </tr>
-    </thead>
-    <tbody>
-     
-      <ng-container *ngFor="let item of stocks; let i = index"><tr>
-          <td>{{ item.itemId }}</td>
-          <td>{{ item.itemName }}</td>
-          <td>{{ item.itemCategory }}</td>
-          <td>{{ item.order_date }}</td>
-          <td>
-            <button (click)="editUser(i)"><i class="fas fa-edit"></i>update</button>
-            <button (click)="softDeleteStock(i)"><i class="fas fa-trash"></i></button>
-          </td>
-        </tr>
-      </ng-container>
-      
-    
-    </tbody>
-  </table>
-</div> -->
 <html>
   <head>
     <title>Stock List</title>
@@ -59,14 +30,18 @@
       <td>{{ item.quantity }}</td>
       <td>{{ item.status }}</td> -->
       <td>
-        <button (click)="editUser(i)"><i class="fa fa-edit"></i></button>
-        <button (click)="softDeleteItem(item.itemId)"><i class="fa fa-trash"></i></button>
+        <button  (click)="editUser(i)"><i class="fa fa-edit"></i></button>
+        <button  (click)="softDeleteItem(item.itemId)"><i class="fa fa-trash"></i></button>
+        <button  (click)="openGraphDialog(item.itemId)"><i class="fa fa-bar-chart"></i></button>
 
       </td>
     </tr>
   </tbody>
 </table>
 <div *ngIf="!stockData || stockData.length === 0">No stock data available.</div>
+
+
+
 
    </body>
    </html>

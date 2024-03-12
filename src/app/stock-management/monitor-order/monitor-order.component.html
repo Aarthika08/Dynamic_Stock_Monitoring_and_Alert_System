@@ -1,6 +1,23 @@
 <div class="tablediv">
-  <h2>Order List</h2>
+  <h2>Purchase Orders</h2>
+    <h6>Orders from your suppliers </h6>
+  <div class="container" style="display: flex;">
+    
+      <div class="user-box" style="background-color: rgb(204, 60, 60);">
+        <h2>Orders</h2>
+        <div class="user-count">{{ orderslist.length }}</div>
+      </div>
+      <div class="user-box" style="background-color: rgb(118, 216, 43);">
+        <h2>Open po cost</h2>
+        <div class="user-count"> {{ calculateOverallCostPrice() | number:'1.2-2' }} </div>
+      </div>
+      <div class="user-box" style="background-color: rgb(66, 43, 216);">
+        <h2>Open po units</h2>
+        <div class="user-count">{{  calculateOverallquantity()}}</div>
+      </div>
+  </div>
   <div class="parent" style="display: flex;">
+   
     <div class="children">
   <table>
     <thead>
@@ -13,7 +30,7 @@
           <th>Stock </th>
           <th>Quantity</th>
           <th>Product</th>
-          <th>Price</th>
+          <th>cost</th>
           <th>Total Price</th>
 
       </tr>

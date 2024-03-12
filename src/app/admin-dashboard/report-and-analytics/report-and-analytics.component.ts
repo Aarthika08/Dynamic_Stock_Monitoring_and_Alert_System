@@ -3,6 +3,8 @@ import { DataService } from '../dashboard/data.service';
 
 import { ReportService } from '../report-and-analytics/report.service';
 import Chart from 'chart.js/auto';
+// import { Chart } from 'chart.js/auto';
+
 
 @Component({
   selector: 'app-report-and-analytics',
@@ -256,13 +258,13 @@ ngAfterViewInit(): void {
       },
       options: {
         scales: {
-          y: {
+          y1: {
             type: 'linear',
             display: true,
             position: 'left',
             beginAtZero: true,
           },
-          y1: {
+          y2: {
             type: 'linear',
             display: true,
             position: 'right',
@@ -336,10 +338,8 @@ ngAfterViewInit(): void {
         const datee = Object.values(categoryCounts);
        const backgroundCol = this.generatecolor(labell.length);
     
-       // const ctx = this.myChart.nativeElement.getContext('2d');
+       
       const ctx = this.pieChart.nativeElement.getContext('2d');
-     // const l = this.stockList.map(item => item.item_name);
-      //const d = this.stockList.map(item => item.status);
   
       new Chart(ctx, {
         type: 'doughnut',

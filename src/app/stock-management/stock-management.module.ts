@@ -19,6 +19,11 @@ import {EditStockComponent} from '../stock-management/stock-list/edit-stock-fold
 import { MatDialogModule } from '@angular/material/dialog';
 import {POService } from '../stock-management/place-order/po.service';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MAT_DATE_FORMATS } from '@angular/material/core';
+import { GraphDialogComponent } from './stock-list/graph-dialog/graph-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -29,7 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
     ShipmentsComponent,
     StockManagementComponent,IncomingStockComponent,
     StockAvailabilityComponent,OutgoingStockComponent,
-     NavbarComponent,
+     NavbarComponent,GraphDialogComponent
   ],
   imports: [
     CommonModule,MatMenuModule,
@@ -37,10 +42,15 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,    FormsModule,
     MatToolbarModule,
     MatButtonModule,
-    ReactiveFormsModule,MatDialogModule
-  ],
+    ReactiveFormsModule,MatDialogModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+  ], 
+   exports: [GraphDialogComponent],
+
   providers: [
-    POService // Provide the PoService here
-  ]
+    POService,
+    { provide: MAT_DATE_FORMATS, useValue: { parse: { dateInput: 'input' } } }
+  ],
 })
 export class StockManagementModule { }
