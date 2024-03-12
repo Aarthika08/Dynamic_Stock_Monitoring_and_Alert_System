@@ -172,7 +172,8 @@ export class PlaceOrderComponent {
     if (orderDateControl) {
       const selectedDate: Date = new Date(orderDateControl.value);
       const currentDate: Date = new Date();
-      this.isDateInvalid = selectedDate < currentDate;
+      currentDate.setHours(0, 0, 0, 0);
+      this.isDateInvalid = selectedDate <currentDate;
     }
   }
 

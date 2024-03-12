@@ -1,7 +1,8 @@
 <h1>Stock Availability Table</h1>
 
 <div *ngIf="stockData">
-  <table>
+   <table> <!--Stock Availability Table -->
+    <caption>Stock Availability Table</caption>
     <thead>
       <tr>
         <th>Item ID</th>
@@ -19,7 +20,6 @@
         <td>{{ item.quantity }}</td>
         <td>{{ item.itemCategory }}</td>
         <td>{{ item.order_date }}</td>
-        <!-- <td>{{ item.status }}</td> -->
         <td [ngClass]="{'instock': item.status === 'instock', 'out-of-stock': item.status === 'Out of Stock'}">{{ item.status }}</td>
 
       </tr>
