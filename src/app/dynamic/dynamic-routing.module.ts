@@ -5,10 +5,15 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { StockMonitorComponent } from './stock-monitor/stock-monitor.component';
 import {LandingPageComponent} from './landing-page/landing-page.component';
+import { PredictionComponent } from './prediction/prediction.component';
+
 const routes: Routes = [
   { path: 'landing-page', component: LandingPageComponent },
 
   { path: 'stock-monitor', component: StockMonitorComponent },
+  { path: 'prediction', component: PredictionComponent },
+
+
   { path: '**', redirectTo: 'landing-page', pathMatch: 'full' } // Redirect any invalid routes to home
 ];
 

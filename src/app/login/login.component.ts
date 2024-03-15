@@ -121,9 +121,9 @@ export class LoginComponent implements OnInit {
       case 'Staff':
         this.router.navigate(['/stock-management']);
         break;
-      case 'Manager':
-        this.router.navigate(['/dynamic']);
-        break;
+      // case 'Manager':
+      //   this.router.navigate(['/dynamic']);
+      //   break;
       default:
         this.errorMessage = 'User role not recognized';
         break;

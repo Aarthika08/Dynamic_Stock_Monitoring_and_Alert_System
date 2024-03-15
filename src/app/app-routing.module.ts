@@ -19,7 +19,8 @@ const routes: Routes = [
   { path: 'admin-dashboard', component: AdminDashboardComponent,canActivate: [AdminAuthGuard]  }, // Add route for admin-dashboard
   // { path: 'admin-dashboard', component: AdminDashboardComponent },
   { path: 'stock-management', component: StockManagementComponent,canActivate: [stockAuthGuard]  }, // Add route for admin-dashboard
-  { path: 'dynamic', component: DynamicComponent,canActivate: [RealAuthGuard]  }, // Add route for admin-dashboard
+  // { path: 'dynamic', component: DynamicComponent,canActivate: [RealAuthGuard]  }, // Add route for admin-dashboard
+  { path: 'dynamic', component: DynamicComponent  },
   { path: '', redirectTo: '/login', pathMatch: 'full' }, // Redirect to login page by default
 ];
 @NgModule({
