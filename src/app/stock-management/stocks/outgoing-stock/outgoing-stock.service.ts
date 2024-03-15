@@ -1,27 +1,24 @@
-
-
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, switchMap, map } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OutgoingStockService {
-
-  apiUrl = 'http://localhost:5984/stocks/6bf419fc30b6d006073b2fb0df00fd9d'; // Replace with your API base URL
+  private apiUrl = 'http://localhost:5984/stocks/6bf419fc30b6d006073b2fb0df00fd9d';
 
   constructor(private http: HttpClient) { }
 
-  removeOutgoingStock(item: any): Observable<any> {
+  addOutgoingStock(userDetails: any): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
         'Authorization': 'Basic ' + btoa('admin:admin')
       })
     };
-
+  
     return this.http.get<any>(this.apiUrl, httpOptions).pipe(
       catchError(error => {
         console.error('Error fetching document:', error);
@@ -30,48 +27,59 @@ export class OutgoingStockService {
       switchMap((document: any) => {
         const stockArray: any[] = document.stock || [];
         let itemFound = false;
-
+  
         for (let i = 0; i < stockArray.length; i++) {
-          if (stockArray[i].itemId === item.itemId) {
+          if (stockArray[i].itemId === userDetails.itemId) {
             // Item found, update its details
-            const newQuantity = stockArray[i].quantity - item.quantity;
-            if (newQuantity < 0) {
-              alert(`The quantity of ${item.name} is greater than the available amount in the warehouse.`);
-              return throwError('Not enough stock available.');
+            if (stockArray[i].quantity >= userDetails.quantity) {
+              stockArray[i].quantity -= userDetails.quantity;
+            } else {
+              return throwError('Insufficient stock available for this item.');
             }
-
-            stockArray[i].quantity = newQuantity;
-            stockArray[i].modified_date = new Date().toISOString(); // Update modified_date to current date
-            stockArray[i].outgoingHistory = stockArray[i].outgoingHistory || [];
-            stockArray[i].outgoingHistory.push({ date: new Date().toISOString(), quantity: item.quantity });
-            
-            // Update the status if quantity is 0 or 1
-            if (newQuantity <= 1) {
-              stockArray[i].status = 'Out of Stock';
+  
+            // Update modified_date to the previous order_date
+            stockArray[i].modified_date = stockArray[i].order_date;
+            // Set order_date to the date provided by the user
+            stockArray[i].order_date = userDetails.order_date;
+  
+            // Check if history array exists, if not create it
+            if (!stockArray[i].outgoingHistory) {
+              stockArray[i].outgoingHistory = [];
             }
-
+  
+            // Add the current order date and quantity to history
+            stockArray[i].outgoingHistory.push({
+              date: userDetails.order_date,
+              quantity: userDetails.quantity // Subtracting quantity for outgoing stock
+            });
+  
+            // Update status if quantity becomes zero
+            if (stockArray[i].quantity === 0) {
+              stockArray[i].status = 'outOfStock';
+            }
+  
             itemFound = true;
             break;
           }
         }
-
+  
         if (!itemFound) {
-          // Item not found, throw an error or handle it as needed
-          return throwError('Item not found');
+          return throwError('Item not found in the stock.');
         }
-
+  
         document.stock = stockArray;
-
+  
         // Update the document in the database
         return this.http.put<any>(this.apiUrl, document, httpOptions).pipe(
           catchError(error => {
             console.error('Error updating document:', error);
             return throwError('Error updating document');
           }),
-          map(() => item) // Return item if successful
+          map(() => userDetails) // Return userDetails if successful
         );
-
+  
       })
     );
   }
+  
 }

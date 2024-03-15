@@ -14,9 +14,7 @@
       <th>Item Name</th>
       <th>Item Description</th>
       <th> Category</th>
-      <!-- <th>Order Date</th>
-      <th>Quantity</th>
-      <th>Status</th> -->
+      
       <th>Action</th>
     </tr>
   </thead>
@@ -26,9 +24,7 @@
       <td>{{ item.itemName }}</td>
       <td>{{ item.itemDescription }}</td>
       <td>{{ item.itemCategory }}</td>
-      <!-- <td>{{ item.order_date }}</td>
-      <td>{{ item.quantity }}</td>
-      <td>{{ item.status }}</td> -->
+      
       <td>
         <button  (click)="editUser(i)"><i class="fa fa-edit"></i></button>
         <button  (click)="softDeleteItem(item.itemId)"><i class="fa fa-trash"></i></button>

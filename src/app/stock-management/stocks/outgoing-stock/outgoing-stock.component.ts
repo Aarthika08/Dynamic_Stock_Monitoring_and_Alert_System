@@ -1,7 +1,5 @@
-
-
-
 // import { Component } from '@angular/core';
+// import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 // import { OutgoingStockService } from './outgoing-stock.service';
 
 // @Component({
@@ -10,55 +8,45 @@
 //   styleUrls: ['./outgoing-stock.component.css']
 // })
 // export class OutgoingStockComponent {
+//   stocks!: any[];
+// newQuantity: any;
+// userDetails: any = {
+//   itemId: null,
+//   quantity: null,
+//   order_date: null
+// };errorMessage: any;
 
-//   item: any = {
-//     itemId: '',
-//     itemName: '',
-//     // itemDescription: '',
-//     // itemCategory: '',
-//     outgoing_date: '',
-//     quantity: 0,
-//     // status: ''
-//   };
- 
-//   errorMessage: string = '';
-//   isSubmitDisabled: boolean = true; // Initially disable the submit button
-
-//   constructor(private outgoingStockService: OutgoingStockService) { }
+//   constructor(private stocksService: OutgoingStockService) { }
 
 
-//   checkFieldsFilled(): boolean {
-//     return this.item.itemId && this.item.itemName  && this.item.outgoing_date && this.item.quantity > 0;
-//   }
-//   removeOutgoingStock(): void {
-//     if (!this.checkFieldsFilled()) {
-//       this.errorMessage = 'Please fill all fields.';
+//   addOutgoingStock() {
+//     if (!this.userDetails.itemId || !this.userDetails.quantity || !this.userDetails.order_date) {
+//       this.errorMessage = 'Please fill in all the fields.';
 //       return;
 //     }
 
-//     if (this.item.quantity <= 0) {
-//       this.errorMessage = 'No negative values are accepted ,stock dispatch ed should be greater than zero!';
-//       return;
-//     }
-
-//     this.outgoingStockService.removeOutgoingStock(this.item).subscribe(
-//       (response) => {
-//         console.log('stock dispatch done successfully:', response);
-//         alert("Dispatch Successful!");
-//         window.location.reload();
-        
-//         // You can handle success response here
+//     this.stocksService.addOutgoingStock(this.userDetails).subscribe(
+//       response => {
+//         console.log('Outgoing stock added successfully:', response);
+//         // Reset userDetails object for next entry
+//         this.userDetails = {
+//           itemId: null,
+//           quantity: null,
+//           order_date: null
+//         };
+//         this.errorMessage = null;
 //       },
-//       (error) => {
-//         console.error('Error!!! stock dispatch:', error);
-//         this.errorMessage = error; // Set error message
-//         // You can handle error response here
+//       error => {
+//         console.error('Failed to add outgoing stock:', error);
+//         this.errorMessage = error; // Display error message
 //       }
 //     );
 //   }
 // }
-import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms'; // Import Validators
+
+
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { OutgoingStockService } from './outgoing-stock.service';
 
 @Component({
@@ -66,55 +54,55 @@ import { OutgoingStockService } from './outgoing-stock.service';
   templateUrl: './outgoing-stock.component.html',
   styleUrls: ['./outgoing-stock.component.css']
 })
-export class OutgoingStockComponent {
-  item: FormGroup; // Define FormGroup
-  isDateInvalid: boolean = false;
-
-  errorMessage: string = '';
-  isSubmitDisabled: boolean = true; // Initially disable the submit button
-
-  constructor(private outgoingStockService: OutgoingStockService, private fb: FormBuilder) {
-    this.item = this.fb.group({ // Initialize the form with FormBuilder
-      itemId: ['', Validators.required],
-      itemName: ['', Validators.required],
-      outgoing_date: ['', Validators.required],
-      quantity: [0, [Validators.required, Validators.min(1)]], // Set minimum value for quantity
-    });
-  }
-
-  checkOrderDateValidity() {
-    const outgoing_dateControl = this.item.get('outgoing_date');
-    if (outgoing_dateControl) {
-      const selectedDate: Date = new Date(outgoing_dateControl.value);
-      const currentDate: Date = new Date();
-      this.isDateInvalid = selectedDate < currentDate;
-    }
-  }
+export class OutgoingStockComponent implements OnInit {
   
-  removeOutgoingStock(): void {
+  errorMessage!: any;
+outgoingStockForm!: FormGroup<any>;
+
+isDateInvalid: boolean = false;
+
   
-
-    const quantityControl = this.item && this.item.get('quantity');
-    if (quantityControl && quantityControl.value <= 0) {
-      // Handle the case where quantity is not valid
-      this.errorMessage = 'Quantity must be greater than 0.';
-      return;
+    constructor(private formBuilder: FormBuilder, private outgoingStockService: OutgoingStockService) { }
+  
+    ngOnInit(): void {
+      // Initialize the form with form controls and validators
+      this.outgoingStockForm = this.formBuilder.group({
+        itemId: [null, Validators.required],
+        itemName: [null, Validators.required],
+        quantity: [0, [Validators.required, Validators.min(1)]],
+        order_date: [null, Validators.required]
+      });
     }
-    
-      
+    checkOrderDateValidity() {
+      const outgoing_dateControl = this.outgoingStockForm.get('outgoing_date');
+      if (outgoing_dateControl) {
+        const selectedDate: Date = new Date(outgoing_dateControl.value);
+        const currentDate: Date = new Date();
+        currentDate.setHours(0, 0, 0, 0);
 
-    this.outgoingStockService.removeOutgoingStock(this.item.value).subscribe(
-      (response) => {
-        console.log('Stock dispatch done successfully:', response);
-        alert("Dispatch Successful!");
-        window.location.reload();
-        // You can handle success response here
-      },
-      (error) => {
-        console.error('Error!!! Stock dispatch:', error);
-        this.errorMessage = error; // Set error message
-        // You can handle error response here
+        this.isDateInvalid = selectedDate < currentDate;
       }
-    );
+    }
+    onSubmit() {
+      if (this.outgoingStockForm.invalid) {
+        this.errorMessage = 'Please fill in all the fields.';
+        return;
+      }
+  
+      // Extract form values
+      const formData = this.outgoingStockForm.value;
+  
+      // Call service method to add outgoing stock
+      this.outgoingStockService.addOutgoingStock(formData).subscribe(
+        response => {
+          console.log('Outgoing stock added successfully:', response);
+          this.outgoingStockForm.reset(); // Reset the form after successful submission
+          this.errorMessage = null;
+        },
+        error => {
+          console.error('Failed to add outgoing stock:', error);
+          this.errorMessage = error; // Display error message
+        }
+      );
+    }
   }
-}
