@@ -21,7 +21,7 @@ export class SupplierComponent {
     }
     openAddUserDialog(): void {
       const dialogRef = this.dialog.open(newsupplierDialogComponent, {
-        width: '250px',
+        width: '600px',
         data: {} // Optionally, pass data to the dialog
       });
   
@@ -47,7 +47,7 @@ export class SupplierComponent {
     //to edit
     editUser(index: number): void {
       const dialogRef = this.dialog.open(updateUserDialogComponent, {
-        width: '400px',
+        width: '600px',
         data: this.users[index][0] // Pass user data to the dialog
       });
   

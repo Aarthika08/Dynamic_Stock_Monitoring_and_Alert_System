@@ -1,14 +1,104 @@
-
+/* 
 .mat-mdc-dialog-container .mdc-dialog__container {
   transition-duration: var(--mat-dialog-transition-duration, 0ms);
   width: 183px;
+  height: 192px;
+  
   margin: -60px;
   padding: -18px;
-  height: 192px;
 }
 .mat-mdc-dialog-container, .mat-mdc-dialog-container .mdc-dialog__container, .mat-mdc-dialog-container .mdc-dialog__surface {
   max-height: max-content;
   min-height: max-content;
   min-width: 185px;
   max-width: max-content;
+
+} */
+
+.mat-mdc-dialog-container .mdc-dialog__container {
+  transition-duration: var(--mat-dialog-transition-duration, 0ms);
+  width: 683px; /* Adjust width as needed */
+  margin: auto; /* Center the dialog box horizontally */
+  padding: 0; /* Remove padding */
+}
+
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  height: 292px; /* Adjust height as needed */
+}
+
+.mat-mdc-dialog-container,
+.mat-mdc-dialog-container .mdc-dialog__container,
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  max-height: max-content;
+  min-height: max-content;
+  min-width: 185px;
+  max-width: max-content;
+}
+/* etc */
+/* Form Styling */
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+form {
+  max-width: 500px; /* Increase width as needed */
+  margin: 0 auto;
+  padding: 20px; /* Add padding for spacing */
+}
+
+form div {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+select,
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+small.error-message {
+  display: block;
+  margin-top: 5px;
+  color: red;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Optional: Custom styling for form elements */
+input[type="text"]:focus,
+input[type="email"]:focus,
+select:focus,
+input[type="password"]:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }

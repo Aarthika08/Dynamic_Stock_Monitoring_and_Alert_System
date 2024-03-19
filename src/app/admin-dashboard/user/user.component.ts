@@ -52,7 +52,8 @@ export class UserComponent implements OnInit {
 
   openAddUserDialog(): void {
     const dialogRef = this.dialog.open(AddUserDialogComponent, {
-      width: '250px',
+    width:'700px',
+      
       data: {} // Optionally, pass data to the dialog
     });
 

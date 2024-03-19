@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-// import { StockService } from '../services/stock.service';
+ import { StockmonitorService } from '../stock-monitor/stock-monitor.service';
 //import {TensorflowService} from '../services/tensorflow.service';
 // declare var ml5: any;
 import { LinearRegression } from '../linear-regression';
@@ -10,20 +10,24 @@ import { LinearRegression } from '../linear-regression';
   styleUrls: ['./stock-monitor.component.css']
 })
 export class StockMonitorComponent {
- // linear-regression.component.ts
+  stockData: any[] = [];
 
+  constructor(private stockmonitorService: StockmonitorService) { }
 
-  linearRegression = new LinearRegression();
-  xValues = [1, 2, 3, 4, 5];
-  yValues = [2, 3, 4, 5, 6];
-  inputX!: number;
-  prediction!: number;
-
-  trainModel(): void {
-    this.linearRegression.train(this.xValues, this.yValues);
+  ngOnInit(): void {
+    this.fetchStockData();
   }
 
-  predictValue(): void {
-    this.prediction = this.linearRegression.predict(this.inputX);
+  fetchStockData(): void {
+    this.stockmonitorService.fetchStockData().subscribe(
+      (data: any[]) => {
+        // Handle the fetched data here
+        console.log(data);
+      },
+      (error) => {
+        // Handle error if any
+        console.error('Error fetching stock data:', error);
+      }
+    );
   }
 }

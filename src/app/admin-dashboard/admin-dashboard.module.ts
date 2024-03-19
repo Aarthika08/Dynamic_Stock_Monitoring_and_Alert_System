@@ -4,7 +4,7 @@ import { AdminDashboardRoutingModule } from './admin-dashboard-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
 import { SupplierComponent } from './supplier/supplier.component';
-import { ProductComponent } from './product/product.component';
+// import { ProductComponent } from './product/product.component';
 import { OrderComponent } from './order/order.component';
 import { StockComponent } from './stock/stock.component';
 import { ReportAndAnalyticsComponent } from './report-and-analytics/report-and-analytics.component';
@@ -27,7 +27,7 @@ import {newsupplierDialogComponent} from './supplier/new-supplier-dialog/new-sup
     DashboardComponent,
     UserComponent,
     SupplierComponent,
-    ProductComponent,
+    // ProductComponent,
     OrderComponent,
     StockComponent,
     ReportAndAnalyticsComponent,

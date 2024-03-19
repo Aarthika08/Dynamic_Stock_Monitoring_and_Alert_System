@@ -13,6 +13,7 @@ import  {LandingPageComponent} from './landing-page/landing-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { PredictionComponent } from './prediction/prediction.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import { PredictionComponent } from './prediction/prediction.component';
     RouterModule, 
      BrowserModule,
     HttpClientModule,
-    BrowserAnimationsModule,FormsModule
+    BrowserAnimationsModule,FormsModule,MatSnackBarModule
   ]
 })
 export class DynamicModule { }
