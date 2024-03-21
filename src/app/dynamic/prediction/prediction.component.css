@@ -1,0 +1,44 @@
+.prediction {
+  border: 6px solid #ccc;
+  border-radius: 8px;
+  padding: 20px; /* Increase padding for bigger cards */
+  margin: 10px; /* Adjust margin for spacing between cards */
+  display: flex;
+  flex: 1 1 calc(33.33% - 20px); /* Ensure equal-sized cards in a row */
+  max-width: calc(33.33% - 20px); /* Limit card width in a row */
+}
+
+.predictions-list {
+  width: 236%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin: 12px 136px;
+  padding: 10px;
+  font-size: 20px;
+}
+.prediction-info {
+  flex: 1; /* Expand to fill available space */
+}
+
+.prediction-message {
+    text-align: center; /* Align message to the center */
+    margin: 34px 162px;
+}
+
+.stock-details {
+  margin-top: 10px;
+}
+
+.high-sales, .low-sales {
+  font-size: 25px; /* Increase font size for message */
+  font-weight: bold; /* Make message bold */
+}
+
+.high-sales {
+  color: green;
+}
+
+.low-sales {
+  color: red;
+}

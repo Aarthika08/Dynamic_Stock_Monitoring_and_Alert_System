@@ -12,10 +12,14 @@ import { EditUserDialogComponent } from './edit-user-dialog/edit-user-dialog.com
 })
 export class UserComponent implements OnInit {
   userForm!: FormGroup;
-  users!: any[];
+  // users!: any[];
   editingUserIndex: number = -1;
   updatedUserData: any = {}; // Object to hold updated user data
 
+  //searchbox
+  searchText: string = ''; // Property to store the search text
+  users: any[] = [];
+  filteredUsers: any[] = []; // Array to store filtered users
 
   constructor(private dialog: MatDialog,private formBuilder: FormBuilder, private userService: UserService) { }
 
@@ -171,4 +175,8 @@ export class UserComponent implements OnInit {
   }
   
   
+
+  
+  
+
   }

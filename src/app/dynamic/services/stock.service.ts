@@ -1,9 +1,30 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
+// interface StockData {
+//   itemName: string; // Update: Moved itemName to the root level
+//   stock: {
+//     itemId: number;
+//     itemName: string;
+//     itemDescription: string;
+//     itemCategory: string;
+//     order_date: string;
+//     quantity: number;
+//     status: string;
+//     delete?: boolean;
+//     modified_date: string;
+//     history: { date: string; quantity: number }[];
+//     outgoingHistory: { date: string; quantity: number }[];
+//   }[];
+// }
+interface Stock {
+  itemName: string;
+  // stock: StockItem[];
+  stock: StockData[]; // Assuming StockData contains an array of StockItem
+}
 interface StockData {
   itemId: number;
   itemName: string;
@@ -14,32 +35,56 @@ interface StockData {
   status: string;
   delete?: boolean;
   modified_date: string;
-  history: { date: string, quantity: number }[];
-  outgoingHistory: { date: string, quantity: number }[];
+  history: { date: string; quantity: number }[];
+  outgoingHistory: { date: string; quantity: number }[];
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class StockService {
+  private stock!: Stock; // Store the fetched stock data
 
   constructor(private http: HttpClient) { }
 
-  // Function to retrieve data from the API endpoint
 
-
-  getStockData(): Observable<any> {
+  getStockData(): Observable<Stock> {
     const httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          'Authorization': 'Basic ' + btoa('admin:admin')
-        })
-      };
-    return this.http.get<any>('http://localhost:5984/stocks/6bf419fc30b6d006073b2fb0df00fd9d',httpOptions)
-      .pipe(
-        tap(data => console.log('Response from API:', data))
-      );
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        Authorization: 'Basic ' + btoa('admin:admin')
+      })
+    };
+    return this.http.get<Stock>('http://localhost:5984/stocks/6bf419fc30b6d006073b2fb0df00fd9d', httpOptions).pipe(
+      map(data => {
+        this.stock = data;
+        return data;
+      }),
+      catchError(error => {
+        console.error('Error fetching data from the API:', error);
+        return throwError('Failed to fetch data from the API. Please try again later.');
+      })
+    );
   }
+
+
+
+  // getStockData(): Observable<StockData> {
+  //   const httpOptions = {
+  //     headers: new HttpHeaders({
+  //       'Content-Type': 'application/json',
+  //       Authorization: 'Basic ' + btoa('admin:admin')
+  //     })
+  //   };
+  //   return this.http.get<StockData>('http://localhost:5984/stocks/6bf419fc30b6d006073b2fb0df00fd9d', httpOptions).pipe(
+  //     tap(data => console.log('Response from API:', data)),
+  //     catchError(error => {
+  //       console.error('Error fetching data from the API:', error);
+  //       return throwError('Failed to fetch data from the API. Please try again later.');
+  //     })
+  //   );
+  // }
+  
   // Function to preprocess data, train SVR model, and predict sales
 
   // predictSales(): Observable<{ predictedSales: number[], isHighSales: boolean }> {
@@ -190,45 +235,30 @@ export class StockService {
   //   });
   // }
     
-  
-  predictSales(): Observable<{ stockName: string, history: any[], outgoingHistory: any[] }> {
-    return new Observable(observer => {
-      this.getStockData().subscribe(data => {
-        const stockName = data.stockName; // Assuming stockName is available in the response
-        const stock = data.stock;
-  
-        // Check if stock is an array and contains the necessary data
-        if (!Array.isArray(stock) || stock.length === 0 || !stock[0].history || !stock[0].outgoingHistory) {
-          observer.error('Invalid input data: Unable to extract history or outgoingHistory from stock');
-          return;
+  predictSales(): Observable<{ itemName: string; history: any[]; outgoingHistory: any[] }> {
+    return this.getStockData().pipe(
+      map(stockData => {
+        if (stockData && stockData.stock && stockData.stock.length > 0) {
+          const firstItem = stockData.stock[0]; // Assuming we take the first item
+          const itemName = firstItem.itemName;
+          const history = firstItem.history;
+          const outgoingHistory = firstItem.outgoingHistory;
+
+          return { itemName, history, outgoingHistory };
+        } else {
+          throw new Error('No stock data available');
         }
-  
-        // Extract history and outgoingHistory from the first item in the stock array
-        const history = stock[0].history;
-        const outgoingHistory = stock[0].outgoingHistory;
-  
-        // Emit the extracted data
-        observer.next({ stockName, history, outgoingHistory });
-        observer.complete();
-      }, error => {
-        observer.error(error);
-      });
-    });
+      })
+    );
   }
-  
-
-
-  //2
- 
-  predictAndCheckHighSales(): Observable<{ stockName: string, prediction: number, isHighSales: boolean }[]> {
-    return new Observable(observer => {
-      this.predictSales().subscribe((predictions: { stockName: string, history: any[], outgoingHistory: any[] }) => {
+  predictAndCheckHighSales(): Observable<{ index: number; prediction: number; isHighSales: boolean }[]> {
+    return this.predictSales().pipe(
+      map(predictions => {
         const threshold = 50; // Define your threshold value here
   
         // Ensure that history and outgoingHistory are arrays
         if (!Array.isArray(predictions.history) || !Array.isArray(predictions.outgoingHistory)) {
-          observer.error('Invalid input data: history or outgoingHistory is not an array');
-          return;
+          throw new Error('Invalid input data: history or outgoingHistory is not an array');
         }
   
         // Extract features and targets
@@ -238,47 +268,29 @@ export class StockService {
         const predictedSales = this.predictStockPricesSVR(X_train, y_train, X_test);
   
         // Map predicted sales to include isHighSales property
-        const predictionsWithHighSales = predictedSales.map(prediction => {
-          // Determine if the prediction exceeds the threshold
-          const isHighSales = prediction > threshold;
-  
-          // Return the prediction object with the high sales status
-          return {
-            stockName: predictions.stockName,
-            prediction: prediction,
-            isHighSales: isHighSales
-          };
-        });
-  
-        // Emit the array containing predictions with high sales status
-        observer.next(predictionsWithHighSales);
-        observer.complete();
-      }, error => {
-        observer.error(error);
-      });
-    });
-  }
-  
-  
-  
-  // Function to calculate prediction based on relevant data
-  calculatePrediction(prediction: { stockName: string, history: any[], outgoingHistory: any[] }): number {
-    // Perform calculation based on history or outgoingHistory or any other relevant data
-    // For example, you can calculate prediction based on the sum of quantities in history or outgoingHistory
-    let totalQuantity = 0;
-    if (prediction.history) {
-      totalQuantity += prediction.history.reduce((acc, item) => acc + item.quantity, 0);
-    }
-    if (prediction.outgoingHistory) {
-      totalQuantity -= prediction.outgoingHistory.reduce((acc, item) => acc + item.quantity, 0);
-    }
-    return totalQuantity;
+        return predictedSales.map((prediction, index) => ({
+          index: index,
+          prediction,
+          isHighSales: prediction > threshold
+        }));
+      })
+    );
   }
   
  
-  
-       
-  
+  calculatePrediction(history: any[], outgoingHistory: any[]): number {
+    // Perform calculation based on history or outgoingHistory or any other relevant data
+    // For example, you can calculate prediction based on the sum of quantities in history or outgoingHistory
+    let totalQuantity = 0;
+    if (history) {
+      totalQuantity += history.reduce((acc, item) => acc + item.quantity, 0);
+    }
+    if (outgoingHistory) {
+      totalQuantity -= outgoingHistory.reduce((acc, item) => acc + item.quantity, 0);
+    }
+    return totalQuantity;
+  }
+
   extractFeaturesAndTargets(history: any[], outgoingHistory: any[]): { X_train: number[], y_train: number[], X_test: number[] } {
     // Check if history and outgoingHistory arrays are provided
     if (!Array.isArray(history) || !Array.isArray(outgoingHistory)) {
@@ -312,6 +324,12 @@ export class StockService {
   
     return { X_train, y_train, X_test };
   }
-  
 
+  getStockItemByIndex(index: number): Observable<StockData | undefined> {
+    if (this.stock && this.stock.stock && index < this.stock.stock.length) {
+      return of(this.stock.stock[index]);
+    } else {
+      return throwError('Item not found or index out of range');
+    }
+  }
 }

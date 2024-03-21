@@ -2,42 +2,12 @@
   <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></head>
 <body>
   <button class="newuser" (click)="openAddUserDialog()">Add User</button>
-<!-- <div>
-  <h2>User List</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Username</th>
-        <th>Password</th>
-        <th>Role</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of users; let i = index">
-        <td>{{ user[0].name }}</td>
-        <td>{{ user[0].email }}</td>
-        <td>{{ user[0].username }}</td>
-        <td>{{ user[0].password }}</td>
-        <td>{{ user[0].role }}</td>
-        <td>
-          <button  (click)="editUser(i)"><i class="fas fa-edit"></i></button>
-          <button (click)="onDeleteUser(i)"><i class="fa fa-trash"></i></button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div> -->
+  <h2>My Customers</h2>
+  
 
-
-    <!-- <tr *ngFor="let userArray of users; let i = index"> -->
-      <!-- <ng-container *ngFor="let user of userArray; let j = index"> -->
-    
-        <table>
+  <table >
           <thead>
-            <tr>
+            <tr  class="header">
               <th>Name</th>
               <th>Email</th>
               <th>Role</th>
@@ -46,7 +16,8 @@
             </tr>
           </thead>
           <tbody>
-            <ng-container *ngFor="let userArray of users; let i = index">
+            <!-- <ng-container *ngFor="let userArray of filteredUsers; let i = index"> -->
+              <ng-container *ngFor="let userArray of users; let i = index">
               <tr *ngFor="let user of userArray; let j = index" [hidden]="user.deleted">
                 <td>{{ user.name }}</td>
                 <td>{{ user.email }}</td>
@@ -58,31 +29,12 @@
                 </td>
               </tr>
             </ng-container>
+
+
           </tbody>
-        </table>
+        </table>   
         
+       
+           
 </body>
 </html>
-<!-- <div *ngIf="editingUserIndex !== -1">
-  <h3>Edit User</h3>
-  <form>
-    <label>Name: </label>
-    <input type="text" [(ngModel)]="updatedUserData.name" name="name">
-    <br>
-    <label>Email: </label>
-    <input type="email" [(ngModel)]="updatedUserData.email" name="email">
-    <br>
-    <label>Username: </label>
-    <input type="text" [(ngModel)]="updatedUserData.username" name="username">
-    <br>
-    <label>Password: </label>
-    <input type="password" [(ngModel)]="updatedUserData.password" name="password">
-    <br>
-    <label>Role: </label>
-    <input type="text" [(ngModel)]="updatedUserData.role" name="role">
-    <br>
-    <button type="button" (click)="saveUser()">Save</button>
-    <button type="button" (click)="cancelEdit()">Cancel</button>
-  </form>
-</div>
- -->
