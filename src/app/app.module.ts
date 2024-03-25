@@ -11,9 +11,13 @@ import { AdminDashboardModule } from './admin-dashboard/admin-dashboard.module';
 import { StockManagementModule } from './stock-management/stock-management.module';
 import { DynamicModule } from './dynamic/dynamic.module';
 
+import {slickgridComponent} from './slickgrid/slickgrid.component';
+import { AngularSlickgridModule } from 'angular-slickgrid';
+
+
 @NgModule({
   declarations: [
-    AppComponent,LoginComponent
+    AppComponent,LoginComponent,slickgridComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +28,8 @@ import { DynamicModule } from './dynamic/dynamic.module';
     HttpClientModule,
     ReactiveFormsModule,
     StockManagementModule,
-    DynamicModule
+    DynamicModule,
+    AngularSlickgridModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

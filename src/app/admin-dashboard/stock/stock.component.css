@@ -1,13 +1,10 @@
-/* styles.css (or your custom stylesheet) */
-
-/* Container for the stock list */
+/* 
 .stock-container {
     max-width: 600px;
     margin: 0 auto;
     padding: 20px;
   }
   
-  /* Individual stock item */
   .stock-item {
     background-color: #f9f9f9;
     border-radius: 5px;
@@ -15,17 +12,14 @@
     margin-bottom: 15px;
   }
   
-  /* Stock item heading */
   .stock-item h3 {
     margin-top: 0;
   }
   
-  /* Stock item description */
   .stock-item p {
     margin-bottom: 5px;
   }
   
-  /* Stock item category */
   .stock-item .category {
     font-style: italic;
     color: #888;
@@ -57,4 +51,55 @@
     background-color: #dddddd;
   }
   
- 
+  */
+
+  /* Override Angular-Slickgrid styles */
+
+
+
+/* Stock Component Styles */
+:root {
+  --cell-odd-background-color: lightyellow;
+  --row-mouse-hover-color: lightgreen;
+}
+
+/* Import the required SCSS file */
+/* @import url('https://cdn.jsdelivr.net/npm/slickgrid-universal@3.2.2/common/dist/styles/css/slickgrid-theme-bootstrap.min.css'); */
+
+@import url('@slickgrid-universal/common/dist/styles/css/slickgrid-theme-bootstrap.css');  
+/* Override the styles */
+angular-slickgrid{
+  background-color: blueviolet;
+  width:20%;
+}
+#grid1{
+  width:20% !important;
+  height: 350px !important;
+background-color: rgb(255, 30, 0) !important;
+
+}
+
+
+.stock{
+  background-color: rgb(226, 43, 147);
+  width:20px !important;
+  margin-left: 30% !important;
+
+}
+
+
+/* css */
+/* stock.component.css */
+.grid-container {
+  margin: 20px; /* Adjust margin as needed */
+  padding: 10px; /* Adjust padding as needed */
+  background-color: #111010; /* Adjust background color as needed */
+margin-top:40px;
+border-radius: 10px;
+}
+
+/* Optionally, you can style rows or cells if needed *//* stock.component.css */
+.slick-header-column {
+  background-color: #f80a0a;
+  color: #fff; /* Optionally, change text color */
+}

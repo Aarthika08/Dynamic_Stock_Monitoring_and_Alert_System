@@ -1,4 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
-
+/* 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
+
+
+/* CSS */
+/* Define the variables */
+/* Define the variables */
+:root {
+    --cell-odd-background-color: lightyellow;
+    --row-mouse-hover-color: lightgreen;
+  }
+    @import url('@slickgrid-universal/common/dist/styles/css/slickgrid-theme-bootstrap.css');   
+
+
+    
