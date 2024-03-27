@@ -140,12 +140,7 @@ sendEmail(selectedPrediction: Prediction): void {
   const emailBody = `Stock Name: ${stockDetails.itemName}, Prediction Value: ${selectedPrediction.prediction}`;
 
   Email.send({
-    Host: "smtp.elasticemail.com",
-    Username: "19ifte048@ldc.edu.in",
-    Password: "0C589BEA17D93DD3B70BE7D58EBE02BC3CBA",
-    To: 'maarthika01@gmail.com',
-    From: "19ifte048@ldc.edu.in",
-    Subject: "Stock Prediction",
+    
     Body: emailBody
   }).then(
     (message: unknown) => {
