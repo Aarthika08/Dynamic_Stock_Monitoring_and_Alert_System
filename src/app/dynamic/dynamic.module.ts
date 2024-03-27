@@ -14,17 +14,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { PredictionComponent } from './prediction/prediction.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import {GraphDialogComponent} from './prediction/graph-dialog/graph-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
-  declarations: [StockMonitorComponent, NavComponent,DynamicComponent,LandingPageComponent,PredictionComponent],
+  declarations: [StockMonitorComponent, NavComponent,DynamicComponent,LandingPageComponent,PredictionComponent,GraphDialogComponent],
   imports: [
     CommonModule,
     DynamicRoutingModule, // Import the routing module here
     RouterModule, 
      BrowserModule,
     HttpClientModule,
-    BrowserAnimationsModule,FormsModule,MatSnackBarModule
+    BrowserAnimationsModule,FormsModule,MatSnackBarModule,
+    MatDialogModule
   ]
 })
 export class DynamicModule { }

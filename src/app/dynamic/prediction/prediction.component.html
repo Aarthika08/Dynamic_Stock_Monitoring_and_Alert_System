@@ -104,7 +104,12 @@
   <canvas #lineChart></canvas>
 </div> -->
 
-
+<head>
+  <title>Admin dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+<link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+</head>
+<body>
 
 
 <div *ngIf="loading" class="loading">
@@ -121,7 +126,7 @@
       <h2>Predicted Sales</h2>
       <div *ngFor="let prediction of predictions" class="prediction">
         <div class="prediction-info">
-          <p><strong>Item index:</strong> {{ prediction.index }}</p>
+          <!-- <p><strong>Item index:</strong> {{ prediction.index }}</p> -->
           <p><strong>Predicted Sales:</strong> {{ prediction.prediction }}</p>
           <p><strong>Stock Name:</strong> {{ prediction.stockDetails?.itemName }}</p>
          
@@ -130,21 +135,25 @@
           <p *ngIf="prediction.isHighSales" class="high-sales">The predicted sales are high!</p>
           <p *ngIf="!prediction.isHighSales" class="low-sales">The predicted sales are not high.</p>
         </div>
+
         <div class="stock-details">         
           <p><strong>Date:</strong> {{ prediction.stockDetails?.order_date }}</p>
           <p><strong>Quantity:</strong> {{ prediction.stockDetails?.quantity }}</p>
-        </div>
+          <!-- <p><strong>Item id:</strong> {{ prediction.stockDetails?.itemId }}</p> -->
+
+        <button (click)="sendEmail(prediction)">  Alert <br> <i  class="fas fa-bell fa-2x"></i>  </button>        
+        <button (click)="openGraphDialog(prediction.stockDetails?.itemId)">Graph <br><i class="fas fa-chart-line fa-2x"></i>  </button>
+      </div>
+        
       </div>
     </div>
-    <div class="graph-container">
-      <canvas #bubbleChart width="400" height="300"></canvas>
-    </div>
+  
+    
+    
   </div>
 </div>
 
 <ng-template #noPredictionsBlock>
   <p>No predictions available.</p>
 </ng-template>
-<!-- <div class="canvas">
-  <canvas #lineChart></canvas>
-</div> -->
+</body>

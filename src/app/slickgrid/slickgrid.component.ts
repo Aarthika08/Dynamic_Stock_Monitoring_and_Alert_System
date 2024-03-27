@@ -26,4 +26,6 @@ export class slickgridComponent {
     { id: 2, title: 'Task 2', duration: 10 },
     { id: 3, title: 'Task 3', duration: 15 },
   ];
+
+  
 }
