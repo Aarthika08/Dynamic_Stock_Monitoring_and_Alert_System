@@ -7,8 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class MonitorService {
   private baseUrl = 'http://localhost:5984/stocks/43407ead14cf09630aa0d936af030ddf'; // Assuming your backend API endpoint
-   private apiUrl = 'http://localhost:5984/stocks/43407ead14cf09630aa0d936af030ddf';
- // private apiUrl = 'http://localhost:5984/stocks/43407ead14cf09630aa0d936af02395d';
+  
 
   constructor(private http: HttpClient) { }
 
@@ -22,9 +21,8 @@ getAllOrders():  Observable<any> {
       })
     };
         
-    return this.http.get<any>(this.apiUrl,httpOptions);
+    return this.http.get<any>(this.baseUrl,httpOptions);
       
-    // return this.http.get(this.apiUrl,httpOptions)
   }
   
   getOrderById(orderId: string): Observable<any> {

@@ -1,108 +1,5 @@
 
-<!-- <h1>predictions</h1>
 
-<div *ngIf="(predictions$ | async) as predictions">
-  <table>
-    <thead>
-      <tr>
-        <th>Stock Name</th>
-        <th>Prediction</th>
-        <th>High Sales</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let prediction of predictions">
-        <td>{{ prediction.stockName }}</td>
-        <td>{{ prediction.prediction }}</td>
-        <td>{{ prediction.isHighSales ? 'Yes' : 'No' }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div> -->
-<!-- 1
-<div class="container">
-  <h2>Predicted Sales</h2>
-
-  <div *ngIf="predictedSales">
-    <p *ngIf="isHighSales; else lowSalesMessage">The predicted sales are high!</p>
-    <ng-template #lowSalesMessage><p>The predicted sales are not high.</p></ng-template>
-
-    <ul>
-      <li *ngFor="let sale of predictedSales">{{ sale }}</li>
-      <button (click)="predictAndCheckHighSales()">Predict and Check High Sales</button>
-
-    </ul>
-  </div>
-</div> -->
-
-
-<!-- 
-<h1>details</h1>
-<div *ngIf="loading">
-  <p>Loading...</p>
-</div>
-
-<div *ngIf="error">
-  <p>Error: {{ error }}</p>
-</div>
-
-<div *ngIf="predictions.length > 0">
-  <h2>Predicted Sales</h2>
-  <div *ngFor="let prediction of predictions">
-    <p><strong>Item Name:</strong> {{ prediction.index }}</p>
-    <p><strong>Predicted Sales:</strong> {{ prediction.prediction }}</p>
-    <p><strong>Is High Sales:</strong> {{ prediction.isHighSales ? 'Yes' : 'No' }}</p>
-    <p><strong>Sales :</strong> {{ prediction.isHighSales ? 'The predicted sales are high!' : 'The predicted sales are not high!' }}</p>
-
-    <h3>{{ prediction.stockDetails?.itemName }}</h3>
-    <p>Order Date: {{ prediction.stockDetails?.order_date }}</p>
-    <p>Quantity: {{ prediction.stockDetails?.quantity }}</p>
-    <hr>
-  </div>
-</div>
-<ng-template #noPredictionsBlock>
-  <p>No predictions available.</p>
-</ng-template>
- -->
-
-<!-- this is the chart 
-
-
-<h1>Details</h1>
-
-<div *ngIf="loading" class="loading">
-  <p>Loading...</p>
-</div>
-
-<div *ngIf="error" class="error">
-  <p>Error: {{ error }}</p>
-</div>
-
-<div *ngIf="predictions.length > 0">
-  <h2>Predicted Sales</h2>
-  <div *ngFor="let prediction of predictions" class="prediction">
-    <p><strong>Item index</strong> {{ prediction.index }}</p>
-    <p><strong>Predicted Sales:</strong> {{ prediction.prediction }}</p>
-    <p><strong>Is High Sales:</strong> {{ prediction.isHighSales ? 'Yes' : 'No' }}</p>
-    <p class="{{ prediction.isHighSales ? 'high-sales' : 'low-sales' }}">
-      {{ prediction.isHighSales ? 'The predicted sales are high!' : 'The predicted sales are not high!' }}
-    </p>
-
-    <div class="stock-details">
-      <h3><strong>Stock Name</strong>{{ prediction.stockDetails?.itemName }}</h3>
-      <p><strong>Date</strong>  {{ prediction.stockDetails?.order_date }}</p>
-      <p><strong>Quantity</strong>: {{ prediction.stockDetails?.quantity }}</p>
-    </div>
-    <hr class="divider">
-  </div>
-</div>
-
-<ng-template #noPredictionsBlock>
-  <p>No predictions available.</p>
-</ng-template>
-<div>
-  <canvas #lineChart></canvas>
-</div> -->
 
 <head>
   <title>Admin dashboard</title>
@@ -126,7 +23,6 @@
       <h2>Predicted Sales</h2>
       <div *ngFor="let prediction of predictions" class="prediction">
         <div class="prediction-info">
-          <!-- <p><strong>Item index:</strong> {{ prediction.index }}</p> -->
           <p><strong>Predicted Sales:</strong> {{ prediction.prediction }}</p>
           <p><strong>Stock Name:</strong> {{ prediction.stockDetails?.itemName }}</p>
          
@@ -139,7 +35,6 @@
         <div class="stock-details">         
           <p><strong>Date:</strong> {{ prediction.stockDetails?.order_date }}</p>
           <p><strong>Quantity:</strong> {{ prediction.stockDetails?.quantity }}</p>
-          <!-- <p><strong>Item id:</strong> {{ prediction.stockDetails?.itemId }}</p> -->
 
         <button (click)="sendEmail(prediction)">  Alert <br> <i  class="fas fa-bell fa-2x"></i>  </button>        
         <button (click)="openGraphDialog(prediction.stockDetails?.itemId)">Graph <br><i class="fas fa-chart-line fa-2x"></i>  </button>

@@ -39,7 +39,6 @@ export class MonitorOrderComponent implements OnInit {
       canvas.width = 300;
       canvas.height = 49; // Adjust height for bullet graph
       const container = document.getElementById('graph-container');
-      // const container = document.getElementById('graph-' + order.order_id) as HTMLCanvasElement;
 
       if (container) {
         container.appendChild(canvas);
@@ -47,8 +46,7 @@ export class MonitorOrderComponent implements OnInit {
 
       const ctx = canvas.getContext('2d');
       if (ctx) {
-        // const labels = ['Price', 'Quantity']; // Labels for price and quantity
-        // const data = [order.price, order.stock_quantity]; // Data for price and quantity
+        
         const labels = ['Price','Quantity'];
         const data =[order.price, order.stock_quantity]; 
         new Chart(ctx, {
@@ -65,7 +63,7 @@ export class MonitorOrderComponent implements OnInit {
             }]
           },
           options: {
-            indexAxis: 'y', // Make the bars horizontal
+            indexAxis: 'y', 
             scales: {
               x: {
                 beginAtZero: true
