@@ -64,8 +64,6 @@ footer {
   
   header{
     padding: 30vh 0;
-
-    background-color: Deepskyblue;
     background: url(https://res.cloudinary.com/dnroxbmjk/image/upload/v1462049388/img01_wqwpnu.jpg);
     /* background:url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1KKlU4UqdvKPaVWEHYZ3oLokglnhtp5Lrlg&s); */
     background-size: cover;
@@ -84,11 +82,9 @@ footer {
   }
   
   p{
-    /* padding: 20px; */
-    /* word-spacing: 6px; */
-    /* line-height: 1.8; */
+   
     font-size: 1.2em;
-    text-align: justify  ;
+   /*  text-align: justify  ; */
     margin: 2% auto;
   }
   
