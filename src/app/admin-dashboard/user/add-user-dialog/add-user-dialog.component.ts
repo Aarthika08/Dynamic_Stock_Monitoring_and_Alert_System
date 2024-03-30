@@ -59,18 +59,20 @@ export class AddUserDialogComponent implements OnInit {
             (existingFormData: any) => {
               const usersArray: any[][] = existingFormData.user || [];
               const emailExists = usersArray.some(users => users.some(user => user.email === formData.email));
-  console.log('emaile exists',emailExists);
+  console.log('email exists',emailExists);
               if (emailExists) {
                 this.errorMessage = 'Email already exists.';
 console.log(this.errorMessage);
                 if (emailInput) {
+                  if (emailInput) {
                   emailInput.setErrors({ 'emailExists': true });
-                }
+                }}
               } else {
                 this.errorMessage = '';
                 if (emailInput) {
+                  if (emailInput) {
                   emailInput.setErrors(null);
-                }
+                }}
               }
             },
             (error: HttpErrorResponse) => {

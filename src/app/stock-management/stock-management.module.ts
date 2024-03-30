@@ -32,9 +32,12 @@ import { GraphDialogComponent } from './stock-list/graph-dialog/graph-dialog.com
     MonitorOrderComponent,
     PlaceOrderComponent,
     ShipmentsComponent,
-    StockManagementComponent,IncomingStockComponent,
-    StockAvailabilityComponent,OutgoingStockComponent,
-     NavbarComponent,GraphDialogComponent
+    StockManagementComponent,
+    IncomingStockComponent,
+    StockAvailabilityComponent,
+    OutgoingStockComponent,
+     NavbarComponent,
+     GraphDialogComponent
   ],
   imports: [
     CommonModule,MatMenuModule,

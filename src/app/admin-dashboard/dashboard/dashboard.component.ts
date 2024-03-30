@@ -262,7 +262,7 @@ drawnewChart(labels: string[], dataValues: number[]): void {
         backgroundColor: background,
         borderColor: 'rgb(0,0,0)',
         fill:true,
-        borderWidth: 0.5,
+        borderWidth: 0.5
         // hoverOffset: 4
       }]
     },
@@ -272,6 +272,29 @@ drawnewChart(labels: string[], dataValues: number[]): void {
         // legend: {
         //   position: 'right' 
         // } }
+        plugins: {
+          legend: {
+            labels: {
+              color: 'Black' // Change text color here
+            }
+            
+          },
+          tooltip: {
+            bodyColor: 'white' // Change tooltip text color here
+          }
+        },
+        scales: {
+          x: {
+            ticks: {
+              color: 'black' // Change x-axis label text color here
+            }
+          },
+          y: {
+            ticks: {
+              color: 'black' // Change y-axis label text color here
+            }
+          }
+        }
     }
   });
 }

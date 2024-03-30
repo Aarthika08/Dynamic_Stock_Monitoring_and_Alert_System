@@ -14,7 +14,6 @@ export class RealAuthGuard implements CanActivate {
     if (this.authService.isAuthenticated() && this.authService.isrealUser()) {
       return true;
     } else {
-      // If not authenticated or not a manager, redirect to the login page
       this.router.navigate(['/login']);
       return false;
     }

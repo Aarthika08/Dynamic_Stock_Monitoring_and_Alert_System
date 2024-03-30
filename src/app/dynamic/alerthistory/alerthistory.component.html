@@ -1,0 +1,37 @@
+<app-nav></app-nav>
+<h1>Alert Notification History</h1>
+<div *ngIf="emailHistory.length > 0">
+    <h2>Email History</h2>
+   
+    <table class="email-history-table">  
+        <caption>Table code here with data from emailHistory array</caption>
+
+        <thead>
+          <tr>
+            <th>Prediction</th>
+            <th>Stock Name</th>
+            <th>Sent Time</th>
+            <th>Subject</th>
+            <th>Email</th>
+            <th>Delivered</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let email of emailHistory">
+            <td>{{ email.prediction }}</td>
+            <td>{{ email.stockName }}</td>
+            <td>{{ email.sentAt }}</td>
+            <td>{{ email.subject }}</td>
+            <td>{{ email.sendto }}</td>
+            <td>
+                <span *ngIf="email.sent === 'OK'" class="green-circle"><span class="tick">&#10004;</span></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+  </div>
+  <div *ngIf="emailHistory.length === 0">
+    <p>No email history available.</p>
+  </div>
+ 

@@ -16,11 +16,11 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
-  { path: 'admin-dashboard', component: AdminDashboardComponent,canActivate: [AdminAuthGuard]  }, // Add route for admin-dashboard
+  { path: 'admin-dashboard', component: AdminDashboardComponent,canActivate: [AdminAuthGuard]  }, 
   // { path: 'admin-dashboard', component: AdminDashboardComponent },
-  { path: 'stock-management', component: StockManagementComponent,canActivate: [stockAuthGuard]  }, // Add route for admin-dashboard
-  // { path: 'dynamic', component: DynamicComponent,canActivate: [RealAuthGuard]  }, // Add route for admin-dashboard
-  { path: 'dynamic', component: DynamicComponent  },
+  { path: 'stock-management', component: StockManagementComponent,canActivate: [stockAuthGuard]  }, 
+  { path: 'dynamic', component: DynamicComponent,canActivate: [RealAuthGuard]  }, 
+  // { path: 'dynamic', component: DynamicComponent  },
   
   { path: 'slickgrid', component: slickgridComponent  },
 

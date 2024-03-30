@@ -1,0 +1,58 @@
+.green-circle {
+    display: inline-block;
+    width: 24px; /* Adjust size as needed */
+    height: 24px; /* Adjust size as needed */
+    border-radius: 50%;
+    background-color: green;
+    text-align: center;
+  }
+  
+  .tick {
+    color: white;
+    font-size: 18px;
+    line-height: 24px; /* Center the tick vertically */
+  }
+ 
+
+  
+
+
+.email-history-table {
+    width: 80%; /* Set the width of the table */
+    margin: 0 auto; /* Center the table horizontally */
+    border-collapse: collapse;
+    background-color: #ffffff; /* Set background color for the table */
+    border: 1px solid #ddd; /* Add border to the table */
+    box-shadow: 0 14px 18px rgba(0, 0, 0, 0.9); /* Add shadow for a floating effect */
+    border-radius: 20px;
+  }
+  
+  .email-history-table th,
+  .email-history-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    
+  }
+  
+  .email-history-table th {
+    background-color: #000000; /* Black color for the header */
+    color: #ffffff; /* White text color for the header */
+  }
+  
+  .email-history-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .email-history-table tbody tr:hover {
+    background-color: #e2f0ff;
+  }
+  
+  .email-history-table tbody td:first-child {
+    border-left: 1px solid #ddd; /* Add left border to first column */
+  }
+  
+  .email-history-table tbody td:last-child {
+    border-right: 1px solid #ddd; /* Add right border to last column */
+  }
+  

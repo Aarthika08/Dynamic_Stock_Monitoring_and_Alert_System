@@ -1,0 +1,66 @@
+<app-nav></app-nav>
+<div class="tablediv" style="margin-left: 20px;">
+  <h2 style="margin-left: 30px;">Data List</h2> 
+   
+  <div class="container" style="display: flex;margin-left: -25px;">
+    
+      <div class="user-box" style="background-color: rgb(204, 60, 60);">
+        <h2>Data count</h2>
+        <div class="user-count">{{ orderslist.length }}</div>
+      </div>
+      <div class="user-box" style="background-color: rgb(118, 216, 43);">
+        <h2>cost</h2>
+        <div class="user-count"> {{ calculateOverallCostPrice() | number:'1.2-2' }} </div>
+      </div>
+      <div class="user-box" style="background-color: rgb(66, 43, 216);">
+        <h2>Data units</h2>
+        <div class="user-count">{{  calculateOverallquantity()}}</div>
+      </div>
+  </div>
+  <div class="parent" style="display: flex;">
+   
+    <div class="children">
+  <table>
+    <thead>
+      <tr>
+          <th>Order ID</th>
+          <th>Customer ID</th>
+          <!-- <th>Order Date</th>-->
+          <th>Status</th>
+          <th>Price</th> 
+          <th>Stock </th>
+          <th>Quantity</th>
+          <th>Product</th>
+          <th>cost</th>
+          <th>Total Price</th>
+
+      </tr>
+    </thead>
+    <tbody>
+       <tr *ngFor="let order of orderslist let i = index">
+       <td>{{ order.order_id }}</td>
+        <td>{{ order.customer_id }}</td>
+        <!-- <td>{{ order.order_date }}</td>-->
+        <td>{{ order.order_status }}</td>
+        <td>{{ order.price }}</td> 
+        <td>{{ order.stock_name }}</td>
+        <td>{{ order.stock_quantity }}</td>
+        <td>{{ order.product_name }}</td>
+        <td>{{ order.single_quantity_price }}</td>
+        <td>{{ order.total_price }}</td> 
+     
+
+      </tr>
+     
+    </tbody>
+  </table>
+  </div>
+  <div class="children">
+<table style="margin-top: 0px;">
+  <th>Bullet Graph</th>
+  <tbody>
+      <div id="graph-container"></div>
+    </tbody>
+    </table>
+   
+    </div></div>

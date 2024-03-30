@@ -10,6 +10,8 @@ import {FormsModule} from '@angular/forms';
 import { AdminDashboardModule } from './admin-dashboard/admin-dashboard.module';
 import { StockManagementModule } from './stock-management/stock-management.module';
 import { DynamicModule } from './dynamic/dynamic.module';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
 
 import {slickgridComponent} from './slickgrid/slickgrid.component';
 import { AngularSlickgridModule } from 'angular-slickgrid';
@@ -28,7 +30,7 @@ import { AngularSlickgridModule } from 'angular-slickgrid';
     HttpClientModule,
     ReactiveFormsModule,
     StockManagementModule,
-    DynamicModule,
+    DynamicModule,MatToolbarModule,MatButtonModule,
     AngularSlickgridModule.forRoot()
   ],
   providers: [],

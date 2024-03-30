@@ -1,5 +1,4 @@
-// prediction.component.ts
-// import { Component, OnInit } from '@angular/core';
+
 import { Component,AfterViewInit, ElementRef, ViewChild ,OnInit} from '@angular/core';
 
 import { ModelService } from '../services/model.service';
@@ -12,12 +11,7 @@ import { StocksService } from '../../stock-management/stock-list/stock-list.serv
 import { HttpClient } from '@angular/common/http';
 import { MatDialog } from '@angular/material/dialog';
 import { GraphDialogComponent } from './graph-dialog/graph-dialog.component';
-
-// interface Prediction {
-//   index: number;
-//   value: number;
-//   isHighSales: boolean;
-// }
+import {EmailHistoryService} from  "./email-history.service";
 
 interface Prediction {
   index: number;
@@ -51,7 +45,6 @@ interface StockItem {
   history: { date: string; quantity: number }[];
   outgoingHistory: { date: string; quantity: number }[];
   salesRate?: number;
-  // Add any other properties as needed
 }
 
 @Component({
@@ -63,21 +56,18 @@ export class PredictionComponent implements OnInit {
   predictions: Prediction[] = [];
   loading: boolean = false;
   error: string | null = null;
-  // @ViewChild('lineChart') private chartRef!: ElementRef;
 
   selectedPrediction: Prediction | null = null; // Store selected prediction
   chart: any;
   data: any;
   itemId!: number;
   databaseData: any;
-  // stockData: any;
   errorMessage!: any;
   stockData: StockItem[] = []; 
-  constructor(private stockService: StockService,private dialog: MatDialog,private stocksService: StocksService,private http: HttpClient) {}
+  constructor(private stockService: StockService,private dialog: MatDialog,private stocksService: StocksService,private http: HttpClient,private emailHistoryService:EmailHistoryService) {}
 
   ngOnInit(): void {
     this.fetchPredictions();
-    // this.fetchData();
     
   }
 
@@ -87,7 +77,6 @@ export class PredictionComponent implements OnInit {
     this.stockService.predictAndCheckHighSales().subscribe(
       predictions => {
         this.predictions = predictions.map(prediction => ({ ...prediction, stockDetails: null }));
-        // Fetch stock details for each prediction
         this.fetchStockDetailsForPredictions();
         this.loading = false;
       },
@@ -114,19 +103,13 @@ export class PredictionComponent implements OnInit {
       );
     });
   }
-  // Function to select a prediction and store its details
-
- // Function to select a prediction and store its details
+ 
  selectPrediction(prediction: Prediction): void {
   this.selectedPrediction = prediction;
 }
 
-// Function to send email with selected prediction details
-
-
-// Function to send email with selected prediction details
 sendEmail(selectedPrediction: Prediction): void {
-  if (!selectedPrediction) { // Check if selectedPrediction is null
+  if (!selectedPrediction) { 
     console.error('No prediction selected.');
     return;
   }
@@ -140,20 +123,46 @@ sendEmail(selectedPrediction: Prediction): void {
   const emailBody = `Stock Name: ${stockDetails.itemName}, Prediction Value: ${selectedPrediction.prediction}`;
 
   Email.send({
-    
+        Host: "smtp.elasticemail.com",
+    Username: "19ifte048@ldc.edu.in",
+    Password: "0C589BEA17D93DD3B70BE7D58EBE02BC3CBA",
+    To: 'maarthika01@gmail.com',
+    From: "19ifte048@ldc.edu.in",
+    Subject: "Stock Prediction",
     Body: emailBody
   }).then(
     (message: unknown) => {
-      console.log(message); // Log the message to the console
+      console.log(message); 
       alert("Email sent successfully");
-    }
+
+         const emailData = {
+          prediction: selectedPrediction.isHighSales,
+          stockName: stockDetails.itemName,
+          sentAt: new Date().toISOString(), 
+          subject:"Stock Prediction",
+          sendto  :'maarthika01@gmail.com',
+          sent:message
+        };
+        this.addToEmailHistory(emailData);
+
+      }
   ).catch((error: any) => {
     console.error('Error sending email:', error);
     alert("Error sending email. Please try again later.");
   });
 }
 
-//chart
+addToEmailHistory(emailData: any): void {
+  this.emailHistoryService.addEmailToHistory(emailData).subscribe(
+    response => {
+      console.log('Email added to history successfully:', response);
+    },
+    error => {
+      console.error('Error adding email to history:', error);
+    }
+  );
+}
+
 
 openGraphDialog(itemId: number): void {
   if (!itemId) {

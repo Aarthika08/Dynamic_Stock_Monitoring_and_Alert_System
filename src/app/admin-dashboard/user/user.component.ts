@@ -12,16 +12,22 @@ import { EditUserDialogComponent } from './edit-user-dialog/edit-user-dialog.com
 })
 export class UserComponent implements OnInit {
   userForm!: FormGroup;
-  // users!: any[];
+  //  users!: any[];
   editingUserIndex: number = -1;
   updatedUserData: any = {}; // Object to hold updated user data
 
-  //searchbox
-  searchText: string = ''; // Property to store the search text
-  users: any[] = [];
-  filteredUsers: any[] = []; // Array to store filtered users
+  
+  // sort,search and filter
+  users: any[] = []; // Array of users
+  
+  
+ 
 
-  constructor(private dialog: MatDialog,private formBuilder: FormBuilder, private userService: UserService) { }
+
+  constructor(private dialog: MatDialog,private formBuilder: FormBuilder, private userService: UserService) { 
+
+    
+  }
 
   ngOnInit(): void {
    
@@ -29,30 +35,10 @@ export class UserComponent implements OnInit {
     this.fetchUsers();
 
   }
-  
-  // onSubmit() {
-  //   if (this.userForm.invalid) {
-  //     return;
-  //   }
+  // Method to filter users based on search query
+ 
 
-  //   const userDetails = {
-  //     name: this.userForm.value.name,
-  //     email: this.userForm.value.email,
-  //     role: this.userForm.value.role
-  //   };
-
-  //   this.userService.addUser(userDetails).subscribe(
-  //     response => {
-  //       console.log('User added successfully', response);
-  //       // Clear the form after successful submission
-  //       this.userForm.reset();
-  //     },
-  //     error => {
-  //       console.error('Error adding user:', error);
-  //     }
-  //   );
-  // }
-
+ 
 
   openAddUserDialog(): void {
     const dialogRef = this.dialog.open(AddUserDialogComponent, {
