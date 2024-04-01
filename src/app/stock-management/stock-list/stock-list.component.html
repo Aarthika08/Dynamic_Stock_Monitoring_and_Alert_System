@@ -7,14 +7,15 @@
 <body>
 <h1 style="text-align: center;">Stock Data List</h1>
 <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+<div class="set" style=" background-color: black;border-radius: 121px;color: white;
+box-shadow: 0 14px 18px rgba(0, 0, 0, 0.9); width:80%;margin-left: 120px;">
 <table *ngIf="stockData && stockData.length > 0">
   <thead>
     <tr>
       <th> ID</th>
       <th>Item Name</th>
       <th>Item Description</th>
-      <th> Category</th>
-      
+      <th> Category</th>      
       <th>Action</th>
     </tr>
   </thead>
@@ -37,7 +38,7 @@
 <div *ngIf="!stockData || stockData.length === 0">No stock data available.</div>
 
 
-
+</div>
 
    </body>
    </html>

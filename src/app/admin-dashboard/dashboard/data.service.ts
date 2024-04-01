@@ -130,8 +130,6 @@ getAllOrders():  Observable<any> {
     
 }
 
-
-// Fetch last 5 recently added items from CouchDB
 getLast5Items(): Observable<any[]> {
   const httpOptions = {
     headers: new HttpHeaders({

@@ -64,15 +64,15 @@ export class AddUserDialogComponent implements OnInit {
                 this.errorMessage = 'Email already exists.';
 console.log(this.errorMessage);
                 if (emailInput) {
-                  if (emailInput) {
+                  
                   emailInput.setErrors({ 'emailExists': true });
-                }}
+                }
               } else {
                 this.errorMessage = '';
                 if (emailInput) {
-                  if (emailInput) {
+                 
                   emailInput.setErrors(null);
-                }}
+                }
               }
             },
             (error: HttpErrorResponse) => {

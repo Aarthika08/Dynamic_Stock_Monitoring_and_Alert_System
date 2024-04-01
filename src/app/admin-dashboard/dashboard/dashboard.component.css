@@ -1,5 +1,7 @@
   *{
     font-size: 20px;
+    margin:5px;
+
   }
   .box{
     position: relative;
@@ -27,7 +29,6 @@
   
   .user-box h2 {
     font-size: 14px;
-    /* margin-bottom: 10px; */
     margin: -18px -6px;
   }
   
@@ -52,9 +53,7 @@ height: 700px;
   margin-top:150px;
   margin-left: 10px;
   }
-  *{
-    margin:5px;
-  }
+
 table {
  
   border-collapse: collapse;

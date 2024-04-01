@@ -226,8 +226,12 @@ ngAfterViewInit(): void {
                     label: 'Category Count',
                     data: data,
                     backgroundColor: backgroundColors,
-                    borderColor: 'rgb(175, 172, 102)',
-                    borderWidth: 2
+                    borderColor: 'black', // Change data line color to black
+                    borderWidth: 2,
+                    pointBackgroundColor: 'black', // Change data point color to black
+                    pointBorderColor: 'black', // Change data point border color to black
+                    pointHoverBackgroundColor: 'black', // Change data point hover background color to black
+                    pointHoverBorderColor: 'black',
                 }, {
                     label: 'Count',
                     data: data,

@@ -8,12 +8,8 @@ import { Observable } from 'rxjs';
 export class OrderlistService {
   private baseUrl = 'http://localhost:5984/stocks/43407ead14cf09630aa0d936af030ddf'; // Assuming your backend API endpoint
    private apiUrl = 'http://localhost:5984/stocks/43407ead14cf09630aa0d936af030ddf';
- // private apiUrl = 'http://localhost:5984/stocks/43407ead14cf09630aa0d936af02395d';
 
   constructor(private http: HttpClient) { }
-
-  
- 
 
 getAllOrders():  Observable<any> {
     

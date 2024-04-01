@@ -2,7 +2,6 @@ import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angula
 import { DataService } from './data.service';
 import { Chart } from 'chart.js/auto';
 import {OrderlistService} from '../order/orderlist.service';
-import { tap } from 'rxjs/operators';
 
 interface StockItem {
   id: number;
@@ -14,7 +13,7 @@ interface StockData {
   stocklist: StockItem[];
 }
 interface DataResponse {
-  rows: any[]; // Change 'any[]' to the type of your rows array
+  rows: any[]; 
 }
 
 @Component({
@@ -22,7 +21,8 @@ interface DataResponse {
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-export class DashboardComponent implements OnInit, AfterViewInit {
+// export class DashboardComponent implements OnInit, AfterViewInit {
+  export class DashboardComponent implements OnInit {
 
     totalUsers!: number;
     totalsupplier!: number;
@@ -53,16 +53,16 @@ p2='';
      this.fetchTotalItems();
      this.fetchTotalorders();
 
-     this.fetchData();
+    //  this.fetchData();
      this.loadChartData();
 
 
     }
-    ngAfterViewInit(): void {
-      if (this.stocklist) {
-        this.createChart();
-      }
-    }
+    // ngAfterViewInit(): void {
+    //   if (this.stocklist) {
+    //     this.createChart();
+    //   }
+    // }
 
     fetchTotalUsers(): void {
       this.dataService.getTotalUsers().subscribe(
@@ -110,12 +110,11 @@ p2='';
       }
     );
   }
-//chart 
 
 
 // fetchData(): void {
 //   this.dataService.getStockList().subscribe(data => {
-//     this.stocklist = data.stocklist;
+//     this.stocklist = data;
 //     this.createChart();
 
 //     console.log(this.stocklist);
@@ -126,82 +125,66 @@ p2='';
     
 // );
 // }
+// createChart(): void {
+//   if (this.stocklist && this.stocklist.length > 0) {
+//     const categoryCounts: { [category: string]: number } = {};
 
-fetchData(): void {
-  this.dataService.getStockList().subscribe(data => {
-    this.stocklist = data;
-    this.createChart();
+//     this.stocklist.forEach(item => {
+//       if (categoryCounts[item.itemCategory]) {
+//         categoryCounts[item.itemCategory]++;
+//       } else {
+//         categoryCounts[item.itemCategory] = 1;
+//       }
+//     });
 
-    console.log(this.stocklist);
-  },
-  error => {
-          console.error('Error fetching stocklist:', error);
-        }
-    
-);
-}
-createChart(): void {
-  // Check if stocklist is populated
-  if (this.stocklist && this.stocklist.length > 0) {
-    const categoryCounts: { [category: string]: number } = {};
+//     const labels = Object.keys(categoryCounts);
+//     const data = Object.values(categoryCounts);
+//     const backgroundColors = this.generateRandomColors(labels.length);
 
-    this.stocklist.forEach(item => {
-      if (categoryCounts[item.itemCategory]) {
-        categoryCounts[item.itemCategory]++;
-      } else {
-        categoryCounts[item.itemCategory] = 1;
-      }
-    });
-
-    const labels = Object.keys(categoryCounts);
-    const data = Object.values(categoryCounts);
-    const backgroundColors = this.generateRandomColors(labels.length);
-
-    const ctx = this.myChart.nativeElement.getContext('2d');
+//     const ctx = this.myChart.nativeElement.getContext('2d');
 
 
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: labels,
-      datasets: [{
-        label: 'Category Count',
-        data: data,
-        backgroundColor: backgroundColors,
-        borderColor: 'rgb(175, 172, 102)',
-        borderWidth: 2
-      }, {
-        label: 'Count',
-        // data: this.calculateAverage(data),
-        data:data,
-        type: 'line',
-        fill: true,
-        backgroundColor: backgroundColors,
-        borderColor: 'rgb(255, 99, 132)',
-        borderWidth: 2,
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          type: 'linear',
-          display: true,
-          position: 'left',
-          beginAtZero: true,
-        },
-        y1: {
-          type: 'linear',
-          display: true,
-          position: 'right',
-          grid: {
-            drawOnChartArea: false,
-          },
-        },
-      },
-    }
-  });
-}
-}
+//   new Chart(ctx, {
+//     type: 'bar',
+//     data: {
+//       labels: labels,
+//       datasets: [{
+//         label: 'Category Count',
+//         data: data,
+//         backgroundColor: backgroundColors,
+//         borderColor: 'rgb(175, 172, 102)',
+//         borderWidth: 2
+//       }, {
+//         label: 'Count',
+//         data:data,
+//         type: 'line',
+//         fill: true,
+//         backgroundColor: backgroundColors,
+//         borderColor: 'rgb(255, 99, 132)',
+//         borderWidth: 2,
+//       }]
+//     },
+//     options: {
+//       scales: {
+//         y: {
+//           type: 'linear',
+//           display: true,
+//           position: 'left',
+//           beginAtZero: true,
+//         },
+//         y1: {
+//           type: 'linear',
+//           display: true,
+//           position: 'right',
+//           grid: {
+//             drawOnChartArea: false,
+//           },
+//         },
+//       },
+//     }
+//   });
+// }
+// }
 
   generateRandomColors(count: number): string[] {
     const colors: string[] = [];
@@ -254,7 +237,6 @@ drawnewChart(labels: string[], dataValues: number[]): void {
   this.chart = new Chart(this.newChart.nativeElement, {
     type: 'line',
     data: {
-      // labels:"stock",
       labels: labels,
       datasets: [{
         label:'stock',
@@ -263,35 +245,31 @@ drawnewChart(labels: string[], dataValues: number[]): void {
         borderColor: 'rgb(0,0,0)',
         fill:true,
         borderWidth: 0.5
-        // hoverOffset: 4
       }]
     },
     options: {
       responsive: true,
-      // plugins: {
-        // legend: {
-        //   position: 'right' 
-        // } }
+    
         plugins: {
           legend: {
             labels: {
-              color: 'Black' // Change text color here
+              color: 'Black' 
             }
             
           },
           tooltip: {
-            bodyColor: 'white' // Change tooltip text color here
+            bodyColor: 'white' 
           }
         },
         scales: {
           x: {
             ticks: {
-              color: 'black' // Change x-axis label text color here
+              color: 'black' 
             }
           },
           y: {
             ticks: {
-              color: 'black' // Change y-axis label text color here
+              color: 'black' 
             }
           }
         }
@@ -311,18 +289,14 @@ fetchLast5Items(): void {
   this.dataService.getLast5Items().subscribe(
     (data: any) => {
       if (data && data.stocklist) {
-        // Sort the stocklist array by order_date in descending order
         data.stocklist.sort((a: any, b: any) => new Date(b.order_date).getTime() - new Date(a.order_date).getTime());
-        // Take the first 5 items from the sorted array
         this.items = data.stocklist.slice(0, 5);
       } else {
         console.error('Invalid data format received:', data);
-        // Handle invalid data format as needed
       }
     },
     (err: any) => {
       console.error('An error occurred:', err);
-      // Handle error as needed
     }
   );
 }

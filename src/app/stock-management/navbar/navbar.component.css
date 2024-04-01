@@ -11,9 +11,23 @@
   font-size: 16px; /* Adjust the font size as needed */
 }
 
-.stock-button {
-  font-size: 16px; /* Adjust the font size for the stock button */
-}
-#mat-menu{
+
+/* #mat-menu{
   font-family: 'Roboto', sans-serif;
+} */
+
+
+.stock-button {
+  font-family: 'Roboto', sans-serif;
+  top: -5%;
+  margin: 0%;
+  margin-right:1%;
+  font-size: 15px;
+    font-weight: 500;
+
+    margin-left:-2%;
+}
+
+.stockon{
+  margin-left:-1%;
 }

@@ -1,29 +1,33 @@
-/* Center the table and its heading */
-table {
-    width: 80%; /* Adjust the width as needed */
-    margin: 0 auto; /* Center the table horizontally */
-    border-collapse: collapse; /* Collapse table borders */
-  }
+
+    table {
+      width: 80%;
+      /* border-collapse: collapse; */
+      table-layout: auto;
+      font-size: 15px;
+      box-shadow: 0 14px 18px rgba(0, 0, 0, 0.9); /* Add box shadow */
+      margin: 0 auto; /* Center the table horizontally */
+      border:none;
+    border-radius:50%
+    }
   
-  /* Style the table header */
+  
   th {
     padding: 12px;
     text-align: center; /* Center the text within the table header */
-    /* background-color: #f2f2f2; */
+    background-color: #000;
     border-bottom: 1px solid #ddd; /* Bottom border for each table header cell */
+    color:white
+  }
+    td {
+    padding: 10px;
+    text-align: center; /* Center the text within the table cells */
+    /* border-bottom: 1px solid #ddd;  */
     
   }
   
-  /* Style the table data */
-  td {
-    padding: 12px;
-    text-align: center; /* Center the text within the table cells */
-    border-bottom: 1px solid #ddd; /* Bottom border for each table cell */
-  }
-  
-  /* Style the table rows alternately */
   tr:nth-child(even) {
     background-color: #f2f2f2; /* Light gray background color for even rows */
+    color:black
   }
   h1 {
     text-align: center; /* Center the heading text horizontally */
@@ -31,26 +35,21 @@ table {
   }
     
 
-
-  /* *{
-    margin:10px;
-  }
-table {
-  width: 100%;
-  border-collapse: collapse;
-  table-layout: auto;
-}
-
-th, td {
-  border: 3px solid #070707;
-  padding: 25px;
-  text-align: left;
-} */
-
-tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
 tr:hover {
-  background-color: #dddddd;
+  background-color: #18a1ad;
+}
+
+
+#set{
+  background-color: black;
+  border-radius: 101px;
+  color: white;
+}
+
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+  cursor: pointer;
+  /* background-color:rgb(99, 194, 242); */
+  /* color: white; */
+  /* width: 67px; */
+    border-radius: 55%;
 }

@@ -41,37 +41,4 @@ table {
 
  }
 
- /* css */
-/* .tablediv {
-  margin: 20px;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  border-radius: 5px;
-  overflow: hidden;
-  box-shadow: #070707 15px;
-}
-
-th {
-  background-color: #e81212;
-  padding: 8px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-  color:white;
-}
-
-tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-td {
-  padding: 8px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-tr:hover {
-  background-color: #e6f7ff;
-} */
+ 

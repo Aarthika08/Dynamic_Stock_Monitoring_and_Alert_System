@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import {stockmanagementRoutingModule} from './stock-management-routing.module'
 import { MatMenuModule } from '@angular/material/menu';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -42,12 +43,15 @@ import { GraphDialogComponent } from './stock-list/graph-dialog/graph-dialog.com
   imports: [
     CommonModule,MatMenuModule,
     stockmanagementRoutingModule,
-    HttpClientModule,    FormsModule,
+    HttpClientModule,   
+     FormsModule,
     MatToolbarModule,
     MatButtonModule,
-    ReactiveFormsModule,MatDialogModule,
+    ReactiveFormsModule,
+    MatDialogModule,
     BrowserModule,
     BrowserAnimationsModule,
+    MatIconModule
   ], 
    exports: [GraphDialogComponent],
 

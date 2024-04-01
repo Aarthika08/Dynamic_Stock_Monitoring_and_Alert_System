@@ -44,20 +44,7 @@ export class OrderComponent implements OnInit{
     );
   }
 
-  // loadOrders(): void {
-  //   this.orderService.getAllOrders().subscribe(
-  //     (data: any) => {
-  //       if (data && data.orderslist) {
-  //         this.orders = data.orderslist;
-  //       } else {
-  //         console.error('Invalid data format. Expected orderslist array.');
-  //       }
-  //     },
-  //     (error) => {
-  //       console.error('Error loading orders:', error);
-  //     }
-  //   );
-  // }
+
 
   deleteOrder(orderId: string): void {
     this.orderService.deleteOrder(orderId).subscribe(

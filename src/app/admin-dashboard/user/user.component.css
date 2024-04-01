@@ -24,23 +24,27 @@
 
   /* user.component.css */
   *{
-    margin: 25px 44px;
-    margin-left: 18px;
-    padding: 0px; 
+    /* margin: 25px 44px; */
+  
+   /* margin-left: 27px;
+    padding: 1px; */
+
+    padding: 0px;
+    margin: 20px;
+    padding-right: 21px;
    }
 table {
   width: 100%;
   border-collapse: collapse;
   table-layout: auto;
-  font-size: 15
-  px;
+  font-size: 15px;
   box-shadow: 0 14px 18px rgba(0, 0, 0, 0.9); /* Add box shadow */
 
 }
 
 th, td {
   border: 3px solid #070707;
-  padding: 5px;
+  padding: 2px;
   text-align: center;
 
 }
@@ -62,7 +66,7 @@ tr:hover {
 }
 
 .newuser{
- 
+  text-align: center;
   width: 130px !important;
   height: 45px;
   border-radius: 50px;
@@ -74,8 +78,9 @@ tr:hover {
   cursor: pointer;
   background-color: black;
   color: white;
-  width: 67px;
+  width: 60px;
     border-radius: 55%;
+    text-align: end;
 }
 
 #heading{
