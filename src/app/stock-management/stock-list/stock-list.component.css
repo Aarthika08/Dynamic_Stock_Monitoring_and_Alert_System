@@ -1,7 +1,6 @@
 
     table {
       width: 80%;
-      /* border-collapse: collapse; */
       table-layout: auto;
       font-size: 15px;
       box-shadow: 0 14px 18px rgba(0, 0, 0, 0.9); /* Add box shadow */
@@ -21,7 +20,6 @@
     td {
     padding: 10px;
     text-align: center; /* Center the text within the table cells */
-    /* border-bottom: 1px solid #ddd;  */
     
   }
   
@@ -48,8 +46,6 @@ tr:hover {
 
 [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
   cursor: pointer;
-  /* background-color:rgb(99, 194, 242); */
-  /* color: white; */
-  /* width: 67px; */
+  
     border-radius: 55%;
 }

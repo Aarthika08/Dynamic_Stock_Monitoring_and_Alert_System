@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit,  ElementRef, ViewChild } from '@angular/core';
 import { DataService } from './data.service';
 import { Chart } from 'chart.js/auto';
 import {OrderlistService} from '../order/orderlist.service';
@@ -21,7 +21,6 @@ interface DataResponse {
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
-// export class DashboardComponent implements OnInit, AfterViewInit {
   export class DashboardComponent implements OnInit {
 
     totalUsers!: number;
@@ -53,17 +52,11 @@ p2='';
      this.fetchTotalItems();
      this.fetchTotalorders();
 
-    //  this.fetchData();
      this.loadChartData();
 
 
     }
-    // ngAfterViewInit(): void {
-    //   if (this.stocklist) {
-    //     this.createChart();
-    //   }
-    // }
-
+   
     fetchTotalUsers(): void {
       this.dataService.getTotalUsers().subscribe(
         count => {
@@ -112,94 +105,6 @@ p2='';
   }
 
 
-// fetchData(): void {
-//   this.dataService.getStockList().subscribe(data => {
-//     this.stocklist = data;
-//     this.createChart();
-
-//     console.log(this.stocklist);
-//   },
-//   error => {
-//           console.error('Error fetching stocklist:', error);
-//         }
-    
-// );
-// }
-// createChart(): void {
-//   if (this.stocklist && this.stocklist.length > 0) {
-//     const categoryCounts: { [category: string]: number } = {};
-
-//     this.stocklist.forEach(item => {
-//       if (categoryCounts[item.itemCategory]) {
-//         categoryCounts[item.itemCategory]++;
-//       } else {
-//         categoryCounts[item.itemCategory] = 1;
-//       }
-//     });
-
-//     const labels = Object.keys(categoryCounts);
-//     const data = Object.values(categoryCounts);
-//     const backgroundColors = this.generateRandomColors(labels.length);
-
-//     const ctx = this.myChart.nativeElement.getContext('2d');
-
-
-//   new Chart(ctx, {
-//     type: 'bar',
-//     data: {
-//       labels: labels,
-//       datasets: [{
-//         label: 'Category Count',
-//         data: data,
-//         backgroundColor: backgroundColors,
-//         borderColor: 'rgb(175, 172, 102)',
-//         borderWidth: 2
-//       }, {
-//         label: 'Count',
-//         data:data,
-//         type: 'line',
-//         fill: true,
-//         backgroundColor: backgroundColors,
-//         borderColor: 'rgb(255, 99, 132)',
-//         borderWidth: 2,
-//       }]
-//     },
-//     options: {
-//       scales: {
-//         y: {
-//           type: 'linear',
-//           display: true,
-//           position: 'left',
-//           beginAtZero: true,
-//         },
-//         y1: {
-//           type: 'linear',
-//           display: true,
-//           position: 'right',
-//           grid: {
-//             drawOnChartArea: false,
-//           },
-//         },
-//       },
-//     }
-//   });
-// }
-// }
-
-  generateRandomColors(count: number): string[] {
-    const colors: string[] = [];
-    for (let i = 0; i < count; i++) {
-      const color = `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, 0.7)`;
-      colors.push(color);
-    }
-    return colors;
-  }
-
-  calculateAverage(data: number[]): number[] {
-    const total = data.reduce((acc, val) => acc + val, 0);
-    const average = total / data.length;
-    return new Array(data.length).fill(average);
-  }
 
 loadChartData(): void {
   this.orderService.getAllOrders().subscribe(
