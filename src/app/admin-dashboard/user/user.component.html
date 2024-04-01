@@ -1,13 +1,12 @@
 <html>
   <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></head>
-<body style="background-color:transparent">
-
-
-
-  
+<body style="border-radius: 120px;">
+  <h2 class="heading" style=" float: inline-start !important;
+  margin: inherit !important;
+  padding: 12px 51px !important;
+  font-size: 51px !important;">Users</h2>
   <button class="newuser" (click)="openAddUserDialog()">Add User</button>
-  <h2>Users</h2>
-  
+  <div>
 
   <table >
           <thead>
@@ -27,8 +26,8 @@
                 <td>{{ user.role }}</td>
                 <td>{{ user.username }}</td>
                 <td>
-                  <button  (click)="editUser(i)"><i class="fas fa-edit"></i></button>
-                  <button (click)="softDeleteUser(i, j)"><i class="fas fa-trash"></i></button>
+                  <button  (click)="editUser(i)"><i class="fas fa-edit "></i></button>
+                  <button (click)="softDeleteUser(i, j)"><i class="fas fa-trash "></i></button>
                 </td>
               </tr>
             </ng-container>
@@ -37,7 +36,7 @@
           </tbody>
         </table>   
         
-       
+      </div>
            
 </body>
 </html>

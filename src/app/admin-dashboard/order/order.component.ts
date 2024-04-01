@@ -1,5 +1,7 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {OrderlistService } from './orderlist.service'
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-order',
@@ -7,8 +9,15 @@ import {OrderlistService } from './orderlist.service'
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit{
-  orders!: any[];
+  //  orders!: any[];
   orderList!: any[];
+  
+  orders: any[] = [];
+
+  displayedColumns: string[] = ['order_id','customer_id', 'stock_name', 'order_date', 'order_status','price','stock_quantity','product_name','single_quantity_price','total_price'];
+  dataSource!: MatTableDataSource<any>;
+
+  @ViewChild(MatPaginator) paginator?: MatPaginator ;
 
   constructor(private orderService: OrderlistService) { }
 
@@ -19,8 +28,12 @@ export class OrderComponent implements OnInit{
   loadOrders(): void {
     this.orderService.getAllOrders().subscribe(
       (data: any) => {
-        if (data && data.orderslist) {
+        if (data?.orderslist) {
           this.orders = data.orderslist;
+          this.dataSource = new MatTableDataSource(data.orderslist);
+          if (this.paginator) {
+            this.dataSource.paginator = this.paginator;
+          }
         } else {
           console.error('Invalid data format. Expected orderslist array.');
         }
@@ -30,6 +43,21 @@ export class OrderComponent implements OnInit{
       }
     );
   }
+
+  // loadOrders(): void {
+  //   this.orderService.getAllOrders().subscribe(
+  //     (data: any) => {
+  //       if (data && data.orderslist) {
+  //         this.orders = data.orderslist;
+  //       } else {
+  //         console.error('Invalid data format. Expected orderslist array.');
+  //       }
+  //     },
+  //     (error) => {
+  //       console.error('Error loading orders:', error);
+  //     }
+  //   );
+  // }
 
   deleteOrder(orderId: string): void {
     this.orderService.deleteOrder(orderId).subscribe(

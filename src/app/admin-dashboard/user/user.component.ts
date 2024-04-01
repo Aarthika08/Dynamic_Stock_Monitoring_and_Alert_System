@@ -4,6 +4,7 @@ import { UserService } from '../user/userService';
 import { MatDialog } from '@angular/material/dialog';
 import { AddUserDialogComponent } from './add-user-dialog/add-user-dialog.component'; // Import the dialog component
 import { EditUserDialogComponent } from './edit-user-dialog/edit-user-dialog.component';
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-user',
@@ -81,6 +82,17 @@ export class UserComponent implements OnInit {
   }
 
   updateUser(index: number, updatedUserData: any): void {
+    if (this.userForm.invalid) {
+      alert('Invalid! Please check your fields.');
+      return;
+    }
+    if (updatedUserData.password !== this.users[index][0].password) {
+      // Encrypt the new password
+      const encryptedPassword = CryptoJS.AES.encrypt(updatedUserData.password, 'secret key').toString();
+      // Update the password in the updatedUserData object
+      updatedUserData.password = encryptedPassword;
+    }
+    
     this.userService.updateUser(index, updatedUserData).subscribe(
       response => {
         console.log('User updated successfully:', response);

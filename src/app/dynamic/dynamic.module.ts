@@ -13,7 +13,7 @@ import { PredictionComponent } from './prediction/prediction.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {GraphDialogComponent} from './prediction/graph-dialog/graph-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import {aboutComponent} from './about/about.component';
+import {AboutComponent} from './about/about.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import {NavComponent} from './navbar/navbar.component';
@@ -27,8 +27,7 @@ import {alerthistoryComponent} from './alerthistory/alerthistory.component';
      LandingPageComponent,
      PredictionComponent,
     GraphDialogComponent,
-    aboutComponent,
-    NavComponent,
+    AboutComponent,    NavComponent,
     OrderComponent,
     alerthistoryComponent
   ],

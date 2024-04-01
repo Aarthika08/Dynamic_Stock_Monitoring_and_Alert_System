@@ -169,20 +169,17 @@ openGraphDialog(itemId: number): void {
     if (Array.isArray(data)) {
       const item = data.find(item => item.itemId === itemId);
       if (item) {
-        const dialogRef = this.dialog.open(GraphDialogComponent, {
+        let dialogRef = this.dialog.open(GraphDialogComponent, {
           width: '1600px',height:'500px',
           data: item // Pass fetched item data to the dialog
         });
       } else {
         console.error('Item not found');
       }
-    } else if (data && data.stock) { // Check if 'stock' property exists in data
+    } else if (data?.stock) { // Check if 'stock' property exists in data
       const item = data.stock.find((item:any) => item.itemId === itemId);
       if (item) {
-        const dialogRef = this.dialog.open(GraphDialogComponent, {
-          width: '600px',
-          data: item // Pass fetched item data to the dialog
-        });
+        let dialogRef = this.dialog.open(GraphDialogComponent, {width: '600px',data: item});
       } else {
         console.error('Item not found');
       }

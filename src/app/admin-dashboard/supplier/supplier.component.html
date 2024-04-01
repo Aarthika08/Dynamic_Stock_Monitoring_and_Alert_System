@@ -6,32 +6,8 @@
 <body>
   <button class="newuser" (click)="openAddUserDialog()">Add supplier</button>
 <div>
-  <h2>Supplier List</h2>
-  <!-- <table>
-    <thead>
-      <tr>
-        <th>supplier Name</th>
-        <th>supplier Email</th>
-        <th>Username</th>
-        <th>Password</th>
-        <th>supplier product</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of users; let i = index">
-        <td>{{ user[0].name }}</td>
-        <td>{{ user[0].email }}</td>
-        <td>{{ user[0].username }}</td>
-        <td>{{ user[0].password }}</td>
-        <td>{{ user[0].product }}</td>
-        <td>
-          <button  (click)="editUser(i)"><i class="fas fa-edit"></i></button>
-          <button (click)="deleteUser(i)"><i class="fa fa-trash"></i></button>
-        </td>
-      </tr>
-    </tbody>
-  </table> -->
+  <h2 style="margin: 27px !important; font-size:36px !important">Supplier List</h2>
+  
   <table>
     <thead>
       <tr>
@@ -51,8 +27,8 @@
           <td>{{ user.product }}</td>
           <td>{{ user.username }}</td>
           <td>
-            <button  (click)="editUser(i)"><i class="fas fa-edit"></i></button>
-            <button (click)="softDeleteUser(i, j)"><i class="fas fa-trash"></i></button>
+            <button  (click)="editUser(i)"><i class="fas fa-edit fa-2x"></i></button>
+            <button (click)="softDeleteUser(i, j)"><i class="fas fa-trash fa-2x"></i></button>
           </td>
         </tr>
       </ng-container>

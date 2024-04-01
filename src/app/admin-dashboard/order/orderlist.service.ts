@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { HttpClient,HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -12,15 +12,8 @@ export class OrderlistService {
 
   constructor(private http: HttpClient) { }
 
-//   getAllOrders(): Observable<any> {
-//     const httpOptions = {
-//         headers: new HttpHeaders({
-//           'Content-Type': 'application/json',
-//           'Authorization': 'Basic ' + btoa('admin:admin') 
-//         })
-//       };
-//     return this.http.get<any>(this.baseUrl,httpOptions);
-//   }
+  
+ 
 
 getAllOrders():  Observable<any> {
     
@@ -32,9 +25,7 @@ getAllOrders():  Observable<any> {
     };
         
     return this.http.get<any>(this.apiUrl,httpOptions);
-      
-    // return this.http.get(this.apiUrl,httpOptions)
-  }
+        }
   
   getOrderById(orderId: string): Observable<any> {
     const httpOptions = {

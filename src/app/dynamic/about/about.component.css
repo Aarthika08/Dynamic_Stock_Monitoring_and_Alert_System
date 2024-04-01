@@ -30,19 +30,7 @@ body {
   color: #666;
 }
 
-#img {
-  flex: 1;
-  max-width: 50%;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-#image {
-    flex: 1;
-    /* max-width: 30%; */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width:30% !important;
-  }
+
 
 footer {
   background-color: #333;
@@ -53,7 +41,7 @@ footer {
 
 
 
-/* 2 */
+
 
   #pagewrap{
     max-width: 100%;
@@ -103,7 +91,6 @@ footer {
   }
 
 
-  /*  */
   .image-1 {
     width: 600;
 	background-image: url("https://images.pexels.com/photos/159888/pexels-photo-159888.jpeg?auto=compress&cs=tinysrgb&w=600");

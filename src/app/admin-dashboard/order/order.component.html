@@ -1,46 +1,9 @@
-<!-- <p>order works!</p>
-<h2>Order List</h2>
-<div *ngIf="orders">
-  <h2>orders</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Order ID</th>
-      <th>Customer ID</th>
-      <th>Order Date</th>
-      <th>Order Status</th>
-      <th>Price</th>
-      <th>Stock Name</th>
-      <th>Stock Quantity</th>
-      <th>Product Name</th>
-      <th>Single Quantity Price</th>
-      <th>Total Price</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let i of orders">
-      <td>{{ i.order_id }}</td>
-      <td>{{ i.customer_id }}</td>
-       <td>{{ order.order_date }}</td>
-      <td>{{ order.order_status }}</td>
-      <td>{{ order.price }}</td>
-      <td>{{ order.stock_name }}</td>
-      <td>{{ order.stock_quantity }}</td>
-      <td>{{ order.product_name }}</td>
-      <td>{{ order.single_quantity_price }}</td>
-      <td>{{ order.total_price }}</td> 
-      <td>
-        <button (click)="deleteOrder(i.order_id)">Delete</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-</div> -->
-<div class="tablediv">
-<h2>Order List</h2>
 
-<table >
+<!-- <div class="tablediv">
+   <caption>order table</caption> 
+<h2>Order List</h2> -->
+
+<!-- <table >
   <thead>
     <tr>
         <th>Order ID</th>
@@ -69,5 +32,28 @@
       <td>{{ order.total_price }}</td> 
     </tr>
   </tbody>
-</table>
+</table> </div>-->
+
+
+<div class="tablediv">
+  <caption>.</caption>
+  <h2>Order List</h2>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Define columns -->
+    <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
+      <th style="background-color:black" mat-header-cell *matHeaderCellDef> {{ column | titlecase }} </th>
+      <td mat-cell *matCellDef="let order"> {{ order[column] }} </td>
+    </ng-container>
+  
+    <!-- Column definitions -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <tr  *ngFor="let order of orders"></tr>
+  
+  
+  </table>
+  
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25]" showFirstLastButtons></mat-paginator>
 </div>

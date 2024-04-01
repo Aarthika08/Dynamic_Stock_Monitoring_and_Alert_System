@@ -21,6 +21,8 @@ import{EditUserDialogComponent} from './user/edit-user-dialog/edit-user-dialog.c
 import {updateUserDialogComponent} from './supplier/update-user-dialog/update-user-dialog.component'
 import {newsupplierDialogComponent} from './supplier/new-supplier-dialog/new-supplier-dialog.component'
 import { AngularSlickgridModule } from 'angular-slickgrid';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table'; // Import MatTableModule
 
 
 @NgModule({
@@ -49,7 +51,9 @@ import { AngularSlickgridModule } from 'angular-slickgrid';
     ReactiveFormsModule,
     FormsModule, // Import FormsModule here
     HttpClientModule,
-    AngularSlickgridModule.forRoot()
+    AngularSlickgridModule.forRoot(),
+    MatPaginatorModule,
+    MatTableModule
 
   ],
   exports: [

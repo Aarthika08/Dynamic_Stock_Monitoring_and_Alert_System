@@ -10,5 +10,5 @@ declare let Email: any;
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.css']
 })
-export class aboutComponent {
+export class AboutComponent {
 }

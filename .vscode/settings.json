@@ -1,6 +1,7 @@
 {
     "cSpell.words": [
         "Aarthika",
+        "addialog",
         "alerthistory",
         "bigcontainer",
         "canva",
@@ -16,6 +17,7 @@
         "mssg",
         "newchart",
         "newsupplier",
+        "newuser",
         "Orderlist",
         "orderslist",
         "overallpo",
@@ -32,10 +34,14 @@
         "slickgrid",
         "stocklist",
         "stockmanagement",
+        "Stockmonitor",
         "supplierservice",
+        "tablediv",
+        "titlecase",
         "totalorders",
         "totalsupplier",
         "Tutorialzine",
+        "updatedialog",
         "updation"
     ]
 }

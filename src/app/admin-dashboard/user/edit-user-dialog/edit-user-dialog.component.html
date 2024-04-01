@@ -25,9 +25,21 @@
   <label>Username: </label>
   <input type="text" [(ngModel)]="userData.username" name="username">
   <br>
-  <label>Password: </label>
-  <input type="password" [(ngModel)]="userData.password" name="password">
+  <!-- <label>Password: </label>
+  <input type="password" [(ngModel)]="userData.password" name="password" > -->
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" [(ngModel)]="userData.password" #password="ngModel" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$">
+    <div *ngIf="password.invalid && (password.dirty || password.touched)">
+      <div *ngIf="password.errors && password.errors['required']">Password is required.</div>
+      <div *ngIf="password.errors && password.errors['pattern']">Password must contain at least one digit, one lowercase letter, one uppercase letter, and be at least 8 characters long.</div>
+    </div>
+  </div>
+  
+  
+  
   <br>
+ 
   <label> Role </label>
   <input type="text" [(ngModel)]="userData.role" name="Role">
   <br>

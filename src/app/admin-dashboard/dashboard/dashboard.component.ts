@@ -36,7 +36,8 @@ categories: string[] = [];
   counts: number[] = [];
   backgroundColors: string[] = [];
   items: any[]=[];
-
+p1='';
+p2='';
 
     @ViewChild('myChart') myChart!: ElementRef;
 
@@ -217,7 +218,6 @@ createChart(): void {
     return new Array(data.length).fill(average);
   }
 
-//for order graph
 loadChartData(): void {
   this.orderService.getAllOrders().subscribe(
     (data: any) => {

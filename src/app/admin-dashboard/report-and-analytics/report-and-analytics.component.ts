@@ -132,40 +132,8 @@ ngAfterViewInit(): void {
           borderWidth: 1
         }]
       },
-      // options: {
-      //   // Add options as needed
-      //   responsive: true,
-      //   plugins: {
-      //     legend: {
-      //       position: 'top' 
-      //     } }
-        
-      // }
 
-      // options: {
-      //   plugins: {
-      //     legend: {
-      //       display: true,
-      //       labels: {
-      //         filter: function(legendItem, chartData) {
-      //           // Check if legendItem and chartData are defined
-      //           if (legendItem !== undefined && chartData !== undefined && legendItem.datasetIndex !== undefined) {
-      //             const dataset = chartData.datasets?.[legendItem.datasetIndex];
-      //             // Check if dataset is defined
-      //             if (dataset !== undefined && legendItem.index !== undefined) {
-      //               const dataValue = dataset.data?.[legendItem.index];
-      //               // Check if dataValue is a valid number greater than 10
-      //               if (typeof dataValue === 'number' && dataValue > 10) {
-      //                 return true;
-      //               }
-      //             }
-      //           }
-      //           return false; // Default to false if any object is undefined or dataValue is not greater than 10
-      //         }
-      //       }
-      //     }
-      //   }
-      // }
+
       
       options: {
         plugins: {
@@ -182,6 +150,19 @@ ngAfterViewInit(): void {
                 }
                 return false;
               }
+            }
+          }         
+
+        },
+        scales: {
+          x: {
+            ticks: {
+              color: 'black' // Change x-axis label text color here
+            }
+          },
+          y: {
+            ticks: {
+              color: 'black' // Change y-axis label text color here
             }
           }
         }
@@ -216,67 +197,91 @@ ngAfterViewInit(): void {
       
   );
   }
+  
+  
   createChart(): void {
     // Check if stocklist is populated
     if (this.stockList && this.stockList.length > 0) {
-      const categoryCounts: { [category: string]: number } = {};
-  
-      this.stockList.forEach(item => {
-        if (categoryCounts[item.itemCategory]) {
-          categoryCounts[item.itemCategory]++;
-        } else {
-          categoryCounts[item.itemCategory] = 1;
-        }
-      });
-  
-      const labels = Object.keys(categoryCounts);
-      const data = Object.values(categoryCounts);
-      const backgroundColors = this.RandomColorsgenerator(labels.length);
-  
-      const ctx = this.myChart.nativeElement.getContext('2d');
-  
-  
-    new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: labels,
-        datasets: [{
-          label: 'Category Count',
-          data: data,
-          backgroundColor: backgroundColors,
-          borderColor: 'rgb(175, 172, 102)',
-          borderWidth: 2
-        }, {
-          label: 'Count',
-          // data: this.calculateAverage(data),
-          data:data,
-          type: 'line',
-          fill: false,
-          borderColor: 'rgb(255, 99, 132)',
-          borderWidth: 2,
-        }]
-      },
-      options: {
-        scales: {
-          y1: {
-            type: 'linear',
-            display: true,
-            position: 'left',
-            beginAtZero: true,
-          },
-          y2: {
-            type: 'linear',
-            display: true,
-            position: 'right',
-            grid: {
-              drawOnChartArea: false,
+        const categoryCounts: { [category: string]: number } = {};
+
+        this.stockList.forEach(item => {
+            if (categoryCounts[item.itemCategory]) {
+                categoryCounts[item.itemCategory]++;
+            } else {
+                categoryCounts[item.itemCategory] = 1;
+            }
+        });
+
+        const labels = Object.keys(categoryCounts);
+        const data = Object.values(categoryCounts);
+        const backgroundColors = this.RandomColorsgenerator(labels.length);
+
+        const ctx = this.myChart.nativeElement.getContext('2d');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Category Count',
+                    data: data,
+                    backgroundColor: backgroundColors,
+                    borderColor: 'rgb(175, 172, 102)',
+                    borderWidth: 2
+                }, {
+                    label: 'Count',
+                    data: data,
+                    type: 'line',
+                    fill: false,
+                    borderColor: 'black', // Change data line color to black
+                    borderWidth: 2,
+                    pointBackgroundColor: 'black', // Change data point color to black
+                    pointBorderColor: 'black', // Change data point border color to black
+                    pointHoverBackgroundColor: 'black', // Change data point hover background color to black
+                    pointHoverBorderColor: 'black', // Change data point hover border color to black
+                }]
             },
-          },
-        },
-      }
-    });
-  }
-  }
+            options: {
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: 'Black' // Change text color here
+                        }
+
+                    },
+                    tooltip: {
+                        bodyColor: 'black' // Change tooltip text color here
+                    }
+                },
+                scales: {
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        beginAtZero: true,
+                        ticks: {
+                            color: 'black' // Change y-axis label text color here
+                        }
+                    },
+                    y2: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        grid: {
+                            drawOnChartArea: false,
+                        },
+                        ticks: {
+                            color: 'black' // Change y-axis label text color here
+                        }
+                    },
+                },
+
+            }
+        });
+    }
+}
+
+
   
     RandomColorsgenerator(count: number): string[] {
       const colors: string[] = [];
@@ -293,19 +298,7 @@ ngAfterViewInit(): void {
       return new Array(data.length).fill(average);
     }
   
-    // fetchNewData(): void {
-    //   this.dataService.getStockList().subscribe(data => {
-    //             (data: any) => {
-    //       console.log('Received stock list data:', data);
-    //       this.stockList = data.stocklist;
-    //       console.log('Processed stock list:', this.stockList);
-    //       this.createPieChart();
-    //     },
-    //     (error) => {
-    //       console.error('Error fetching stocklist:', error);
-    //     }
-    //   );
-    // }
+ 
     fetchNewData(): void {
         this.dataService.getStockList().subscribe(
           (data: any) => {
