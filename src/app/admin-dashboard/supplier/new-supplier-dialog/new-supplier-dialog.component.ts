@@ -100,19 +100,33 @@ userForm!: FormGroup;
           .subscribe(
             (existingFormData: any) => {
               const usersArray: any[][] = existingFormData.supplier || [];
-              const emailExists = usersArray.some(users => users.some(supplier => supplier.email === formData.email));
+  //             const emailExists = usersArray.some(users => users.some(supplier => supplier.email === formData.email));
+  // console.log('email exists',emailExists);
+  //             if (emailExists) {               
+  //               this.errorMessage = 'Email already exists.';                
+  //             } 
+  //             else {
+  //               this.errorMessage = '';
+  //               if (emailInput) {
+                  
+  //                 emailInput.setErrors(null);
+                
+  //               }
+  //             }
+  const emailExists = usersArray.some(users => users.some(supplier => supplier.email === formData.email));
   console.log('email exists',emailExists);
               if (emailExists) {
-                if (emailExists) {
-                this.errorMessage = 'Email already exists.';
+                this.errorMessage = 'Supplier is already member';
+console.log(this.errorMessage);
+                if (emailInput) {
+                  
+                  emailInput.setErrors({ 'emailExists': true });
                 }
-              } 
-              else {
+              } else {
                 this.errorMessage = '';
                 if (emailInput) {
-                  if (emailInput) {
+                 
                   emailInput.setErrors(null);
-                }
                 }
               }
             },

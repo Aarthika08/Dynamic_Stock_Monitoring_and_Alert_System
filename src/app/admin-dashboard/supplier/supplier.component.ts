@@ -62,6 +62,7 @@ export class SupplierComponent {
       this.supplierservice.updateUser(index, updatedUserData).subscribe(
         response => {
           console.log('supplier updated successfully:', response);
+          alert("supplier updated successfully" );
           // Handle any action after successful update if needed
         },
         error => {
@@ -76,19 +77,6 @@ export class SupplierComponent {
     }
    
 
-  //to delete
-    // deleteUser(index: number) {
-    //   this.supplierservice.deleteUser(index).subscribe(
-    //     response => {
-    //       console.log('Supplier deleted successfully:', response);
-    //       // Reload users after deletion
-    //       this.loadUsers();
-    //     },
-    //     error => {
-    //       console.error('Error deleting user:', error);
-    //     }
-    //   );
-    // }
 
     softDeleteUser(outerIndex: number, innerIndex: number): void {
       console.log('Deleting user at indices:', outerIndex, innerIndex);
@@ -99,6 +87,7 @@ export class SupplierComponent {
         this.supplierservice.deleteUser(outerIndex).subscribe(
           () => {
             console.log('User deleted successfully');
+            alert("supplier deleted successfully" );
           },
           error => {
             console.error('Error deleting user:', error);

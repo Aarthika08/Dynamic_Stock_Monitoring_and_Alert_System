@@ -82,8 +82,12 @@ export class UserComponent implements OnInit {
   }
 
   updateUser(index: number, updatedUserData: any): void {
-    if (this.userForm.invalid) {
+    if (this.updatedUserData.invalid) {
       alert('Invalid! Please check your fields.');
+      return;
+    }
+    if (!/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z\d]).{8,}$/.test(updatedUserData.password)) {
+      alert('Invalid password! Please follow the password pattern.');
       return;
     }
     if (updatedUserData.password !== this.users[index][0].password) {
@@ -96,9 +100,11 @@ export class UserComponent implements OnInit {
     this.userService.updateUser(index, updatedUserData).subscribe(
       response => {
         console.log('User updated successfully:', response);
+        alert('User updated successfully');
         // Handle any action after successful update if needed
       },
       error => {
+        alert('Invalid! Please check your fields.');
         console.error('Error updating user:', error);
         // Handle error if needed
       }
@@ -112,19 +118,7 @@ export class UserComponent implements OnInit {
 
 
   
-//to delete
-  // deleteUser(index: number) {
-  //   this.userService.deleteUser(index).subscribe(
-  //     response => {
-  //       console.log('User deleted successfully:', response);
-  //       // Reload users after deletion
-  //       this.loadUsers();
-  //     },
-  //     error => {
-  //       console.error('Error deleting user:', error);
-  //     }
-  //   );
-  // }
+
 
   fetchUsers(): void {
     this.userService.getUsers().subscribe(
@@ -140,17 +134,7 @@ export class UserComponent implements OnInit {
   
 
   
-  
-  // softDeleteUser(userId: number): void {
-    // softDeleteUser(outerIndex: number, innerIndex: number): void {
-    //   this.users[outerIndex][innerIndex][0].deleted = true;}
 
-    // const index = this.users.findIndex(user => user.id === outerIndex);
-    // if (index !== -1) {
-      // this.users.splice(index, 1);
-      // this.users[outerIndex].splice(innerIndex, 1);
-
-   // }
    softDeleteUser(outerIndex: number, innerIndex: number): void {
     console.log('Deleting user at indices:', outerIndex, innerIndex);
     if (this.users[outerIndex] && this.users[outerIndex][0]) {
@@ -160,6 +144,7 @@ export class UserComponent implements OnInit {
       this.userService.deleteUser(outerIndex).subscribe(
         () => {
           console.log('User deleted successfully');
+          alert('Deleted successfully');
         },
         error => {
           console.error('Error deleting user:', error);

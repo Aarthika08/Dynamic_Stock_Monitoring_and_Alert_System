@@ -3,7 +3,7 @@
   <div>
     <label>Name:</label>
     <input type="text" formControlName="name" placeholder="Enter your name!">
-    <small *ngIf="userForm.get('name')?.hasError('required') && userForm.get('name')?.touched">
+    <small *ngIf="userForm.get('name')?.hasError('required') && userForm.get('name')?.touched" class="error-message">
       Name is required.
     </small>
   </div>
@@ -15,24 +15,24 @@
       {{ errorMessage }}
     </small>  
 
-    <small *ngIf="userForm.get('email')?.hasError('required') && userForm.get('email')?.touched">
+    <small  *ngIf="userForm.get('email')?.hasError('required') && userForm.get('email')?.touched" class="error-message">
       Email is required.
     </small>
-    <small *ngIf="userForm.get('email')?.hasError('email') && userForm.get('email')?.touched">
+    <small  *ngIf="userForm.get('email')?.hasError('email') && userForm.get('email')?.touched" class="error-message">
       Invalid email address.
     </small>
 </div>
   <div>
     <label>Product:</label>
     <input type="text" formControlName="product" placeholder="Enter your Product!">
-    <small *ngIf="userForm.get('product')?.hasError('required') && userForm.get('product')?.touched">
+    <small  *ngIf="userForm.get('product')?.hasError('required') && userForm.get('product')?.touched" class="error-message">
       product is required.
     </small>
   </div>
   <div>
     <label>Username:</label>
     <input type="text" formControlName="username" placeholder="Enter your Username!">
-    <small *ngIf="userForm.get('username')?.hasError('required') && userForm.get('username')?.touched">
+    <small *ngIf="userForm.get('username')?.hasError('required') && userForm.get('username')?.touched" class="error-message">
       username is required.
     </small>
   </div>
@@ -40,7 +40,7 @@
     <label>Password:</label>
     <input type="password" placeholder="Enter your Password!" formControlName="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
 
-    <small *ngIf="userForm.get('password')?.hasError('password') && userForm.get('password')?.touched">
+    <small *ngIf="userForm.get('password')?.hasError('required') && userForm.get('password')?.touched" class="error-message">
       Password is required.
       Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character.
     </small>

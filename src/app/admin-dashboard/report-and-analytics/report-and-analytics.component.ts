@@ -246,27 +246,35 @@ ngAfterViewInit(): void {
                 }]
             },
             options: {
-                plugins: {
-                    legend: {
-                        labels: {
-                            color: 'Black' // Change text color here
-                        }
-
-                    },
-                    tooltip: {
-                        bodyColor: 'black' // Change tooltip text color here
+              plugins: {
+                legend: {
+                    labels: {
+                        color: 'Black' // Change text color here
                     }
                 },
-                scales: {
-                    y1: {
-                        type: 'linear',
-                        display: true,
-                        position: 'left',
-                        beginAtZero: true,
-                        ticks: {
-                            color: 'black' // Change y-axis label text color here
+                tooltip: {
+                    bodyColor: 'black', // Change tooltip text color here
+                    callbacks: {
+                        label: function(context: any) {
+                            return context.dataset.label + ': ' + context.formattedValue; // Set color of data values to black
                         }
-                    },
+                    }
+                }
+            },
+                scales: {
+                  x: {
+                    ticks: {
+                        color: 'black' // Change x-axis label text color here
+                    }
+                },
+                     y: {
+            type: 'linear',
+            display: true,
+            position: 'left',
+            beginAtZero: true,
+            ticks: {
+                color: 'black' // Change y-axis label text color here
+            }},
                     y2: {
                         type: 'linear',
                         display: true,
@@ -275,8 +283,8 @@ ngAfterViewInit(): void {
                             drawOnChartArea: false,
                         },
                         ticks: {
-                            color: 'black' // Change y-axis label text color here
-                        }
+                          color: 'black' // Change y-axis label text color here
+                      }
                     },
                 },
 

@@ -1,42 +1,29 @@
-/* #host {
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-start;
-    margin-top: 20px; 
-    margin-right: 20px; 
-   
-  } */
-
-  /* .mat-mdc-dialog-container .mdc-dialog__container {
-    transition-duration: var(--mat-dialog-transition-duration, 0ms);
-    width: 183px;
-    margin: -60px;
-    padding: -18px;
-    height: 192px;
-  }
-  .mat-mdc-dialog-container, .mat-mdc-dialog-container .mdc-dialog__container, .mat-mdc-dialog-container .mdc-dialog__surface {
-    max-height: max-content;
-    min-height: max-content;
-    min-width: 185px;
-    max-width: max-content;
-  } */
 
 
-  /* user.component.css */
-  *{
+  /* *{
     margin: 28px 48px;
     margin-left: 18px;
-    padding: 0px;  }
+    padding: 0px;  } */
+    *{
+      
+      padding: 0px;
+      
+      margin: 21px -1px;
+    padding-right: 11px;
+    padding-left: 11px;
+    
+     }
 table {
   width: 100%;
   border-collapse: collapse;
   table-layout: auto;
-  font-size: 24px;
+  font-size: 15px;
+  box-shadow: 0 14px 18px rgba(0, 0, 0, 0.9); /* Add box shadow */
 }
 
 th, td {
   border: 3px solid #070707;
-  padding: 15px;
+  padding: 1px;
   text-align: center;
 
 }
@@ -70,5 +57,9 @@ tr:hover {
   cursor: pointer;
   background-color: black;
   color: white;
-  width: 86px;
+  width: 55px;
+}
+
+.error-message {
+  color: red;
 }

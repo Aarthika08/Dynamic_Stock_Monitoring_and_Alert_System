@@ -95,12 +95,14 @@ isDateInvalid: boolean = false;
       // Call service method to add outgoing stock
       this.outgoingStockService.addOutgoingStock(formData).subscribe(
         response => {
-          console.log('Outgoing stock added successfully:', response);
+          console.log('stock dispatch  successfully:', response);
+          alert('stock dispatch successfully');
           this.outgoingStockForm.reset(); // Reset the form after successful submission
           this.errorMessage = null;
         },
         error => {
           console.error('Failed to add outgoing stock:', error);
+          alert('Failed to stock patch');
           this.errorMessage = error; // Display error message
         }
       );

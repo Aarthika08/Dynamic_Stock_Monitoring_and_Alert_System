@@ -43,20 +43,22 @@ tr:hover {
 
 .newuser{
   text-align: center;
-  width: 130px !important;
+   width: 130px !important;
   height: 45px;
-  border-radius: 50px;
+  border-radius: 50px!important;
   float: inline-end;
 }
 
 
-[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+/* [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) { */
+  button:not(:disabled) {
+
   cursor: pointer;
   background-color: black;
   color: white;
   width: 60px;
     border-radius: 55%;
-    text-align: end;
+    text-align: right;
 }
 
 #heading{

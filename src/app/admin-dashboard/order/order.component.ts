@@ -14,7 +14,7 @@ export class OrderComponent implements OnInit{
   
   orders: any[] = [];
 
-  displayedColumns: string[] = ['order_id','customer_id', 'stock_name', 'order_date', 'order_status','price','stock_quantity','product_name','single_quantity_price','total_price'];
+  displayedColumns: string[] = ['order_id','customer_id', 'stock_name', 'order_date', 'order_status','price','stock_quantity','product_name','total_price'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator?: MatPaginator ;

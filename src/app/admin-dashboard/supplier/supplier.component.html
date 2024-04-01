@@ -6,8 +6,11 @@
   </head>
 <body>
   <button class="newuser" (click)="openAddUserDialog()">Add supplier</button>
-<div>
-  <h2 style="margin: 27px !important; font-size:36px !important">Supplier List</h2>
+<div style=" border-radius: 50px;">
+  <h2 style=" float: inline-start !important;
+  margin: inherit !important;
+  padding: 12px 51px !important;
+  font-size: 30px !important;">Supplier List</h2>
   
   <table>
     <caption></caption>
@@ -29,8 +32,8 @@
           <td>{{ user.product }}</td>
           <td>{{ user.username }}</td>
           <td>
-            <button  (click)="editUser(i)"><i class="fas fa-edit fa-2x"></i></button>
-            <button (click)="softDeleteUser(i, j)"><i class="fas fa-trash fa-2x"></i></button>
+            <button  (click)="editUser(i)"><i class="fas fa-edit fa-1x"></i></button>
+            <button (click)="softDeleteUser(i, j)"><i class="fas fa-trash fa-1x"></i></button>
           </td>
         </tr>
       </ng-container>
