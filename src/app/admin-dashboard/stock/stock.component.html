@@ -32,7 +32,10 @@
   No data available.
 </div>
 </div> -->
-<div class="stocks"> 
+
+
+
+<!-- <div class="stocks"> 
   <h1>Stocks</h1>
   <div class="grid-container"  *ngIf="stockList.length > 0"> 
     <angular-slickgrid grid="grid" style="background-color: black;" gridId="grid1" [columnDefinitions]="columnDefinitions" 
@@ -47,8 +50,49 @@
     No data available.
   </div>
   </div>
-  
+   -->
 
   
 
     
+<!-- manage-asset.component.html -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-9">
+      <div class="heading">
+        <h2>Stock List</h2>
+      </div>
+      <div class="search-container">
+        <input type="text" [(ngModel)]="searchQuery" placeholder="Search...">
+        
+        <select [(ngModel)]="selectedFilterType">
+         
+          <option value="id">id</option>
+          <option value="itemName">itemName</option>
+          <option value="itemDescription">itemDescription</option>
+          <option value="itemCategory"> itemCategory</option>
+          
+        </select>
+        <button (click)="applyFilter()">Search</button>
+      </div>
+    </div>
+  </div>
+
+<br>
+  <!-- <div id="demo" *ngIf="stockList.length > 0"> 
+    <angular-slickgrid  gridId="grid1" [columnDefinitions]="columnDefinitions" 
+      [gridOptions]="gridOptions" [dataset]="dataset"  
+      ></angular-slickgrid>
+  </div> -->
+  <div  *ngIf="stockList.length > 0"> 
+    <angular-slickgrid   gridId="grid1" [columnDefinitions]="columnDefinitions" 
+      [gridOptions]="gridOptions" [dataset]="dataset"  >
+    
+    </angular-slickgrid>
+
+      
+  </div>
+  <div *ngIf="stockList.length === 0"> 
+    No data available.
+  </div>
+</div>
