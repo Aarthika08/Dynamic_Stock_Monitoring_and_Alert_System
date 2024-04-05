@@ -87,7 +87,8 @@ export class MonitorOrderComponent implements OnInit {
     for (let order of this.orderslist) {
       overallCostPrice += (order.single_quantity_price*order.stock_quantity);
     }
-    return overallCostPrice;
+    // return overallCostPrice;
+    return parseFloat(overallCostPrice.toFixed(2));
   }
   calculateOverallquantity(): number {
     let overallpo = 0;
@@ -97,3 +98,4 @@ export class MonitorOrderComponent implements OnInit {
     return overallpo;
   }
 }
+

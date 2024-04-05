@@ -46,7 +46,7 @@ tr:hover {
   flex-direction: column;
   position: relative; 
   border: 2px solid #ccc;
-  border-radius: 8px;
+  /* border-radius: 8px; */
   padding: 7px;
   text-align: center;
   background-color: #f0f0f0; 

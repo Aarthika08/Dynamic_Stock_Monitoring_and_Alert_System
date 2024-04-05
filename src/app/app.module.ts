@@ -13,13 +13,12 @@ import { DynamicModule } from './dynamic/dynamic.module';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 
-import {slickgridComponent} from './slickgrid/slickgrid.component';
 import { AngularSlickgridModule } from 'angular-slickgrid';
 
 
 @NgModule({
   declarations: [
-    AppComponent,LoginComponent,slickgridComponent
+    AppComponent,LoginComponent
   ],
   imports: [
     BrowserModule,

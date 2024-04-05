@@ -198,7 +198,7 @@ export class IncomingStockService {
               quantity: userDetails.quantity
             });
             if (userDetails.quantity >= 1) {
-              stockArray[i].status = 'inStock';
+              stockArray[i].status = 'instock';
             }
             itemFound = true;
             break;

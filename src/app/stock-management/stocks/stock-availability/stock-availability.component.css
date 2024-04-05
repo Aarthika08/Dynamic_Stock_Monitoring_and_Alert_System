@@ -45,4 +45,9 @@ table {
     border-radius: 40px;
     /* width: 60px; */
   }
-  
+  .outOfStock{
+    background-color: red;
+    color: white;    
+    border-radius: 40px;
+    /* width: 60px; */
+  }

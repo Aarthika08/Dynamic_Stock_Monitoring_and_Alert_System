@@ -1,61 +1,4 @@
 
-
-<!-- <div *ngIf="error">Error: {{ error }}</div>
-<div *ngIf="stockList">
-  <h2>Stock List</h2>
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Item Name</th>
-        <th>Description</th>
-        <th>Category</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let i of stockList">
-        <td>{{ i.id }}</td>
-        <td>{{ i.itemName }}</td>
-        <td>{{ i.itemDescription }}</td>
-        <td>{{ i.itemCategory }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div> -->
-<!-- <div class="stocks"> 
-<div class="grid-container"  *ngIf="stockList.length > 0"> 
-  <angular-slickgrid style="background-color: black;" gridId="grid1" [columnDefinitions]="columnDefinitions" 
-    [gridOptions]="gridOptions" [dataset]="dataset"  ></angular-slickgrid>
-</div>
-
-<div *ngIf="stockList.length === 0"> 
-  No data available.
-</div>
-</div> -->
-
-
-
-<!-- <div class="stocks"> 
-  <h1>Stocks</h1>
-  <div class="grid-container"  *ngIf="stockList.length > 0"> 
-    <angular-slickgrid grid="grid" style="background-color: black;" gridId="grid1" [columnDefinitions]="columnDefinitions" 
-      [gridOptions]="gridOptions" [dataset]="dataset"  >
-    
-    </angular-slickgrid>
-
-      
-  </div>
-  
-  <div *ngIf="stockList.length === 0"> 
-    No data available.
-  </div>
-  </div>
-   -->
-
-  
-
-    
-<!-- manage-asset.component.html -->
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-9">
@@ -79,11 +22,7 @@
   </div>
 
 <br>
-  <!-- <div id="demo" *ngIf="stockList.length > 0"> 
-    <angular-slickgrid  gridId="grid1" [columnDefinitions]="columnDefinitions" 
-      [gridOptions]="gridOptions" [dataset]="dataset"  
-      ></angular-slickgrid>
-  </div> -->
+ 
   <div  *ngIf="stockList.length > 0"> 
     <angular-slickgrid   gridId="grid1" [columnDefinitions]="columnDefinitions" 
       [gridOptions]="gridOptions" [dataset]="dataset"  >

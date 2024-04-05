@@ -125,6 +125,8 @@ h2 {
     margin-bottom: 10px;
     background-color: white; 
     color:rgb(12, 11, 11);
+    display: inline-block;
+    margin-right: 10px; 
 }
 button{
   background: rgb(74, 74, 168)!important;
@@ -165,14 +167,7 @@ tbody tr:nth-child(even) {
 }
 
 
-/* Add the following styles to your existing CSS */
-/* 
-.table-container {
-  overflow-x: auto;
-} */
 
-
-/* Add the following styles to your existing CSS */
 
 .search-bar {
   margin-bottom: 20px; /* Adjust the margin as needed */
@@ -194,6 +189,8 @@ select, input {
 .search-container {
   display: flex;
   align-items: center;
+  display: inline-block;
+
 }
 
 .search-container input[type="text"],
@@ -217,14 +214,14 @@ select, input {
   background-color: #45a049;
 }
 /* Align the heading and search container in the same line */
-.heading {
+/* .heading {
   display: inline-block;
   margin-right: 10px; 
-}
+} */
 
-.search-container {
+/* .search-container {
   display: inline-block;
-}
+} */
 
 .heading h2 {
   margin-bottom: 0;

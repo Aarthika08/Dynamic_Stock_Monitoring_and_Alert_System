@@ -10,7 +10,7 @@ import { AdminAuthGuard } from './admin-dashboard/admin-auth.guard';
 import {stockAuthGuard} from './stock-management/stock-auth.guard';
 import {DynamicComponent} from './dynamic/dynamic.component';
 import {RealAuthGuard} from './dynamic/real-auth.guard';
-import {slickgridComponent} from './slickgrid/slickgrid.component';
+// import {slickgridComponent} from './slickgrid/slickgrid.component';
 const routes: Routes = [
   // { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'dynamic', component: DynamicComponent,canActivate: [RealAuthGuard]  }, 
   // { path: 'dynamic', component: DynamicComponent  },
   
-  { path: 'slickgrid', component: slickgridComponent  },
+  // { path: 'slickgrid', component: slickgridComponent  },
 
   { path: '', redirectTo: '/login', pathMatch: 'full' }, // Redirect to login page by default
 ];

@@ -3,8 +3,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StockService } from './stockservice';
 
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import {  FormGroup } from '@angular/forms';
 
 import {
   AngularGridInstance,
@@ -57,68 +56,9 @@ export class StockComponent implements OnInit {
     this.fetchStockData();
   
 
-  // this.gridOptions = {
-  //   enableAutoResize: true,
-  //   autoHeight: true, 
-  //   enableCellNavigation: true,
-  //   enableSorting: true,
-  //   showHeaderRow: true,
-  //   headerRowHeight: 30, 
-  //   rowHeight: 40, 
-  // };
 }
 
-  // fetchStockData(): void {
-  //   this.stockService.getStockList().subscribe(data => {
-  //     this.stockList = data.stocklist;
-  //     console.log(this.stockList);  
-
- 
-  //     this.columnDefinitions = [
-  //       { id: 'id', name: 'S.No', field: 'id', sortable: true, maxWidth: 50 },
-  //       { id: 'itemName', name: 'Name', field: 'itemName', sortable: true, maxWidth: 700 },
-  //       { id: 'itemDescription', name: 'Description', field: 'itemDescription', sortable: true, maxWidth: 700 },
-  //       { id: 'itemCategory', name: 'Category', field: 'itemCategory', sortable: true,maxWidth: 700 },
-        
-  //     ];
-      
-
-  //     // Populate dataset dynamically
-  //     this.dataset = this.stockList.map((registration, index) => ({
-  //       id: index + 1,
-  //       itemName: registration.itemName,
-  //       itemDescription: registration.itemDescription,
-  //       itemCategory:registration.itemCategory,
-       
-  //     }));
-
-  //     // Set grid options
-  //     this.gridOptions = {
-  //       enableAutoResize: true,
-  //       enableCellNavigation: true,
-  //       enableSorting: true,
-  //       autoHeight: true, // Disable autoHeight to enable vertical scrolling
-  //       explicitInitialization: true, // Explicit initialization is needed when using autoHeight or virtual scrolling
-  //       showHeaderRow: true, // Show header row if needed
-  //       headerRowHeight: 10, // Adjust header row height as needed
-  //       rowHeight: 40, // Adjust row height as needed
-  //       enableAsyncPostRender: true, // Enable async post render if needed
-  //       enableVirtualRendering: true ,
-  //       gridwidth:10,
-  //       autoResize: {
-  //         maxWidth: 700,// container DOM selector
-  //       },
-  //       headerRowBackgroundColor: 'purple', // Set header row background color
-  //       headerRowTextColor: 'orange' // Set header row text color
-  //     };
-
-    
-  //   });
-
-  //   }
-
-  //filter to be added 
-  fetchStockData(): void {
+   fetchStockData(): void {
       this.stockService.getStockList().subscribe(data => {
         this.stockList = data.stocklist;
         console.log(this.stockList);  
@@ -150,7 +90,6 @@ export class StockComponent implements OnInit {
 
           return this.fieldValueString==this.searchQueryLower;
         
-        return false; 
       });
     } 
     this.stockList=this.filteredDataset
@@ -170,26 +109,8 @@ export class StockComponent implements OnInit {
     
 
 
-// this.dataset = this.page1Data.map((registrationArray, index) => {
-// const registration = registrationArray[0];
-// return {
-// id: index + 1,
-// landArea: registration ? registration.landArea : "", 
-// State: registration ? registration.state : "",
-// District: registration ? registration.selectedDistrict : "",
-// Taluk: registration ? registration.selectedTaluk : "",
-// Ward: registration ? registration.ward : "",
-// SurveyNumber: registration ? registration.surveyNumber : "",
-// SubdivisionNumber: registration ? registration.subdivisionNumber : "",
-// typeOfOwnership: registration ? registration.ownership : "",
-// LandUseType: registration ? registration.landUseType : "",
-
-// };
-// });
 this.dataset = this.stockList.map((registration, index) => ({
-  //  this.dataset = this.page1Data.map((registrationArray, index) => {
-  //   const registration = registrationArray[0];
-  //   return {
+  
         id: index + 1,
         itemName: registration? registration.itemName:"",
         itemDescription:  registration? registration.itemDescription:"",

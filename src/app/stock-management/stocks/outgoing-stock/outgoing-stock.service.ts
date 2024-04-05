@@ -55,7 +55,7 @@ export class OutgoingStockService {
   
             // Update status if quantity becomes zero
             if (stockArray[i].quantity === 0) {
-              stockArray[i].status = 'outOfStock';
+              stockArray[i].status = 'Out of Stock';
             }
   
             itemFound = true;
