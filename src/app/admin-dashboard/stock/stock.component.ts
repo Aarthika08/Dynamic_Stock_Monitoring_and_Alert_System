@@ -77,11 +77,11 @@ export class StockComponent implements OnInit {
   applyFilter() {
     if (this.selectedFilterType && this.searchQuery) {
       this.filteredDataset = this.stockList.filter(data => {
-        const fieldValue = data[0][this.selectedFilterType];
+        
        
         
       
-          console.log("value",data[0][this.selectedFilterType])
+          console.log("value",data[0][this.selectedFilterType])// const fieldValue = data[0][this.selectedFilterType];
 
         
             this.fieldValueString = data[0][this.selectedFilterType].toString().toLowerCase();

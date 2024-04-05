@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StockListComponent } from './stock-list/stock-list.component';
-import { MonitorOrderComponent } from './monitor-order/monitor-order.component';
 import { PlaceOrderComponent } from './place-order/place-order.component';
 import { ShipmentsComponent } from './shipments/shipments.component';
 import {StockManagementComponent} from './stock-management.component'
@@ -24,6 +23,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { GraphDialogComponent } from './stock-list/graph-dialog/graph-dialog.component';
+import { MonitorOrderComponent } from './monitor-order/monitor-order.component';
 
 
 @NgModule({

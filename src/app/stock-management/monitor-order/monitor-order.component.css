@@ -45,14 +45,13 @@ tr:hover {
   display: flex;
   flex-direction: column;
   position: relative; 
-  border: 2px solid #ccc;
-  /* border-radius: 8px; */
+  border: 2px solid #ccc;  
   padding: 7px;
   text-align: center;
   background-color: #f0f0f0; 
   width: 134px;
   height: 94px;
-  border-radius: 24px;
+  border-radius: 24px;/* border-radius: 8px; */
  margin-right: 20px;
  margin-left: 20px;
 

@@ -1,70 +1,9 @@
-/* 
-.stock-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .stock-item {
-    background-color: #f9f9f9;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 15px;
-  }
-  
-  .stock-item h3 {
-    margin-top: 0;
-  }
-  
-  .stock-item p {
-    margin-bottom: 5px;
-  }
-  
-  .stock-item .category {
-    font-style: italic;
-    color: #888;
-  }
-  table {
-    border-collapse: collapse;
-    table-layout: auto;
-  }
-  
-  th, td {
-    border: 1px solid #070707;
-    padding: 2px;
-    text-align: left;
-  }
-  
-  th{
-    background-color: #070707;
-    color: #fff;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
-  tr:nth-child(odd) {
-    background-color: #b9bbba;
-  }
-  
-  tr:hover {
-    background-color: #dddddd;
-  }
-  
-  */
 
-  /* Override Angular-Slickgrid styles */
-
-
-
-/* Stock Component Styles */
 :root {
   --cell-odd-background-color: lightyellow;
   --row-mouse-hover-color: lightgreen;
 }
 
-/* Import the required SCSS file */
-/* @import url('https://cdn.jsdelivr.net/npm/slickgrid-universal@3.2.2/common/dist/styles/css/slickgrid-theme-bootstrap.min.css'); */
 
 @import url('@slickgrid-universal/common/dist/styles/css/slickgrid-theme-bootstrap.css');  
 /* Override the styles */
@@ -88,8 +27,6 @@ background-color: rgb(255, 30, 0) !important;
 }
 
 
-/* css */
-/* stock.component.css */
 .grid-container {
   margin: 20px; 
   padding: 10px; 
@@ -98,19 +35,15 @@ margin-top:40px;
 border-radius: 10px;
 }
 
-/* Optionally, you can style rows or cells if needed *//* stock.component.css */
 .slick-header-column {
   background-color: #f80a0a;
   color: #fff; /* Optionally, change text color */
 }
 
 
-/* css */
-/* manage-asset.component.css */
 
 .container-fluid {
   margin: 20px;
-  /* margin-left: 474px; */
   margin-left:10px;
 }
 
@@ -187,9 +120,10 @@ select, input {
 
 
 .search-container {
-  display: flex;
+ 
+   display: flex;    /* display: inline-block; */
+
   align-items: center;
-  display: inline-block;
 
 }
 
@@ -213,15 +147,6 @@ select, input {
 .search-container button:hover {
   background-color: #45a049;
 }
-/* Align the heading and search container in the same line */
-/* .heading {
-  display: inline-block;
-  margin-right: 10px; 
-} */
-
-/* .search-container {
-  display: inline-block;
-} */
 
 .heading h2 {
   margin-bottom: 0;
