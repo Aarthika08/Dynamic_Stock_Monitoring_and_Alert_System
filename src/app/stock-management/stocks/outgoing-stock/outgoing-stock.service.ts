@@ -81,5 +81,19 @@ export class OutgoingStockService {
       })
     );
   }
+ 
   
+
+
+  getStockDetails(itemId: number): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Basic ' + btoa('admin:admin')
+      })
+    };
+  
+    return this.http.get<any>(this.apiUrl, httpOptions)
+    // return this.http.get<any>(`/api/stock/${itemId}`);
+  }
 }

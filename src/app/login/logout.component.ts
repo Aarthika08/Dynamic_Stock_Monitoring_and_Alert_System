@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import {LogoutService} from './logout.service';
 
 @Component({
   selector: 'app-logout',
@@ -7,16 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(private logoutService: LogoutService,private router: Router) { }
 
+  // ngOnInit(): void {
+  //   sessionStorage.clear(); // Clear session data
+
+  //   history.pushState(null, '', '/login');
+
+  //   window.location.href = '/login';
+  // }
   ngOnInit(): void {
-    // Perform logout actions (clear session, tokens, etc.)
-    sessionStorage.clear(); // Clear session data
-
-    // Manipulate browser history to prevent back navigation to authenticated pages
-    history.pushState(null, '', '/login');
-
-    // Redirect to the login page
-    window.location.href = '/login';
+    this.logout();
+    window.history.pushState(null, '', window.location.href);
+    window.onpopstate = function () {
+      window.history.pushState(null, '', window.location.href);
+    };
   }
+  logout(): void {
+    this.logoutService.logout();
+  }
+
+
 }

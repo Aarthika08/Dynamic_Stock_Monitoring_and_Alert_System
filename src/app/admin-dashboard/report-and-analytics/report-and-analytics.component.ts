@@ -1,9 +1,8 @@
-import { Component, OnInit, AfterViewInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit,ElementRef, ViewChild } from '@angular/core';
 import { DataService } from '../dashboard/data.service';
 
 import { ReportService } from '../report-and-analytics/report.service';
 import Chart from 'chart.js/auto';
-// import { Chart } from 'chart.js/auto';
 
 
 @Component({
@@ -25,12 +24,10 @@ export class ReportAndAnalyticsComponent implements OnInit  {
 ngOnInit(): void {
 
 
-  // Fetch orders data
   this.reportService.getOrderReport().subscribe(
     (response: any) => {
-      if (response && Array.isArray(response.orderslist)) {
-        this.ordersData = response.orderslist;
-        // console.log(this.ordersData);
+      if (response && Array.isArray(response.order)) {
+        this.ordersData = response.order;
 
         this.updateOrdersDonutChart();  
       } else {
@@ -55,39 +52,13 @@ ngAfterViewInit(): void {
 
 }
   updateOrdersDonutChart() {
-  //   this.reportService.getOrderReport().subscribe(
-  //     (data: any) => {
-  //       if (data && data.orderslist) {
-  //         const stockMap = new Map();
-  //         data.orderslist.forEach((order: any) => {
-  //           const stockName = order.product_name;
-  //           const price = order.stock_quantity>5;
-  //           if (stockMap.has(stockName)) {
-  //             stockMap.set(stockName, stockMap.get(stockName) + price);
-  //           } else {
-  //             stockMap.set(stockName, price);
-  //           }
-  //         });
   
-  //         const labels = Array.from(stockMap.keys());
-  //         const dataValues = Array.from(stockMap.values());
-          
-  //         this.drawnewChart(labels, dataValues);
-  //       } else {
-  //         console.error('Invalid data format. Expected orderslist array.');
-  //       }
-  //     },
-  //     (error) => {
-  //       console.error('Error loading orders:', error);
-  //     }
-  //   );
-  // }
-  
+   
   this.reportService.getOrderReport().subscribe(
     (data: any) => {
-      if (data && data.orderslist) {
+      if (data && data.order) {
         const stockMap = new Map();
-        data.orderslist.forEach((order: any) => {
+        data.order.forEach((order: any) => {
           const stockName = order.product_name;
           const price = order.stock_quantity > 10 ? order.price : 0; // Use order price only if stock quantity > 5
           if (stockMap.has(stockName)) {

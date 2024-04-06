@@ -109,9 +109,9 @@ p2='';
 loadChartData(): void {
   this.orderService.getAllOrders().subscribe(
     (data: any) => {
-      if (data && data.orderslist) {
+      if (data?.order) {
         const stockMap = new Map();
-        data.orderslist.forEach((order: any) => {
+        data.order.forEach((order: any) => {
           const stockName = order.stock_name;
           const quantity = order.stock_quantity;
           if (stockMap.has(stockName)) {
@@ -193,7 +193,7 @@ RandomColors({ count }: { count: number; }): string[] {
 fetchLast5Items(): void {
   this.dataService.getLast5Items().subscribe(
     (data: any) => {
-      if (data && data.stocklist) {
+      if (data?.stocklist) {
         data.stocklist.sort((a: any, b: any) => new Date(b.order_date).getTime() - new Date(a.order_date).getTime());
         this.items = data.stocklist.slice(0, 5);
       } else {

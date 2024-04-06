@@ -18,12 +18,29 @@
         </select>
         <button (click)="applyFilter()">Search</button>
       </div>
+      <div *ngIf="filteredDataset.length > 0">
+        <h3>Filtered Search Results:</h3>
+        <ul>
+          <li *ngFor="let item of filteredDataset">
+            <strong>Item Name:</strong> {{ item.itemName }} <br>
+            <strong>Item Description:</strong> {{ item.itemDescription }} <br>
+            <strong>Item Category:</strong> {{ item.itemCategory }} <br>
+            <!-- Add other properties as needed -->
+          </li>
+        </ul>
+      </div>
+    
+      <!-- If no filtered results -->
+      <div *ngIf="filteredDataset.length === 0 && searchQuery">
+        No matching results found.
+      </div>
     </div>
   </div>
 
 <br>
  
-  <div  *ngIf="stockList.length > 0"> 
+  <!-- <div  *ngIf="stockList.length > 0">  -->
+    <div *ngIf="stockList && stockList.length > 0">
     <angular-slickgrid   gridId="grid1" [columnDefinitions]="columnDefinitions" 
       [gridOptions]="gridOptions" [dataset]="dataset"  >
     

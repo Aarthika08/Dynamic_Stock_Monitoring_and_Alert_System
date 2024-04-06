@@ -11,27 +11,11 @@ import { StockComponent } from './stock/stock.component';
 import { ReportAndAnalyticsComponent } from './report-and-analytics/report-and-analytics.component';
 import { LogoutComponent } from '../login/logout.component';
 
-const routes: Routes = [
-  // {
-    // path: '',
-    // component: AdminDashboardComponent,
-    // children: [
-    //   { path: 'dashboard', component: DashboardComponent ,outlet:'main'},
-    //   { path: 'users', component: UserComponent },
-    //   { path: 'supplier', component: SupplierComponent },
-    //   { path: 'products', component: ProductComponent },
-    //   { path: 'orders', component: OrderComponent },
-    //   { path: 'stock', component: StockComponent },
-    //   { path: 'reportandanalytics', component: ReportAndAnalyticsComponent },
 
-    //   // Add more routes as needed
-    //   { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
-    // ]
-  // }
+const routes: Routes = [
+
   {
-    path: '',
-    component: AdminDashboardComponent,
-    children: [
+    path: '',    component: AdminDashboardComponent,children: [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent },
       { path: 'user', component: UserComponent },
@@ -47,6 +31,23 @@ const routes: Routes = [
     ]
   }
 ];
+// const routes: Routes = [
+//   {
+//     path: '', component: AdminDashboardComponent, children: [
+//       { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+// { path: 'dashboard', component: DashboardComponent },
+// { path: 'user', component: UserComponent },
+//       { path: 'dashboard', component: SupplierComponent },
+//       { path: 'monitororder', component: OrderComponent },
+//       { path: 'placeorder', component: StockComponent },
+//       { path: 'shipments', component: ReportAndAnalyticsComponent },
+//      
+//       { path: 'logout', component: LogoutComponent },
+  
+    
+//     ]
+//   }
+// ];
 
 
 @NgModule({

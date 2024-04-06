@@ -28,7 +28,7 @@ export class OrderComponent implements OnInit {
     };
 
     this.http.get<any>(apiUrl, httpOptions).subscribe(data => {
-      this.orderslist = data.orderslist;
+      this.orderslist = data.order;
       this.drawGraphsForOrders();
     });
   }
@@ -47,8 +47,7 @@ export class OrderComponent implements OnInit {
 
       const ctx = canvas.getContext('2d');
       if (ctx) {
-        // const labels = ['Price', 'Quantity']; // Labels for price and quantity
-        // const data = [order.price, order.stock_quantity]; // Data for price and quantity
+       
         const labels = ['Price','Quantity'];
         const data =[order.price, order.stock_quantity]; 
         new Chart(ctx, {

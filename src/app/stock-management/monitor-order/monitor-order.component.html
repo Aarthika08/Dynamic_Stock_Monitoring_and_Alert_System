@@ -5,7 +5,8 @@
     
       <div class="user-box" style="background-color: rgb(204, 60, 60);">
         <h2 style="font-size: 19px;">Orders</h2>
-        <div class="user-count">{{ orderslist.length }}</div>
+        <div class="user-count">{{ order.length }}</div>
+
       </div>
       <div class="user-box" style="background-color: rgb(118, 216, 43);">
         <h2 style="font-size: 19px;">Open po cost</h2>
@@ -37,7 +38,7 @@
       </tr>
     </thead>
     <tbody>
-       <tr *ngFor="let order of orderslist let i = index">
+        <tr *ngFor="let order of order let i = index">
        <td>{{ order.order_id }}</td>
         <td>{{ order.customer_id }}</td>
         <td>{{ order.order_date }}</td>
@@ -57,6 +58,7 @@
   </div>
   <div class="children">
 <table style="margin-top: 23px;">
+  <caption> </caption>
   <th>Bullet Graph</th>
   <tbody>
       <div id="graph-container"></div>

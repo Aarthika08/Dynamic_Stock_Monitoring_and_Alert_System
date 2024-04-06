@@ -46,10 +46,7 @@
     <input type="number" id="quantity" formControlName="quantity" placeholder="Enter Quantity" class="form-control">
     <small *ngIf="(item.get('quantity')?.errors?.['required'] || item.get('quantity')?.errors?.['min']) && item.get('quantity')?.touched" class="error-message">Quantity is required and must be greater than 0.</small>
   </div>
-  <!-- <div>
-    <label for="status">Status:</label>
-    <input type="text" id="status" formControlName="status" placeholder="Enter Status">
-  </div> -->
+ 
   <div class="button-container">
     <button type="button" (click)="onCancelClick()">Cancel</button>
     <button type="submit" [disabled]="!item.valid">Submit</button>

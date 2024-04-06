@@ -14,7 +14,7 @@ export class OrderComponent implements OnInit{
   
   orders: any[] = [];
 
-  displayedColumns: string[] = ['order_id','customer_id', 'stock_name', 'order_date', 'order_status','price','stock_quantity','product_name','total_price'];
+  displayedColumns: string[] = ['order_id','customer_id', 'stock_name', 'order_date', 'price','stock_quantity','product_name','total_price'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator?: MatPaginator ;
@@ -28,9 +28,10 @@ export class OrderComponent implements OnInit{
   loadOrders(): void {
     this.orderService.getAllOrders().subscribe(
       (data: any) => {
-        if (data?.orderslist) {
-          this.orders = data.orderslist;
-          this.dataSource = new MatTableDataSource(data.orderslist);
+        
+        if (data?.order) {
+          this.orders = data.order;
+          this.dataSource = new MatTableDataSource(data.order);
           if (this.paginator) {
             this.dataSource.paginator = this.paginator;
           }

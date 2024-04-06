@@ -4,7 +4,7 @@
     <h2>Email History</h2>
    
     <table class="email-history-table">  
-        <caption>Table code here with data from emailHistory array</caption>
+        <caption></caption>
 
         <thead>
           <tr>
@@ -17,7 +17,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let email of emailHistory">
+          <tr *ngFor="let email of emailHistory"> 
+          
             <td>{{ email.prediction }}</td>
             <td>{{ email.stockName }}</td>
             <td>{{ email.sentAt }}</td>

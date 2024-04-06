@@ -8,7 +8,10 @@ import { catchError, switchMap } from 'rxjs/operators';
 })
 export class POService {
   private refreshInterval = 5000; // 5 seconds
-  private baseUrl = 'http://localhost:5984/stocks/f085ee44a498071857873126cd0066b7';
+  // private baseUrl = 'http://localhost:5984/stocks/f085ee44a498071857873126cd0066b7';
+  private baseUrl = 'http://localhost:5984/stocks/43407ead14cf09630aa0d936af030ddf';
+
+  
   private statusSubject: BehaviorSubject<string> = new BehaviorSubject<string>('Pending');
   public status$: Observable<string> = this.statusSubject.asObservable();
   private intervalSubscription!: Subscription; // Variable to store the interval subscription
@@ -109,6 +112,7 @@ export class POService {
 
     // Set the status to "Pending" before adding the order
     newOrder.order_status = 'Pending';
+    newOrder.total_price = newOrder.single_quantity_price * newOrder.stock_quantity; // Calculate total price
 
     return this.http.get<any>(this.baseUrl, httpOptions).pipe(
       switchMap((data: any) => {
@@ -123,3 +127,6 @@ export class POService {
   }
 
 }
+
+
+

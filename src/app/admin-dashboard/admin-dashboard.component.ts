@@ -1,7 +1,6 @@
 // admin-dashboard.component.ts
 
 import { Component } from '@angular/core';
-import { LogoutService } from '../login/logout.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -11,15 +10,13 @@ import { LogoutService } from '../login/logout.service';
 export class AdminDashboardComponent {
   // Component logic goes here
   sidebarOpen: boolean = false;
-  constructor(private logoutService: LogoutService) { }
+  constructor() { }
 
   toggleSidebar() {
     this.sidebarOpen = !this.sidebarOpen;
   }
 
 
-  logout(): void {
-    this.logoutService.logout();
-  }
+  
 
 }

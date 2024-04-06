@@ -11,6 +11,7 @@ import Chart from 'chart.js/auto';
 })
 export class MonitorOrderComponent implements OnInit {
   orderslist: any[] = [];
+  order: any[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -28,13 +29,18 @@ export class MonitorOrderComponent implements OnInit {
     };
 
     this.http.get<any>(apiUrl, httpOptions).subscribe(data => {
-      this.orderslist = data.orderslist;
+      // this.orderslist = data.orderslist;
+          this.order = data.order;
+
+      
       this.drawGraphsForOrders();
     });
   }
 
   drawGraphsForOrders() {
-    this.orderslist.forEach(order => {
+    // this.orderslist.forEach(order => {
+      this.order.forEach(order => {
+
       const canvas = document.createElement('canvas');
       canvas.width = 300;
       canvas.height = 49; // Adjust height for bullet graph
@@ -84,7 +90,9 @@ export class MonitorOrderComponent implements OnInit {
 
   calculateOverallCostPrice(): number {
     let overallCostPrice = 0;
-    for (let order of this.orderslist) {
+    // for (let order of this.orderslist) {
+      for (let order of this.order) {
+
       overallCostPrice += (order.single_quantity_price*order.stock_quantity);
     }
     // return overallCostPrice;
@@ -92,7 +100,9 @@ export class MonitorOrderComponent implements OnInit {
   }
   calculateOverallquantity(): number {
     let overallpo = 0;
-    for (let order of this.orderslist) {
+    // for (let order of this.orderslist) {
+           for (let order of this.order) {
+
       overallpo += order.stock_quantity;
     }
     return overallpo;

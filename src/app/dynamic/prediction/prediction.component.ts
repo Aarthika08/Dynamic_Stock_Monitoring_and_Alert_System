@@ -131,7 +131,7 @@ sendEmail(selectedPrediction: Prediction): void {
       alert("Email sent successfully");
 
          const emailData = {
-          prediction: selectedPrediction.isHighSales,
+          prediction: selectedPrediction.isHighSales?"High":"Low",
           stockName: stockDetails.itemName,
           sentAt: new Date().toISOString(), 
           subject:"Stock Prediction",
