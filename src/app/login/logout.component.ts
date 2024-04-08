@@ -11,13 +11,7 @@ export class LogoutComponent implements OnInit {
 
   constructor(private logoutService: LogoutService,private router: Router) { }
 
-  // ngOnInit(): void {
-  //   sessionStorage.clear(); // Clear session data
 
-  //   history.pushState(null, '', '/login');
-
-  //   window.location.href = '/login';
-  // }
   ngOnInit(): void {
     this.logout();
     window.history.pushState(null, '', window.location.href);

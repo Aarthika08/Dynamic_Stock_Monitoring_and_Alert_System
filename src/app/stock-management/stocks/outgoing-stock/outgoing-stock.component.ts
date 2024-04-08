@@ -38,33 +38,7 @@ insufficientStockError: boolean = false;
         this.isDateInvalid = selectedDate < currentDate;
       }
     }
-    // checkStock() {
-    //   const itemId = this.outgoingStockForm.get('itemId')?.value;
-  
-    //   if (!itemId) {
-    //     return;
-    //   }
-  
-    //   // Call the service method to get stock details
-    //   this.outgoingStockService.getStockDetails(itemId).subscribe(
-    //     (response: any) => {
-    //       const quantity = response.quantity;
-    //       const status = response.status;
-  
-    //       // Check if quantity is sufficient and status is valid
-    //       if (quantity <= this.outgoingStockForm.get('quantity')?.value && status === 'instock') {
-    //         this.insufficientStockError = false;
-    //       } else {
-    //         this.insufficientStockError = true;
-    //       }
-    //     },
-    //     (error) => {
-    //       console.error('Failed to fetch stock details:', error);
-    //       this.insufficientStockError = true;
-    //     }
-    //   );
-    // }
-    
+   
     checkStock() {
       const itemId = this.outgoingStockForm.get('itemId')?.value;
   
@@ -73,8 +47,8 @@ insufficientStockError: boolean = false;
       }
   
       // Call the service method to get stock details
-      this.outgoingStockService.getStockDetails(itemId).subscribe(
-          (response: any) => {
+      this.outgoingStockService.getStockDetails(itemId).subscribe({
+         next: (response: any) => {
               console.log('Stock details response:', response);
   
               // Assuming response is an array of stock items
@@ -84,14 +58,12 @@ insufficientStockError: boolean = false;
                   const quantity = stockItem.quantity;
                   const status = stockItem.status;
   
-                  // Get the quantity entered by the user
                   const requestedQuantity = this.outgoingStockForm.get('quantity')?.value;
   
                   console.log('Requested Quantity:', requestedQuantity);
                   console.log('Available Quantity:', quantity);
                   console.log('Status:', status);
   
-                  // Check if quantity is sufficient and status is valid
                   if (requestedQuantity <= quantity && status === 'instock') {
                       this.insufficientStockError = false; // Sufficient stock
                   } else {
@@ -102,11 +74,11 @@ insufficientStockError: boolean = false;
                   this.insufficientStockError = true; // Handle case where stock item is not found
               }
           },
-          (error) => {
+        error: (error) => {
               console.error('Failed to fetch stock details:', error);
               this.insufficientStockError = true; // Error occurred, show as insufficient stock
           }
-      );
+    });
   }
   
     
@@ -122,8 +94,8 @@ insufficientStockError: boolean = false;
       }
       const formData = this.outgoingStockForm.value;
   
-      this.outgoingStockService.addOutgoingStock(formData).subscribe(
-        response => {
+      this.outgoingStockService.addOutgoingStock(formData).subscribe({
+        next:response => {
           console.log('stock dispatch  successfully:', response);
           alert('stock dispatch successfully');
           this.outgoingStockForm.reset(); // Reset the form after successful submission
@@ -131,14 +103,14 @@ insufficientStockError: boolean = false;
           this.insufficientStockError = false;
 
         },
-        error => {
+        error:error => {
           console.error('Failed to add  stock dispatch:', error);
           alert('Failed to stock patch');
           this.insufficientStockError = true;
           this.errorMessage = error; // Display error message
         }
       
-      );
+     });
       
     }
     

@@ -12,6 +12,7 @@ import Chart from 'chart.js/auto';
 export class MonitorOrderComponent implements OnInit {
   orderslist: any[] = [];
   order: any[] = [];
+  chart: Chart | null = null;
 
   constructor(private http: HttpClient) { }
 
@@ -53,7 +54,7 @@ export class MonitorOrderComponent implements OnInit {
         
         const labels = ['Price','Quantity'];
         const data =[order.price, order.stock_quantity]; 
-        new Chart(ctx, {
+          this.chart = new Chart(ctx, {
           type: 'bar',
           data: {
             labels: labels,
@@ -88,19 +89,15 @@ export class MonitorOrderComponent implements OnInit {
 
   calculateOverallCostPrice(): number {
     let overallCostPrice = 0;
-    // for (let order of this.orderslist) {
       for (let order of this.order) {
 
       overallCostPrice += (order.single_quantity_price*order.stock_quantity);
     }
-    // return overallCostPrice;
     return parseFloat(overallCostPrice.toFixed(2));
   }
   calculateOverallquantity(): number {
     let overallpo = 0;
-    // for (let order of this.orderslist) {
            for (let order of this.order) {
-
       overallpo += order.stock_quantity;
     }
     return overallpo;

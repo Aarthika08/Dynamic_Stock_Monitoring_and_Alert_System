@@ -49,7 +49,8 @@ export class StockComponent implements OnInit {
 }
 
    fetchStockData(): void {
-      this.stockService.getStockList().subscribe(data => {
+      this.stockService.getStockList().subscribe({
+       next: (data) => {
         this.stockList = data.stock;
         console.log(this.stockList);  
         this.page1Data = data.stock || [];
@@ -58,10 +59,10 @@ export class StockComponent implements OnInit {
 
 
       },
-      (error) => {
+     error: (error) => {
         console.error('Error fetching assets:', error);
       }
-    );
+    } );
   }
   
 
@@ -80,7 +81,7 @@ export class StockComponent implements OnInit {
   
     this.filteredDataset = this.stockList.filter(item => {
       const fieldValue = item[this.selectedFilterType]?.toString().toLowerCase();
-      return fieldValue && fieldValue.includes(searchTerm);
+      return fieldValue?.includes(searchTerm);
     });
   
     console.log("Filtered dataset:", this.filteredDataset);
