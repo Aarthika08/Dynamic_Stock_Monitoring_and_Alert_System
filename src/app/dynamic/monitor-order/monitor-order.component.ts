@@ -11,7 +11,7 @@ import Chart from 'chart.js/auto';
 })
 export class OrderComponent implements OnInit {
   orderslist: any[] = [];
-
+  chart: Chart | null = null;
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -50,7 +50,8 @@ export class OrderComponent implements OnInit {
        
         const labels = ['Price','Quantity'];
         const data =[order.price, order.stock_quantity]; 
-        new Chart(ctx, {
+       
+          this.chart = new Chart(ctx, {
           type: 'bar',
           data: {
             labels: labels,
@@ -88,8 +89,8 @@ export class OrderComponent implements OnInit {
     for (let order of this.orderslist) {
       overallCostPrice += (order.single_quantity_price*order.stock_quantity);
     }
-    return overallCostPrice;
-  }
+    return parseFloat(overallCostPrice.toFixed(2));
+    }
   calculateOverallquantity(): number {
     let overallpo = 0;
     for (let order of this.orderslist) {

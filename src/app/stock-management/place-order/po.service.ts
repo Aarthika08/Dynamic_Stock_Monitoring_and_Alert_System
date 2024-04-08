@@ -62,7 +62,7 @@ export class POService {
       })
     };
   
-    this.http.get<any>(this.baseUrl, httpOptions).subscribe((data) => {
+    this.http.get<any>(this.baseUrl, httpOptions).subscribe({ next:(data) => {
       const latestRev = data._rev;
       // Ensure we're using the latest revision before updating
       if (latestRev === currentRev) {
@@ -74,15 +74,16 @@ export class POService {
       } else {
         console.error('Conflict detected: The document has been updated since retrieval. Please fetch the latest version and try again.');
       }
-    }, error => {
+    },error: error => {
       console.error('Error fetching latest revision:', error);
-    });
+  }});
   }
   
 
   private handleError(error: HttpErrorResponse) {
     console.error('Error fetching orders:', error);
-    return throwError('Something bad happened; please try again later.');
+    return throwError(() => new Error('Something bad happened; please try again later.'));
+
   }
 
   private getNextStatus(currentStatus: string): string {

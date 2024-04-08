@@ -95,7 +95,6 @@ console.log(this.errorMessage);
     // Encrypt the password
     const encryptedPassword = CryptoJS.AES.encrypt(userDetails.password, 'secret key').toString();
   
-    // Replace the plain text password with the encrypted password
     userDetails.password = encryptedPassword;
   
     this.userService.addUser(userDetails).subscribe(

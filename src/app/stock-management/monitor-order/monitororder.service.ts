@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MonitorService {
-  // private baseUrl = 'http://localhost:5984/stocks/43407ead14cf09630aa0d936af030ddf'; // Assuming your backend API endpoint
   
   private baseUrl = 'http://localhost:5984/stocks/43407ead14cf09630aa0d936af030ddf';
 
