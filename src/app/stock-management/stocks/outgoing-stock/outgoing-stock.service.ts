@@ -22,47 +22,70 @@ export class OutgoingStockService {
     return this.http.get<any>(this.apiUrl, httpOptions).pipe(
       catchError(error => {
         console.error('Error fetching document:', error);
-        return throwError('Error fetching document');
+        return throwError('Error fetching document');       
+        
       }),
       switchMap((document: any) => {
         const stockArray: any[] = document.stock || [];
         let itemFound = false;
   
-        for (let i = 0; i < stockArray.length; i++) {
-          if (stockArray[i].itemId === userDetails.itemId) {
-            // Item found, update its details
-            if (stockArray[i].quantity >= userDetails.quantity) {
-              stockArray[i].quantity -= userDetails.quantity;
+        // for (let i = 0; i < stockArray.length; i++) {
+        //   if (stockArray[i].itemId === userDetails.itemId) {
+        //     if (stockArray[i].quantity >= userDetails.quantity) {
+        //       stockArray[i].quantity -= userDetails.quantity;
+        //     } else {
+        //       return throwError('Insufficient stock available for this item.');
+        //     }
+  
+        //     stockArray[i].modified_date = stockArray[i].order_date;
+        //     stockArray[i].order_date = userDetails.order_date;
+  
+        //     if (!stockArray[i].outgoingHistory) {
+        //       stockArray[i].outgoingHistory = [];
+        //     }
+  
+        //     stockArray[i].outgoingHistory.push({
+        //       date: userDetails.order_date,
+        //       quantity: userDetails.quantity // Subtracting quantity for outgoing stock
+        //     });
+  
+        //     if (stockArray[i].quantity === 0) {
+        //       stockArray[i].status = 'Out of Stock';
+        //     }
+  
+        //     itemFound = true;
+        //     break;
+        //   }
+        // }
+  
+        for (const stockItem of stockArray) {
+          if (stockItem.itemId === userDetails.itemId) {
+            if (stockItem.quantity >= userDetails.quantity) {
+              stockItem.quantity -= userDetails.quantity;
             } else {
               return throwError('Insufficient stock available for this item.');
             }
   
-            // Update modified_date to the previous order_date
-            stockArray[i].modified_date = stockArray[i].order_date;
-            // Set order_date to the date provided by the user
-            stockArray[i].order_date = userDetails.order_date;
+            stockItem.modified_date = stockItem.order_date;
+            stockItem.order_date = userDetails.order_date;
   
-            // Check if history array exists, if not create it
-            if (!stockArray[i].outgoingHistory) {
-              stockArray[i].outgoingHistory = [];
+            if (!stockItem.outgoingHistory) {
+              stockItem.outgoingHistory = [];
             }
   
-            // Add the current order date and quantity to history
-            stockArray[i].outgoingHistory.push({
+            stockItem.outgoingHistory.push({
               date: userDetails.order_date,
-              quantity: userDetails.quantity // Subtracting quantity for outgoing stock
+              quantity: userDetails.quantity
             });
   
-            // Update status if quantity becomes zero
-            if (stockArray[i].quantity === 0) {
-              stockArray[i].status = 'Out of Stock';
+            if (stockItem.quantity === 0) {
+              stockItem.status = 'Out of Stock';
             }
   
             itemFound = true;
             break;
           }
         }
-  
         if (!itemFound) {
           return throwError('Item not found in the stock.');
         }
@@ -94,6 +117,5 @@ export class OutgoingStockService {
     };
   
     return this.http.get<any>(this.apiUrl, httpOptions)
-    // return this.http.get<any>(`/api/stock/${itemId}`);
   }
 }

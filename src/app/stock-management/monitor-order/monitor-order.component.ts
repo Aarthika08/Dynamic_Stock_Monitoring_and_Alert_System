@@ -29,7 +29,6 @@ export class MonitorOrderComponent implements OnInit {
     };
 
     this.http.get<any>(apiUrl, httpOptions).subscribe(data => {
-      // this.orderslist = data.orderslist;
           this.order = data.order;
 
       
@@ -38,7 +37,6 @@ export class MonitorOrderComponent implements OnInit {
   }
 
   drawGraphsForOrders() {
-    // this.orderslist.forEach(order => {
       this.order.forEach(order => {
 
       const canvas = document.createElement('canvas');

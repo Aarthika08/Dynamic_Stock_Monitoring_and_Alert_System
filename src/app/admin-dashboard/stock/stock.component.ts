@@ -10,20 +10,12 @@ import {
   Formatter,Filters
 } from 'node_modules/angular-slickgrid';
 
-// const updateFormatter: Formatter = (row, cell, value, columnDef, dataContext, grid) => {
-  
-//   return `<button id="myButton"  style="background: rgb(74, 74, 168);color:white;border-radius:5px; height:31px; width:73px
-//   " >Update</button>`;
-// };
-const viewFormatter: Formatter = (row, cell, value, columnDef, dataContext, grid) => {
-  
+
+const viewFormatter: Formatter = (row, cell, value, columnDef, dataContext, grid) => {  
   return `<button id="myButton"  style="background: rgb(74, 74, 168);color:white;border-radius:5px; height:31px; width:73px
   ">View</button>`;
 };
-// const mapFormatter: Formatter = (row, cell, value, columnDef, dataContext, grid) => {
-  
-//   return `<button id="myButton" style="background: rgb(74, 74, 168);color:white; border-radius:5px; height:31px; width:53px" >Add</button>`;
-// };
+
 
 @Component({
   selector: 'app-stock',
@@ -31,7 +23,6 @@ const viewFormatter: Formatter = (row, cell, value, columnDef, dataContext, grid
   styleUrls: ['./stock.component.css']
 })
 export class StockComponent implements OnInit {
-  // stockList!: any[];
   stockList: any[] = [];
   loading: boolean = true;
   error: any;
@@ -59,9 +50,9 @@ export class StockComponent implements OnInit {
 
    fetchStockData(): void {
       this.stockService.getStockList().subscribe(data => {
-        this.stockList = data.stocklist;
+        this.stockList = data.stock;
         console.log(this.stockList);  
-        this.page1Data = data.stocklist || [];
+        this.page1Data = data.stock || [];
         console.log("page",this.stockList)
         this.dataTable()
 
@@ -73,28 +64,7 @@ export class StockComponent implements OnInit {
     );
   }
   
-  // applyFilter() {
-  //   if (this.selectedFilterType && this.searchQuery) {
-  //     this.filteredDataset = this.stockList.filter(data => {
-  //       const fieldValue = data[0][this.selectedFilterType];
-  //      console.log(fieldValue);
-        
-      
-  //         console.log("value",data[0][this.selectedFilterType])
 
-        
-  //           this.fieldValueString = data[0][this.selectedFilterType].toString().toLowerCase();
-
-  //           this.searchQueryLower = this.searchQuery.toLowerCase();
-
-  //         return this.fieldValueString==this.searchQueryLower;
-        
-  //     });
-  //   } 
-  //   this.stockList=this.filteredDataset
-  //   this.dataTable()
-  //   console.log("aa",this.filteredDataset)
-  // }
 
   applyFilter() {
     console.log("Filtering...");

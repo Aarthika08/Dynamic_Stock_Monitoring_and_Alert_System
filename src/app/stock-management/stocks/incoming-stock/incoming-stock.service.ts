@@ -218,7 +218,7 @@ export class IncomingStockService {
 
           // Add status for the new item
           if (userDetails.quantity >= 1) {
-            userDetails.status = 'inStock';
+            userDetails.status = 'instock';
           }
         }
 

@@ -56,7 +56,7 @@ ngAfterViewInit(): void {
    
   this.reportService.getOrderReport().subscribe(
     (data: any) => {
-      if (data && data.order) {
+      if (data?.order) {
         const stockMap = new Map();
         data.order.forEach((order: any) => {
           const stockName = order.product_name;
@@ -157,7 +157,7 @@ ngAfterViewInit(): void {
 
   fetchData(): void {
     this.dataService.getStockList().subscribe(data => {
-      this.stockList = data.stocklist;
+      this.stockList = data.stock;
       this.createChart();
   
       console.log(this.stockList);
@@ -285,7 +285,7 @@ ngAfterViewInit(): void {
     fetchNewData(): void {
         this.dataService.getStockList().subscribe(
           (data: any) => {
-            this.stockList = data.stocklist;
+            this.stockList = data.stock;
             this.createPieChart();
             console.log('Fetched stock list:', this.stockList);
           },

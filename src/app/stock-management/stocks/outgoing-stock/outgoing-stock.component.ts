@@ -31,39 +31,84 @@ insufficientStockError: boolean = false;
       if (outgoing_dateControl) {
         const selectedDate: Date = new Date(outgoing_dateControl.value);
         const currentDate: Date = new Date();
+        selectedDate.setHours(0, 0, 0, 0);
+
         currentDate.setHours(0, 0, 0, 0);
 
         this.isDateInvalid = selectedDate < currentDate;
       }
     }
+    // checkStock() {
+    //   const itemId = this.outgoingStockForm.get('itemId')?.value;
+  
+    //   if (!itemId) {
+    //     return;
+    //   }
+  
+    //   // Call the service method to get stock details
+    //   this.outgoingStockService.getStockDetails(itemId).subscribe(
+    //     (response: any) => {
+    //       const quantity = response.quantity;
+    //       const status = response.status;
+  
+    //       // Check if quantity is sufficient and status is valid
+    //       if (quantity <= this.outgoingStockForm.get('quantity')?.value && status === 'instock') {
+    //         this.insufficientStockError = false;
+    //       } else {
+    //         this.insufficientStockError = true;
+    //       }
+    //     },
+    //     (error) => {
+    //       console.error('Failed to fetch stock details:', error);
+    //       this.insufficientStockError = true;
+    //     }
+    //   );
+    // }
+    
     checkStock() {
       const itemId = this.outgoingStockForm.get('itemId')?.value;
   
       if (!itemId) {
-        // Item ID is not provided, return early
-        return;
+          return;
       }
   
       // Call the service method to get stock details
       this.outgoingStockService.getStockDetails(itemId).subscribe(
-        (response: any) => {
-          const quantity = response.quantity;
-          const status = response.status;
+          (response: any) => {
+              console.log('Stock details response:', response);
   
-          // Check if quantity is sufficient and status is valid
-          if (quantity >= this.outgoingStockForm.get('quantity')?.value && status === 'active') {
-            this.insufficientStockError = false;
-          } else {
-            this.insufficientStockError = true;
+              // Assuming response is an array of stock items
+              const stockItem = response.stock.find((item: any) => item.itemId === itemId);
+  
+              if (stockItem) {
+                  const quantity = stockItem.quantity;
+                  const status = stockItem.status;
+  
+                  // Get the quantity entered by the user
+                  const requestedQuantity = this.outgoingStockForm.get('quantity')?.value;
+  
+                  console.log('Requested Quantity:', requestedQuantity);
+                  console.log('Available Quantity:', quantity);
+                  console.log('Status:', status);
+  
+                  // Check if quantity is sufficient and status is valid
+                  if (requestedQuantity <= quantity && status === 'instock') {
+                      this.insufficientStockError = false; // Sufficient stock
+                  } else {
+                      this.insufficientStockError = true; // Insufficient stock or invalid status
+                  }
+              } else {
+                  console.error('Stock item not found for itemId:', itemId);
+                  this.insufficientStockError = true; // Handle case where stock item is not found
+              }
+          },
+          (error) => {
+              console.error('Failed to fetch stock details:', error);
+              this.insufficientStockError = true; // Error occurred, show as insufficient stock
           }
-        },
-        (error) => {
-          console.error('Failed to fetch stock details:', error);
-          this.insufficientStockError = true;
-        }
       );
-    }
-    
+  }
+  
     
     onSubmit() {
       if (this.outgoingStockForm.invalid) {

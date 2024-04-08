@@ -94,8 +94,7 @@ p2='';
   }
   fetchTotalorders(): void {
     this.dataService.getTotalorders().subscribe(
-      count => {
-        this.totalorders = count;
+      count => {        this.totalorders = count;
       },
       error => {
         console.error('Error fetching total items:', error);
@@ -193,9 +192,9 @@ RandomColors({ count }: { count: number; }): string[] {
 fetchLast5Items(): void {
   this.dataService.getLast5Items().subscribe(
     (data: any) => {
-      if (data?.stocklist) {
-        data.stocklist.sort((a: any, b: any) => new Date(b.order_date).getTime() - new Date(a.order_date).getTime());
-        this.items = data.stocklist.slice(0, 5);
+      if (data?.stock) {
+        data.stock.sort((a: any, b: any) => new Date(b.order_date).getTime() - new Date(a.order_date).getTime());
+        this.items = data.stock.slice(0, 5);
       } else {
         console.error('Invalid data format received:', data);
       }

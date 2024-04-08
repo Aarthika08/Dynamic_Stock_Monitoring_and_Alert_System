@@ -43,7 +43,7 @@ export class POService {
     this.http.get<any>(this.baseUrl, httpOptions).pipe(
       catchError(this.handleError)
     ).subscribe((data) => {
-      if (data && data.order) {
+      if (data?.order) {
         const updatedOrders = data.order.map((order: any) => {
           const currentStatus = order.order_status;
           const nextStatus = this.getNextStatus(currentStatus);
@@ -116,7 +116,7 @@ export class POService {
 
     return this.http.get<any>(this.baseUrl, httpOptions).pipe(
       switchMap((data: any) => {
-        if (data && data.order) {
+        if (data?.order) {
           data.order.push(newOrder);
           return this.http.put<any>(this.baseUrl, data, httpOptions);
         } else {

@@ -15,7 +15,8 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class StockService {
-    private apiUrl = 'http://localhost:5984/stocks/43407ead14cf09630aa0d936af02395d';
+    // private apiUrl = 'http://localhost:5984/stocks/43407ead14cf09630aa0d936af02395d';
+    private apiUrl = 'http://localhost:5984/stocks/6bf419fc30b6d006073b2fb0df00fd9d'; 
 
   constructor(private http: HttpClient) { }
 

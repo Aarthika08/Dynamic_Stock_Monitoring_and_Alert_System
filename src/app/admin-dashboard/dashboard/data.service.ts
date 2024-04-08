@@ -9,7 +9,8 @@ import { map } from 'rxjs/operators';
 export class DataService {
   private baseUrl = 'http://localhost:5984/user/bc6902f68695a9119c060aede00060ca';
   private couchDBUrl = 'http://localhost:5984/user/43407ead14cf09630aa0d936af00f847';
-  private apiUrl = 'http://localhost:5984/stocks/43407ead14cf09630aa0d936af02395d';
+
+  private apiUrl = 'http://localhost:5984/stocks/6bf419fc30b6d006073b2fb0df00fd9d'; // Replace with your API base URL
   private apiUrl1 = 'http://localhost:5984/stocks/43407ead14cf09630aa0d936af030ddf';
 
   constructor(private http: HttpClient) { }
@@ -65,8 +66,8 @@ export class DataService {
     return this.http.get<any>(this.apiUrl,httpOptions)
       .pipe(
         map(response => {
-          if (response?.stocklist && Array.isArray(response.stocklist)) {
-            return response.stocklist.length;
+          if (response?.stock && Array.isArray(response.stock)) {
+            return response.stock.length;
           } else {
             throw new Error('Document or stocklist array not found.');
           }
@@ -107,8 +108,8 @@ export class DataService {
       return this.http.get<any>(this.apiUrl1,httpOptions)
         .pipe(
           map(response => {
-            if (response?.orderslist && Array.isArray(response.orderslist)) {
-              return response.orderslist.length;
+            if (response?.order && Array.isArray(response.order)) {
+              return response.order.length;
             } else {
               throw new Error('Document or orderslist array not found.');
             }

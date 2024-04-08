@@ -20,7 +20,7 @@
         <td>{{ item.quantity }}</td>
         <td>{{ item.itemCategory }}</td>
         <td>{{ item.order_date }}</td>
-        <td [ngClass]="{'instock': item.status === 'instock', 'out-of-stock': item.status === 'Out of Stock'}">{{ item.status }}</td>
+        <td [ngClass]="{'instock': item.status === 'instock', 'out-of-stock': item.status === 'Out of Stock','out-of-order': item.status === 'Out of order'}">{{ item.status }}</td>
 
       </tr>
     </tbody>
