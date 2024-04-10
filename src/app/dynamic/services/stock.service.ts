@@ -4,25 +4,9 @@ import { Observable, of, tap } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
-// interface StockData {
-//   itemName: string; // Update: Moved itemName to the root level
-//   stock: {
-//     itemId: number;
-//     itemName: string;
-//     itemDescription: string;
-//     itemCategory: string;
-//     order_date: string;
-//     quantity: number;
-//     status: string;
-//     delete?: boolean;
-//     modified_date: string;
-//     history: { date: string; quantity: number }[];
-//     outgoingHistory: { date: string; quantity: number }[];
-//   }[];
-// }
+
 interface Stock {
   itemName: string;
-  // stock: StockItem[];
   stock: StockData[]; // Assuming StockData contains an array of StockItem
 }
 interface StockData {
@@ -69,76 +53,7 @@ export class StockService {
 
 
 
-  // getStockData(): Observable<StockData> {
-  //   const httpOptions = {
-  //     headers: new HttpHeaders({
-  //       'Content-Type': 'application/json',
-  //       Authorization: 'Basic ' + btoa('admin:admin')
-  //     })
-  //   };
-  //   return this.http.get<StockData>('http://localhost:5984/stocks/6bf419fc30b6d006073b2fb0df00fd9d', httpOptions).pipe(
-  //     tap(data => console.log('Response from API:', data)),
-  //     catchError(error => {
-  //       console.error('Error fetching data from the API:', error);
-  //       return throwError('Failed to fetch data from the API. Please try again later.');
-  //     })
-  //   );
-  // }
-  
-  // Function to preprocess data, train SVR model, and predict sales
-
-  // predictSales(): Observable<{ predictedSales: number[], isHighSales: boolean }> {
-  //   return new Observable(observer => {
-  //     this.getStockData().subscribe(data => {
-  //       if (!data || !Array.isArray(data.stock)) {
-  //         const errorMessage = 'Invalid data format. API response does not contain the expected structure.';
-  //         console.error(errorMessage, data);
-  //         observer.error(errorMessage);
-  //         return;
-  //       }
-  
-  //       // Extract relevant data from the response
-  //       const stockData = data.stock;
-  
-  //       // Preprocess data, extract features and target values, train SVR model, and predict sales
-  //       const { X_train, y_train, X_test } = this.extractFeaturesAndTargets(stockData);
-  //       const predictedSales = this.predictStockPricesSVR(X_train, y_train, X_test);
-  
-  //       // Determine if the predicted sales are high
-  //       const isHighSales = this.isHighSales(predictedSales);
-  
-  //       // Emit the result
-  //       observer.next({ predictedSales, isHighSales });
-  //       observer.complete();
-  //     }, error => {
-  //       console.error('Error fetching data from the API:', error);
-  //       observer.error('Failed to fetch data from the API. Please try again later.');
-  //     });
-  //   });
-  // }
-  
-  // Function to extract features and target values
-  // extractFeaturesAndTargets(stockData: any[]): { X_train: number[], y_train: number[], X_test: number[] } {
-  //   // Extract features and target values
-  //   const history = [];
-  //   const outgoingHistory = [];
-  //   for (const item of stockData) {
-  //     if (item.history && item.history.length > 0) {
-  //       history.push(...item.history);
-  //     }
-  //     if (item.outgoingHistory && item.outgoingHistory.length > 0) {
-  //       outgoingHistory.push(...item.outgoingHistory);
-  //     }
-  //   }
-  
-  //   const X_train = history.map(item => new Date(item.date).getTime());
-  //   const y_train = history.map(item => item.quantity);
-  //   const X_test = outgoingHistory.map(item => new Date(item.date).getTime());
-  //   return { X_train, y_train, X_test };
-  // }
-  
-  
-
+ 
 
   // Support Vector Regression (SVR) algorithm implementation
   predictStockPricesSVR(X_train: number[], y_train: number[], X_test: number[]): number[] {
@@ -188,52 +103,7 @@ export class StockService {
     return totalSales > threshold;
   }
 
-  // Function to predict sales and determine if they are high for each prediction
-// predictAndCheckHighSales(): void {
-//     this.predictSales().subscribe(result => {
-//       const predictedSales = result.predictedSales;
-//       const threshold = 50; // Define your threshold value here
   
-//       // Iterate over each predicted sales value
-//       for (let i = 0; i < predictedSales.length; i++) {
-//         const prediction = predictedSales[i];
-  
-//         // Determine if the prediction exceeds the threshold
-//         const isHighSales = prediction > threshold;
-  
-//         // Output the prediction and whether it's considered high sales
-//         console.log(`Prediction ${i + 1}: ${prediction}`);
-//         console.log(`High Sales: ${isHighSales}`);
-//       }
-//     });
-//   }
-  // 2
-  // predictAndCheckHighSales(): Observable<{ prediction: number, isHighSales: boolean }[]> {
-  //   return new Observable(observer => {
-  //     this.predictSales().subscribe(result => {
-  //       const predictedSales = result.predictedSales;
-  //       const threshold = 50; // Define your threshold value here
-  //       const predictionsWithHighSales: { prediction: number, isHighSales: boolean }[] = [];
-  
-  //       // Iterate over each predicted sales value
-  //       for (let i = 0; i < predictedSales.length; i++) {
-  //         const prediction = predictedSales[i];
-  
-  //         // Determine if the prediction exceeds the threshold
-  //         const isHighSales = prediction > threshold;
-  
-  //         // Store the prediction and its high sales status in the array
-  //         predictionsWithHighSales.push({ prediction, isHighSales });
-  //       }
-  
-  //       // Emit the array containing predictions and their high sales status
-  //       observer.next(predictionsWithHighSales);
-  //       observer.complete();
-  //     }, error => {
-  //       observer.error(error);
-  //     });
-  //   });
-  // }
     
   predictSales(): Observable<{ itemName: string; history: any[]; outgoingHistory: any[] }> {
     return this.getStockData().pipe(

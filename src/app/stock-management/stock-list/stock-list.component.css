@@ -6,7 +6,8 @@
       box-shadow: 0 14px 18px rgba(0, 0, 0, 0.9); /* Add box shadow */
       margin: 0 auto; /* Center the table horizontally */
       border:none;
-    border-radius:50%
+    border-radius:1%;
+
     }
   
   
@@ -47,5 +48,6 @@ tr:hover {
 [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
   cursor: pointer;
   
-    border-radius: 55%;
+    border-radius: 15%;
+    margin:5px;
 }

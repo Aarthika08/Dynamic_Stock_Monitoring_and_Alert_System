@@ -7,8 +7,9 @@
 <body>
 <h1 style="text-align: center;">Stock Data List</h1>
 <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
-<div class="set" style=" background-color: black;border-radius: 121px;color: white;
-box-shadow: 0 14px 18px rgba(0, 0, 0, 0.9); width:80%;margin-left: 120px;">
+<!-- <div class="set" style=" background-color: black;border-radius: 121px;color: white;
+box-shadow: 0 14px 18px rgba(0, 0, 0, 0.9); width:80%;margin-left: 120px;"> -->
+<div>
 <table *ngIf="stockData && stockData.length > 0">
   <thead>
     <tr>

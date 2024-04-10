@@ -64,7 +64,6 @@ export class POService {
   
     this.http.get<any>(this.baseUrl, httpOptions).subscribe({ next:(data) => {
       const latestRev = data._rev;
-      // Ensure we're using the latest revision before updating
       if (latestRev === currentRev) {
         this.http.put<any>(this.baseUrl, { order: updatedOrders, _rev: currentRev }, httpOptions).subscribe(() => {
           console.log('Order statuses updated successfully');

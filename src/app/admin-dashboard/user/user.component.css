@@ -1,11 +1,6 @@
 
   *{
-    /* margin: 25px 44px; */
-  
-   /* margin-left: 27px;
-    padding: 1px; */
-
-    padding: 0px;
+        padding: 0px;
     margin: 20px;
     padding-right: 21px;
    }
@@ -57,7 +52,7 @@ tr:hover {
   background-color: black;
   color: white;
   width: 60px;
-    border-radius: 55%;
+    border-radius: 15%;
     text-align: right;
 }
 

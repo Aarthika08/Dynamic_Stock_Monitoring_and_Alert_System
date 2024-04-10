@@ -6,17 +6,31 @@
   <h2>Stock Dispatch</h2>
   <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
   <form [formGroup]="outgoingStockForm" (ngSubmit)="onSubmit()">
+  
+
     <div class="form-control">
       <label for="itemId">Item ID:</label>
-      <input type="number" id="itemId" formControlName="itemId">
+      <select id="itemId" formControlName="itemId" (change)="populateItemDetails($event)" class="long-dropdown">
+        <option value="" disabled selected>Select Item ID .</option>
+        <option *ngFor="let item of stockData.stock" [value]="item.itemId"  [disabled]="item.quantity === 0">{{ item.itemId }}</option>
+
+      </select>
       <small *ngIf="outgoingStockForm.get('itemId')?.errors?.['required'] && outgoingStockForm.get('itemId')?.touched" class="error-message">Item ID is required.</small>
 
     </div>
-    <div class="form-control">
-      <label for="itemName">Item Name:</label>
-      <input type="text" id="itemName" formControlName="itemName">
+
+ 
+    
+   
+    <div>
+      <label for="itemName" class="form-control">Item Name:</label>
+      <input type="text" id="itemName" formControlName="itemName" placeholder="Enter Item Name" class="form-control">
       <small *ngIf="outgoingStockForm.get('itemName')?.errors?.['required'] && outgoingStockForm.get('itemName')?.touched" class="error-message">Item Name is required.</small>
+      <small *ngIf="outgoingStockForm.get('itemName')?.errors?.['containsNumber'] && outgoingStockForm.get('itemName')?.touched">
+        <span class="warning-message">No numbers allowed .</span>
+      </small>
     </div>
+
     <div class="form-control">
       <label for="quantity">Quantity:</label>
       <input type="number" id="quantity" formControlName="quantity" (blur)="checkStock()">
@@ -45,4 +59,6 @@
     <div *ngIf="insufficientStockError" class="error">Insufficient stock available for this item.</div>
     <button type="submit" [disabled]="outgoingStockForm.invalid">Add Outgoing Stock</button>
   </form>
+
+  
 </div>
