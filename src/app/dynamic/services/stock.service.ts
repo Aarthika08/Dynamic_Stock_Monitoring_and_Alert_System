@@ -59,14 +59,12 @@ export class StockService {
   predictStockPricesSVR(X_train: number[], y_train: number[], X_test: number[]): number[] {
     // Calculate parameters for the linear regression line (slope and intercept)
     const { slope, intercept } = this.calculateLinearRegressionParams(X_train, y_train);
-
     // Use the linear regression line equation to predict the test data
     const predictions: number[] = [];
     for (let i = 0; i < X_test.length; i++) {
       const prediction = slope * X_test[i] + intercept;
       predictions.push(prediction);
     }
-
     return predictions;
   }
 
