@@ -1,7 +1,4 @@
 
-
-<!-- outgoing-stock.component.html -->
-
 <div class="container">
   <h2>Stock Dispatch</h2>
   <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
@@ -18,9 +15,7 @@
       <small *ngIf="outgoingStockForm.get('itemId')?.errors?.['required'] && outgoingStockForm.get('itemId')?.touched" class="error-message">Item ID is required.</small>
 
     </div>
-
- 
-    
+  
    
     <div>
       <label for="itemName" class="form-control">Item Name:</label>
