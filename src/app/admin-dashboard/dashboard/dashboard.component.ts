@@ -2,7 +2,6 @@ import { Component, OnInit,  ElementRef, ViewChild } from '@angular/core';
 import { DataService } from './data.service';
 import { Chart } from 'chart.js/auto';
 import {OrderlistService} from '../order/orderlist.service';
-
 interface StockItem {
   id: number;
   itemName: string;
