@@ -5,11 +5,9 @@
   margin: auto; /* Center the dialog box horizontally */
   padding: 0; /* Remove padding */
 }
-
 .mat-mdc-dialog-container .mdc-dialog__surface {
-  height: 292px; /* Adjust height as needed */
+  height: 292px; 
 }
-
 .mat-mdc-dialog-container,
 .mat-mdc-dialog-container .mdc-dialog__container,
 .mat-mdc-dialog-container .mdc-dialog__surface {
