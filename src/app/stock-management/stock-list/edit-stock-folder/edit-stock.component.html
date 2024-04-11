@@ -17,9 +17,10 @@
   <input type="text" [(ngModel)]="stockData.itemDescription" name="itemDescription">
   <br>
   <label> order_date </label>
-  <input type="date" [(ngModel)]="stockData.order_date" name="order_date" readonly>
+  <input type="date" [(ngModel)]="stockData.order_date" name="order_date"  readonly>
   <br>
   <br>
   <button type="button" (click)="saveStock()">Save</button>
-  <button type="button" (click)="closeDialog()">Cancel</button>
+  <button type="button" (click)="closeDialog()">Cancel</button> 
 </form>
+
