@@ -26,6 +26,7 @@ import { GraphDialogComponent } from './stock-list/graph-dialog/graph-dialog.com
 import { MonitorOrderComponent } from './monitor-order/monitor-order.component';
 
 
+
 @NgModule({
   declarations: [
     EditStockComponent,
