@@ -37,34 +37,42 @@ export class OutgoingStockComponent implements OnInit {
 
 
   // Update item name based on selected item ID
-  getStockAvailability(): void {
-    this.stockAvailabilityService.getStockAvailability().subscribe(
-      data => {
-        this.stockData = data;
-      },
-      error => {
-        console.error('Error fetching stock data:', error);
-      }
-    );
-  }
+//  getStockAvailability(): void {
+//    this.stockAvailabilityService.getStockAvailability().subscribe(
+//      data => {
+//        this.stockData = data; },
+//      error => {
+ //       console.error('Error fetching stock data:', error);
+ //     } ); }
 
 
 
   
   
   // Populate item name and quantity based on selected item ID
-  populateItemDetails(event: Event): void {
-    const selectedItemId = (event.target as HTMLSelectElement).value;
-    const itemId = parseInt(selectedItemId); // Convert to number if necessary
-    const selectedItem = this.stockData.stock.find((item: any) => item.itemId === itemId && item.quantity > 0);
-    if (selectedItem) {
-      this.outgoingStockForm.patchValue({
-        itemName: selectedItem.itemName,
-        quantity: selectedItem.quantity // Populate quantity as well if needed
-      });
-    }
-  }
+//  populateItemDetails(event: Event): void {
+//    const selectedItemId = (event.target as HTMLSelectElement).value;
+//    const itemId = parseInt(selectedItemId); // Convert to number if necessary
+//    const selectedItem = this.stockData.stock.find((item: any) => item.itemId === itemId && item.quantity > 0);
+//    if (selectedItem) {
+//      this.outgoingStockForm.patchValue({
+//        itemName: selectedItem.itemName,
+ //       quantity: selectedItem.quantity // Populate quantity as well if needed
+//      }); } }
   
+  // onStockItemSelected() {
+//     const itemId = this.outgoingStockForm.get('itemId')?.value;
+//     console.log('Selected itemId:', itemId); // Log itemId to console for debugging
+  
+//     console.log('Available Stock:', this.availableStock); // Log availableStock array to console for debugging
+  
+//     const selectedStockItem = this.availableStock.find(item => item.itemId === itemId);
+//     if (selectedStockItem) {
+//       this.outgoingStockForm.patchValue({
+//         itemName: selectedStockItem.itemName // Update item name when a stock item is selected
+//       });
+//     } 
+//   }
         checkOrderDateValidity() {
           const outgoing_dateControl = this.outgoingStockForm.get('outgoing_date');
           if (outgoing_dateControl) {
