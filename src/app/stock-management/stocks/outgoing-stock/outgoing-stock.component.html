@@ -1,4 +1,6 @@
 
+<!-- 
+
 <div class="container">
   <h2>Stock Dispatch</h2>
   <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
@@ -56,4 +58,98 @@
   </form>
 
   
+</div> -->
+<!-- <div class="container">
+  <h2>Stock Dispatch</h2>
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+  <form [formGroup]="outgoingStockForm" (ngSubmit)="onSubmit()">
+    <div class="form-control">
+      <label for="itemId">Item ID:</label>
+      <input type="number" id="itemId" formControlName="itemId">
+      <small *ngIf="outgoingStockForm.get('itemId')?.errors?.['required'] && outgoingStockForm.get('itemId')?.touched" class="error-message">Item ID is required.</small>
+
+    </div>
+    <div class="form-control">
+      <label for="itemName">Item Name:</label>
+      <input type="text" id="itemName" formControlName="itemName">
+      <small *ngIf="outgoingStockForm.get('itemName')?.errors?.['required'] && outgoingStockForm.get('itemName')?.touched" class="error-message">Item Name is required.</small>
+    </div>
+    <div class="form-control">
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" formControlName="quantity" (blur)="checkStock()">
+      <small *ngIf="errorMessage && outgoingStockForm.get('quantity')?.hasError('insufficientStockError')" class="error-message" style="color: red;">
+        {{ errorMessage }}
+      </small> 
+      <small *ngIf="(outgoingStockForm.get('quantity')?.errors?.['required'] || outgoingStockForm.get('quantity')?.errors?.['min'] || insufficientStockError) && outgoingStockForm.get('quantity')?.touched" class="error-message">
+       
+        <ng-container *ngIf="insufficientStockError && outgoingStockForm.get('quantity')?.touched">
+          Insufficient stock available for this item.
+        </ng-container>
+        <ng-container *ngIf="!insufficientStockError">
+          Quantity is required and must be greater than 0.
+        </ng-container>
+      </small>
+    </div>
+    <div class="form-control">
+      <label for="orderDate">Order Date:</label>
+      <input type="date" id="order_date" formControlName="order_date">
+      <small *ngIf="isDateInvalid && outgoingStockForm.get('outgoing_date')?.touched" class="warning-message">
+        Selected date should be current  or futuristic.
+      </small>
+      <small *ngIf="outgoingStockForm.get('outgoing_date')?.errors?.['required'] && outgoingStockForm.get('outgoing_date')?.touched" class="error-message">Outgoing Date is required.</small>
+   
+    </div>
+    <div *ngIf="insufficientStockError" class="error">Insufficient stock available for this item.</div>
+    <button type="submit" [disabled]="outgoingStockForm.invalid">Add Outgoing Stock</button>
+  </form>
+</div>-->
+
+
+
+<div class="container">
+  <h2>Stock Dispatch</h2>
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+  <form [formGroup]="outgoingStockForm" (ngSubmit)="onSubmit()">
+  
+   
+    <div class="form-control">
+      <label for="itemId">Item ID:</label>
+      <input type="number" id="itemId" formControlName="itemId">
+      <small *ngIf="outgoingStockForm.get('itemId')?.errors?.['required'] && outgoingStockForm.get('itemId')?.touched" class="error-message">Item ID is required.</small>
+    </div>
+   <div class="form-control">
+      <label for="itemName">Item Name:</label>
+      <input type="text" id="itemName" formControlName="itemName">
+      <small *ngIf="outgoingStockForm.get('itemName')?.errors?.['required'] && outgoingStockForm.get('itemName')?.touched" class="error-message">Item Name is required.</small>
+    </div>
+    
+    <div class="form-control">
+      <label for="quantity">Quantity:</label>
+      <input type="number" id="quantity" formControlName="quantity" (blur)="checkStock()">
+      <small *ngIf="errorMessage && outgoingStockForm.get('quantity')?.hasError('insufficientStockError')" class="error-message" style="color: red;">
+        {{ errorMessage }}
+      </small> 
+      <small *ngIf="(outgoingStockForm.get('quantity')?.errors?.['required'] || outgoingStockForm.get('quantity')?.errors?.['min'] || insufficientStockError) && outgoingStockForm.get('quantity')?.touched" class="error-message">
+       
+        <ng-container *ngIf="insufficientStockError && outgoingStockForm.get('quantity')?.touched">
+          Insufficient stock available for this item.
+        </ng-container>
+        <ng-container *ngIf="!insufficientStockError">
+          Quantity is required and must be greater than 0.
+        </ng-container>
+      </small>
+    </div>
+    <div class="form-control">
+      <label for="orderDate">Order Date:</label>
+      <input type="date" id="order_date" formControlName="order_date">
+      <small *ngIf="isDateInvalid && outgoingStockForm.get('outgoing_date')?.touched" class="warning-message">
+        Selected date should be current  or futuristic.
+      </small>
+      <small *ngIf="outgoingStockForm.get('outgoing_date')?.errors?.['required'] && outgoingStockForm.get('outgoing_date')?.touched" class="error-message">Outgoing Date is required.</small>
+   
+    </div>
+    <div *ngIf="insufficientStockError" class="error">Insufficient stock available for this item.</div>
+    <button type="submit" [disabled]="outgoingStockForm.invalid">Add Outgoing Stock</button>
+  </form>
 </div>
+  
